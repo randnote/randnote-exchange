@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
-    "prettier": "cd pages && prettier --write ."
+    "prettier": "cd pages && prettier --use-tabs --tab-width 4 --write ."
   },
   "pre-commit": [
     "prettier"
