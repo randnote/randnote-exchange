@@ -4,69 +4,42 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 import MainNavbar from "./components/Navbar";
-import { Container, Button } from "reactstrap";
-import Example from "./components/chart";
+import MainFooter from "./components/Footer";
+import { Container, Button, Row } from "reactstrap";
+import Chart from "./components/chart";
 
-import {
-	LineChart,
-	Line,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Legend,
-	ResponsiveContainer,
-} from "recharts";
+// Main section
+const MainComponent = () =>{
+  return (
+    <Container className="text-center">
+        <Row>
+          <h1>Rand Note Exchange</h1>
+          <p>This is the RandNote official website and exchange.</p>
 
-const data = [
-	{
-		name: "Page A",
-		uv: 4000,
-		pv: 2400,
-		amt: 2400,
-	},
-	{
-		name: "Page B",
-		uv: 3000,
-		pv: 1398,
-		amt: 2210,
-	},
-	{
-		name: "Page C",
-		uv: 2000,
-		pv: 9800,
-		amt: 2290,
-	},
-];
+        </Row>
 
+			<Chart></Chart>
+			</Container>
+  )
+}
+
+// About section
+const AboutComponent = () =>{
+  return (
+    <div>
+      About
+    </div>
+  )
+}
+
+// Page
 const Home: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container>
-				<LineChart
-					width={400}
-					height={400}
-					data={data}
-					margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-				>
-					<XAxis dataKey="name" />
-					<Tooltip />
-					<CartesianGrid stroke="#f5f5f5" />
-					<Line
-						type="monotone"
-						dataKey="uv"
-						stroke="#ff7300"
-						yAxisId={0}
-					/>
-					<Line
-						type="monotone"
-						dataKey="pv"
-						stroke="#387908"
-						yAxisId={1}
-					/>
-				</LineChart>
-			</Container>
+			<MainComponent></MainComponent>
+      <AboutComponent></AboutComponent>
+      <MainFooter></MainFooter>
 		</div>
 	);
 };

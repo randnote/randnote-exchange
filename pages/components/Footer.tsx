@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 
-const Footer = () => {
+const MainFooter = () => {
+    return (
 	<footer className="page-footer font-small blue pt-4">
 		<div className="container-fluid text-center text-md-left">
 			<div className="row">
@@ -49,9 +50,10 @@ const Footer = () => {
 			</div>
 		</div>
 		<div className="footer-copyright text-center py-3">
-			© 2020 Copyright:
+			© 2020 Copyright RANDNOTE(Open source):
 		</div>
-	</footer>;
+	</footer>
+    )
 };
 
-export default Footer;
+export default MainFooter;
