@@ -1,25 +1,6 @@
 import {Application, Request, Response, NextFunction } from "express";
 import User from "../models/user.model";
 
-interface person{
-    institution_id: number,
-    firstname: string,
-    lastname: string,
-    staffnumber: string,
-    password: string,
-    active: string,
-}
-
-/*incase i wanna create a quick user*/
-// const data1:person={
-//   "institution_id": 1,
-//   "firstname": "daniel",
-//   "lastname": "mamphekgo",
-//   "staffnumber": "2021",
-//   "password": "password",
-//   "active": "true"
-}
-
 exports.create = ((req:Request, res: Response) => {
 	  // Validate request
 	  if (!req.body) {
@@ -29,22 +10,21 @@ exports.create = ((req:Request, res: Response) => {
       	console.log("empty")
 	  }
 
-	  const admin = new User({
-        institution_id: req.body.institution_id,
+	  const user = new User({
 		firstname: req.body.firstname,
 		lastname: req.body.lastname,
-		staffnumber: req.body.staffnumber,
-		password: req.body.password,
-		active: req.body.active
+		email: req.body.staffnumber,
+        password: req.body.password,
+		verifiedEmail: req.body.verifiedEmail,
 	  });
 
 	  console.log('body is ',req.body);
 
-	  Admin.create(admin, (err: Error, data: object) => {
+	  User.create(user, (err: Error, data: object) => {
 	    if (err)
 	      res.status(500).send({
 	        message:
-	          err.message || "Some error occurred while creating the Admin."
+	          err.message || "Some error occurred while creating the User."
 	      });
 	    else res.send(data);
 	  });
@@ -52,11 +32,11 @@ exports.create = ((req:Request, res: Response) => {
 
 
 exports.findAll = (req:Request, res:Response) => {
-  Admin.getAll((err:any, data:any): any => {
+  User.getAll((err:any, data:any): any => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Admins."
+          err.message || "Some error occurred while retrieving Users."
       });
     else res.send(data);
   });
@@ -64,15 +44,15 @@ exports.findAll = (req:Request, res:Response) => {
 
 
 exports.findOne = (req: any, res: any) => {
-  Admin.findById(req.params.adminId, (err: any, data: any) => {
+  User.findById(req.params.userId, (err: any, data: any) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Admin with id ${req.params.adminId}.`
+          message: `Not found User with id ${req.params.userId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Admin with id " + req.params.adminId
+          message: "Error retrieving User with id " + req.params.userId
         });
       }
     } else res.send(data);
@@ -80,7 +60,6 @@ exports.findOne = (req: any, res: any) => {
 };
 
 exports.login = ((req: any, res:any)=>{
-  // Validate request
     if (!req.body) {
       res.status(400).send({
         message: "Content can not be empty!"
@@ -93,7 +72,7 @@ exports.login = ((req: any, res:any)=>{
       password: req.body.password
     }
 
-    Admin.login(obj, (err: any, data: any) => {
+    User.login(obj, (err: any, data: any) => {
       if (err)
         res/*.status(500)*/.send({
           success: "false",
@@ -104,49 +83,3 @@ exports.login = ((req: any, res:any)=>{
 });
 
 
-
-
-// // Update a Student identified by the studentId in the request
-// exports.update = (req, res) => {
-//   // Validate Request
-//   if (!req.body) {
-//     res.status(400).send({
-//       message: "Content can not be empty!"
-//     });
-//   }
-
-//   Student.updateById(
-//     req.params.studentId,
-//     new Student(req.body),
-//     (err, data) => {
-//       if (err) {
-//         if (err.kind === "not_found") {
-//           res.status(404).send({
-//             message: `Not found Student with id ${req.params.studentId}.`
-//           });
-//         } else {
-//           res.status(500).send({
-//             message: "Error updating Student with id " + req.params.studentId
-//           });
-//         }
-//       } else res.send(data);
-//     }
-//   );
-// };
-
-// // Delete a Student with the specified studentId in the request
-// exports.delete = (req, res) => {
-//   Student.remove(req.params.studentId, (err, data) => {
-//     if (err) {
-//       if (err.kind === "not_found") {
-//         res.status(404).send({
-//           message: `Not found Student with id ${req.params.studentId}.`
-//         });
-//       } else {
-//         res.status(500).send({
-//           message: "Could not delete Student with id " + req.params.studentId
-//         });
-//       }
-//     } else res.send({ message: `Student was deleted successfully!` });
-//   });
-// };
