@@ -2,12 +2,12 @@
 // i will test my methods here:
 Object.defineProperty(exports, "__esModule", { value: true });
 // in the models, i need to make sure that all the functions call a result()-function somewhere
-var assert = require('chai').assert;
+var assert = require("chai").assert;
 var sayHello = require("../random").sayHello;
-describe('Random', function () {
-    it('app should return hello', function () {
-        assert.equal(sayHello(), 'hello');
-    });
+describe("Random", function () {
+	it("app should return hello", function () {
+		assert.equal(sayHello(), "hello");
+	});
 });
 // tetst to be ran by github actions:
 // describe('Student' , function(){

@@ -2,7 +2,7 @@
 // import smtpTransport from 'nodemailer-smtp-transport';
 
 // /*
-// So asically i have to fetch all the users in the database that i wanna send the email to and 
+// So asically i have to fetch all the users in the database that i wanna send the email to and
 // */
 
 // interface email{

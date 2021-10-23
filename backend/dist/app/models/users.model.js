@@ -22,7 +22,7 @@
 //         this.lastname = admin.lastname;
 //         this.staffnumber = admin.staffnumber;
 //         this.password = admin.password;
-//         this.active = admin.active;     
+//         this.active = admin.active;
 //     }
 //     // create method:
 //     static create(newadmin : any, result:any) {
@@ -83,7 +83,7 @@
 //           // send success email here
 //           return;
 //         }
-//           result({ kind: "not_found" }, null);  
+//           result({ kind: "not_found" }, null);
 //       });
 //     };
 // } ;// end of the class:
