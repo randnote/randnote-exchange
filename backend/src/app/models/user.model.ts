@@ -5,7 +5,7 @@ interface userType {
 	firstname: string;
 	lastname: string;
 	email: string;
-	verifiedEmail: string;
+	verifiedEmail: boolean;
 	password: string;
 }
 
@@ -15,7 +15,7 @@ export default class User {
 	private lastname: string;
 	private password: string;
 	private email: string;
-	private verifiedEmail: string;
+	private verifiedEmail: boolean;
 
 	constructor(user: userType) {
 		this.firstname = user.firstname;
