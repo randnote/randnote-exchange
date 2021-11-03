@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-      "build": "next build",
+      "build": "next build ",
+      "next-start": "next start",
   "start": "NODE_ENV=production node server.js",
     "prettier": "cd pages && prettier --use-tabs --tab-width 4 --write . && cd ../backend/src && prettier --use-tabs --tab-width 4 --write ."
   },
