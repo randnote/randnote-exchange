@@ -3,6 +3,7 @@ import express, { Application, Request, Response, NextFunction } from "express";
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app: Application = express();
+import send from './app/emails'
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,5 +37,6 @@ app.use(
 // require("./app/routes/students.routers")(app);
 // require("./app/routes/modules.routers")(app);
 // require("./app/emails/admins/login.email"); // still buggy
+send()
 
 app.listen(8024, () => console.log(`server started on port 8024`));

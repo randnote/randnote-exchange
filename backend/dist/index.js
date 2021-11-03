@@ -8,6 +8,7 @@ var express_1 = __importDefault(require("express"));
 var cors = require("cors");
 var bodyParser = require("body-parser");
 var app = express_1.default();
+var emails_1 = __importDefault(require("./app/emails"));
 app.use(bodyParser.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 var allowedOrigins = ["http://localhost:3000", "http://locahost:3000/admin"];
@@ -33,5 +34,6 @@ app.use(cors({
 // require("./app/routes/students.routers")(app);
 // require("./app/routes/modules.routers")(app);
 // require("./app/emails/admins/login.email"); // still buggy
+emails_1.default();
 app.listen(8024, function () { return console.log("server started on port 8024"); });
 //# sourceMappingURL=index.js.map
