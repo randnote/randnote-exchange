@@ -21,13 +21,16 @@ connection.connect((err: Error) => {
 	}
 
 	const createTable = (query: string, msg: string) => {
-		connection.query(query, function (err: Error, results: any, fields: any) {
-			if (err) {
-				console.log(err.message);
-			} else {
-				console.log(msg);
+		connection.query(
+			query,
+			function (err: Error, results: any, fields: any) {
+				if (err) {
+					console.log(err.message);
+				} else {
+					console.log(msg);
+				}
 			}
-		});
+		);
 	};
 
 	console.log("Successfully connected to the database.");

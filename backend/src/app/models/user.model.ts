@@ -27,16 +27,20 @@ export default class User {
 
 	// create method:
 	static create(newuser: any, result: any) {
-		sql.query("INSERT INTO users SET ?", newuser, (err: Error, res: any) => {
-			if (err) {
-				console.log("error: ", err);
-				result(err, null);
-				return;
-			}
+		sql.query(
+			"INSERT INTO users SET ?",
+			newuser,
+			(err: Error, res: any) => {
+				if (err) {
+					console.log("error: ", err);
+					result(err, null);
+					return;
+				}
 
-			console.log("created user: ", { id: res.insertId, ...newuser });
-			result(null, { id: res.insertId, ...newuser });
-		});
+				console.log("created user: ", { id: res.insertId, ...newuser });
+				result(null, { id: res.insertId, ...newuser });
+			}
+		);
 	}
 
 	// get all method:
@@ -81,7 +85,10 @@ export default class User {
 			(err: Error, res: any) => {
 				if (err) {
 					result(
-						{ success: false, message: "wrong parameters provided" },
+						{
+							success: false,
+							message: "wrong parameters provided",
+						},
 						null
 					);
 					return;

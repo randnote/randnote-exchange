@@ -23,7 +23,9 @@ exports.create = (req: Request, res: Response) => {
 	User.create(user, (err: Error, data: object) => {
 		if (err)
 			res.status(500).send({
-				message: err.message || "Some error occurred while creating the User.",
+				message:
+					err.message ||
+					"Some error occurred while creating the User.",
 			});
 		else res.send(data);
 	});
@@ -33,7 +35,9 @@ exports.findAll = (req: Request, res: Response) => {
 	User.getAll((err: any, data: any): any => {
 		if (err)
 			res.status(500).send({
-				message: err.message || "Some error occurred while retrieving Users.",
+				message:
+					err.message ||
+					"Some error occurred while retrieving Users.",
 			});
 		else res.send(data);
 	});
@@ -48,7 +52,8 @@ exports.findOne = (req: any, res: any) => {
 				});
 			} else {
 				res.status(500).send({
-					message: "Error retrieving User with id " + req.params.userId,
+					message:
+						"Error retrieving User with id " + req.params.userId,
 				});
 			}
 		} else res.send(data);
@@ -70,11 +75,10 @@ exports.login = (req: any, res: any) => {
 
 	User.login(obj, (err: any, data: any) => {
 		if (err)
-			res /*.status(500)*/
-				.send({
-					success: "false",
-					message: /*err.message ||*/ "wrong username or password",
-				});
+			res /*.status(500)*/.send({
+				success: "false",
+				message: /*err.message ||*/ "wrong username or password",
+			});
 		else res.send(data);
 	});
 };
