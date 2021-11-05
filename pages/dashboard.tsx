@@ -5,10 +5,7 @@ import MainNavbar from "./components/Navbar";
 const Dashboard: NextPage = () => {
 	return (
 		<div>
-			<Container>
-                Dashboard
-            </Container>
-			
+			<Container>Dashboard</Container>
 		</div>
 	);
 };

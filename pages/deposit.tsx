@@ -5,10 +5,7 @@ import MainNavbar from "./components/Navbar";
 const Deposit: NextPage = () => {
 	return (
 		<div>
-			<Container>
-                Deposit
-            </Container>
-			
+			<Container>Deposit</Container>
 		</div>
 	);
 };

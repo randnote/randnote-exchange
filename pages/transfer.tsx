@@ -5,10 +5,7 @@ import MainNavbar from "./components/Navbar";
 const Transfer: NextPage = () => {
 	return (
 		<div>
-			<Container>
-                Transfer
-            </Container>
-			
+			<Container>Transfer</Container>
 		</div>
 	);
 };

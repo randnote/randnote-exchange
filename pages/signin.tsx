@@ -5,8 +5,10 @@ import MainNavbar from "./components/Navbar";
 const Signin: NextPage = () => {
 	return (
 		<div>
-			<Container></Container>
+			<Container>
 			sign in page
+			</Container>
+			
 		</div>
 	);
 };
