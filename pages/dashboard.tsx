@@ -1,12 +1,21 @@
 import type { NextPage } from "next";
-import { Container, Button } from "reactstrap";
+import { Container, Button, Row, Col } from "reactstrap";
 import MainNavbar from "./components/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Dashboard: NextPage = () => {
 	return (
-		<div>
-			<Container>Dashboard</Container>
-		</div>
+		
+			<Container>
+				sdf
+				<Row>
+					<Col md='6'>
+						<h2>R  RandNote</h2>
+					</Col>
+				</Row>
+
+			</Container>
+		
 	);
 };
 export default Dashboard;
