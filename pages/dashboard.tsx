@@ -6,12 +6,11 @@ import WatchlistTable from "./components/dashboardTables/watchlistTable";
 import AssetsTable from "./components/dashboardTables/assetsTable";
 import InFooter from "./components/InFooter";
 
-
 const Dashboard: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container style={{height: '12000px'}}>
+			<Container style={{ height: "12000px" }}>
 				<Row>
 					<Col md="6">
 						<h2>R RandNote</h2>

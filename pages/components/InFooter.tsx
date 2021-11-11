@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
+import styles from "./styles/infooter.module.css";
+
+const footerClassName = `${styles.footer} page-footer font-small blue pt-4 `;
 
 const InFooter = () => {
 	return (
-		<footer style={styles} className="page-footer font-small blue pt-4 ">
+		<footer className={footerClassName}>
 			<div className="container-fluid text-center text-md-left">
-				<div className="row">
-					something maybe here
-				</div>
+				<div className="row">something maybe here</div>
 			</div>
 			<div className="footer-copyright text-center py-3">
 				© 2020 Copyright RANDNOTE(Open source):
@@ -15,11 +16,11 @@ const InFooter = () => {
 	);
 };
 
-const styles: object = {
-    position: "fixed",
-    height: "100px",
-    bottom: 0,
-    width: "100%"
-}
+// const styles: object = {
+//     position: "fixed",
+//     height: "100px",
+//     bottom: 0,
+//     width: "100%"
+// }
 
 export default InFooter;
