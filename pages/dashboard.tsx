@@ -4,12 +4,14 @@ import MainNavbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WatchlistTable from "./components/dashboardTables/watchlistTable";
 import AssetsTable from "./components/dashboardTables/assetsTable";
+import InFooter from "./components/InFooter";
+
 
 const Dashboard: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container>
+			<Container style={{height: '12000px'}}>
 				<Row>
 					<Col md="6">
 						<h2>R RandNote</h2>
@@ -17,13 +19,14 @@ const Dashboard: NextPage = () => {
 				</Row>
 
 				<Row>
-				<AssetsTable></AssetsTable>
+					<AssetsTable></AssetsTable>
 				</Row>
 
 				<Row>
-				<WatchlistTable></WatchlistTable>
+					<WatchlistTable></WatchlistTable>
 				</Row>
 			</Container>
+			<InFooter></InFooter>
 		</div>
 	);
 };

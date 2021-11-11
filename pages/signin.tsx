@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import Axios from "axios";
 import MainNavbar from "./components/Navbar";
 import {
-	Container, Col, Row,
+	Container,
+	Col,
+	Row,
 	Button,
 	Form,
 	FormGroup,
@@ -48,34 +50,33 @@ const Signin: NextPage = () => {
 		<div>
 			<Container className="">
 				<Row>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<FormGroup>
-						<Label for="">Email</Label>
-						<Input
-							{...register("email")}
-							type="email"
-							name="email"
-							id=""
-						/>
-					</FormGroup>
-					<FormGroup>
-						<Label for="">Password</Label>
-						<Input
-							{...register("password")}
-							type="password"
-							name="password"
-							id=""
-						/>
-					</FormGroup>
-					<Button
-						id="submitButton"
-						className="btn btn-primary"
-						type="submit"
-					>
-						Login
-					</Button>
-				</form>
-				
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<FormGroup>
+							<Label for="">Email</Label>
+							<Input
+								{...register("email")}
+								type="email"
+								name="email"
+								id=""
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label for="">Password</Label>
+							<Input
+								{...register("password")}
+								type="password"
+								name="password"
+								id=""
+							/>
+						</FormGroup>
+						<Button
+							id="submitButton"
+							className="btn btn-primary"
+							type="submit"
+						>
+							Login
+						</Button>
+					</form>
 				</Row>
 			</Container>
 		</div>
