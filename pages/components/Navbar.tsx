@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import {
 	Collapse,
 	Navbar,
@@ -52,14 +52,21 @@ const MainNavbar = (props: any) => {
 					<Nav className="navbar-nav ms-auto">
 						<NavItem className="ms-auto">
 							<Button className="primary">
-								<Link href="signin">
-										SignIn
-								</Link>
+								<Link href="signin">SignIn</Link>
 							</Button>
 							<Button>
-								<Link href="signup">
-									SignUp
-								</Link>
+								<Link href="signup">SignUp</Link>
+							</Button>
+						</NavItem>
+					</Nav>
+
+					<Nav className="navbar-nav ms-auto">
+						<NavItem className="ms-auto">
+							<Button className="primary">
+								<Link href="signin">Buy/Sell</Link>
+							</Button>
+							<Button>
+								<Link href="signup">Send/Receive</Link>
 							</Button>
 						</NavItem>
 					</Nav>
