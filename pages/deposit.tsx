@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { Container, Button, Input, Row, Col } from "reactstrap";
-import MainNavbar,{AuthenticatedNavbar} from "./components/Navbar";
+import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -31,7 +31,7 @@ class PaymentForm extends React.Component {
 			<div id="PaymentForm">
 				<AuthenticatedNavbar></AuthenticatedNavbar>
 
-				<Container>
+				<Container style={{marginTop: '10px'}}>
 					<Row>
 						<Col md="6">
 							<Cards
@@ -44,8 +44,10 @@ class PaymentForm extends React.Component {
 						</Col>
 
 						<Col md="6">
-							<form>
+							<form className="DepositForm">
 								<Input
+								className="shadow-none"
+								 style={PaymentFormInputStyle}
 									type="tel"
 									name="number"
 									placeholder="Card Number"
@@ -53,7 +55,9 @@ class PaymentForm extends React.Component {
 									onFocus={this.handleInputFocus}
 								/>
 
-								<Input
+								<Input 
+								className="shadow-none"
+								style={PaymentFormInputStyle}
 									type="tel"
 									name="name"
 									placeholder="Name as displayed on your card"
@@ -62,6 +66,8 @@ class PaymentForm extends React.Component {
 								/>
 
 								<Input
+								className="shadow-none"
+								 style={PaymentFormInputStyle}
 									type="tel"
 									name="expiry"
 									placeholder=""
@@ -69,13 +75,17 @@ class PaymentForm extends React.Component {
 									onFocus={this.handleInputFocus}
 								/>
 
-								<Input
+								<Input 
+								className="shadow-none"
+								style={PaymentFormInputStyle}
 									type="tel"
 									name="cvc"
 									placeholder="cvc"
 									onChange={this.handleInputChange}
 									onFocus={this.handleInputFocus}
 								/>
+
+								<Button color="success">Submit</Button>
 							</form>
 						</Col>
 					</Row>
@@ -88,11 +98,13 @@ class PaymentForm extends React.Component {
 const Deposit: NextPage = () => {
 	return (
 		<div>
-			
-				
-				<PaymentForm></PaymentForm>
-			
+			<PaymentForm></PaymentForm>
 		</div>
 	);
 };
+
+const PaymentFormInputStyle ={
+	margin: '5px'
+}
+
 export default Deposit;

@@ -24,7 +24,8 @@ const MainNavbar = (props: any) => {
 	return (
 		<div>
 			<Navbar color="light" light expand="md">
-				<NavbarBrand href="/">reactstrap</NavbarBrand>
+				<NavbarBrand href="/">
+				<b>RANDNOTE</b></NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
@@ -76,7 +77,6 @@ const MainNavbar = (props: any) => {
 	);
 };
 
-
 export const AuthenticatedNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -85,42 +85,43 @@ export const AuthenticatedNavbar = (props: any) => {
 	return (
 		<div>
 			<Navbar style={AuthNavStyles} expand="md">
-				<NavbarBrand href="/">reactstrap</NavbarBrand>
+				<NavbarBrand href="/"><b>RANDNOTE</b></NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
 						<NavItem>
-							<NavLink style={{color: "white"}} href="/components/">Components</NavLink>
-						</NavItem>
-
-						<NavItem>
-							<NavLink href="https://github.com/reactstrap/reactstrap">
-								GitHub
+							<NavLink
+								style={{ color: "white" }}
+								href="/components/"
+							>
+								Components
 							</NavLink>
 						</NavItem>
-						<UncontrolledDropdown nav inNavbar>
-							<DropdownToggle nav caret>
-								Options
-							</DropdownToggle>
-							<DropdownMenu right>
-								<DropdownItem>Option 1</DropdownItem>
-								<DropdownItem>Option 2</DropdownItem>
-								<DropdownItem divider />
-								<DropdownItem>Reset</DropdownItem>
-							</DropdownMenu>
-						</UncontrolledDropdown>
+
+						
+						
 					</Nav>
 
 					<Nav className="navbar-nav ms-auto">
-						<NavItem  className="ms-auto">
-							
-								<Link  href="signin">
-									<button class="btn " styles={AuthNavbarButtonStyles} color="" >SignIn</button>
-								</Link>
-							
+						<NavItem className="ms-auto">
+							<Link href="signin">
+								<button
+									class="btn "
+									styles={AuthNavbarButtonStyles}
+									color=""
+								>
+									SignIn
+								</button>
+							</Link>
+
 							<Link href="signup">
-									<Button styles={AuthNavbarButtonStyles} color="primary">SignUp</Button>
-								</Link>
+								<Button
+									styles={AuthNavbarButtonStyles}
+									color="primary"
+								>
+									SignUp
+								</Button>
+							</Link>
 						</NavItem>
 					</Nav>
 				</Collapse>
@@ -130,15 +131,13 @@ export const AuthenticatedNavbar = (props: any) => {
 };
 
 const AuthNavStyles = {
-	backgroundColor: "green"
-}
+	backgroundColor: '#2cb978',
+};
 
 const AuthNavbarButtonStyles = {
 	color: "red",
-	margin: '5px',
-	borderRadius: '10px'
-}
-
-
+	margin: "5px",
+	borderRadius: "10px",
+};
 
 export default MainNavbar;
