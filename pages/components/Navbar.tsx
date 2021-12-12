@@ -25,7 +25,8 @@ const MainNavbar = (props: any) => {
 		<div>
 			<Navbar color="light" light expand="md">
 				<NavbarBrand href="/">
-				<b>RANDNOTE</b></NavbarBrand>
+					<b>RANDNOTE</b>
+				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
@@ -85,7 +86,9 @@ export const AuthenticatedNavbar = (props: any) => {
 	return (
 		<div>
 			<Navbar style={AuthNavStyles} expand="md">
-				<NavbarBrand href="/"><b>RANDNOTE</b></NavbarBrand>
+				<NavbarBrand href="/">
+					<b>RANDNOTE</b>
+				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
@@ -97,9 +100,6 @@ export const AuthenticatedNavbar = (props: any) => {
 								Components
 							</NavLink>
 						</NavItem>
-
-						
-						
 					</Nav>
 
 					<Nav className="navbar-nav ms-auto">
@@ -131,7 +131,7 @@ export const AuthenticatedNavbar = (props: any) => {
 };
 
 const AuthNavStyles = {
-	backgroundColor: '#2cb978',
+	backgroundColor: "#2cb978",
 };
 
 const AuthNavbarButtonStyles = {

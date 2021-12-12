@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
-import { Container, Button, Input, Row, Col } from "reactstrap";
+import { Container, Button, Input, Row, Col , Alert, FormGroup, Label} from "reactstrap";
 import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import React from "react";
 import Cards from "react-credit-cards";
+import AddedCardsSection from "./components/bankCards/AddedCardsSection"
 
 class PaymentForm extends React.Component {
 	state = {
@@ -29,9 +30,20 @@ class PaymentForm extends React.Component {
 	render() {
 		return (
 			<div id="PaymentForm">
-				<AuthenticatedNavbar></AuthenticatedNavbar>
+				
 
-				<Container style={{marginTop: '10px'}}>
+				<Container style={{ marginTop: "10px" }}>
+
+
+				  <Alert
+
+				    color="warning"
+				    dismissible
+				  >
+				    Use valid, but fake card details!
+				  </Alert>
+				
+
 					<Row>
 						<Col md="6">
 							<Cards
@@ -46,8 +58,8 @@ class PaymentForm extends React.Component {
 						<Col md="6">
 							<form className="DepositForm">
 								<Input
-								className="shadow-none"
-								 style={PaymentFormInputStyle}
+									className="shadow-none"
+									style={PaymentFormInputStyle}
 									type="tel"
 									name="number"
 									placeholder="Card Number"
@@ -55,9 +67,9 @@ class PaymentForm extends React.Component {
 									onFocus={this.handleInputFocus}
 								/>
 
-								<Input 
-								className="shadow-none"
-								style={PaymentFormInputStyle}
+								<Input
+									className="shadow-none"
+									style={PaymentFormInputStyle}
 									type="tel"
 									name="name"
 									placeholder="Name as displayed on your card"
@@ -66,8 +78,8 @@ class PaymentForm extends React.Component {
 								/>
 
 								<Input
-								className="shadow-none"
-								 style={PaymentFormInputStyle}
+									className="shadow-none"
+									style={PaymentFormInputStyle}
 									type="tel"
 									name="expiry"
 									placeholder=""
@@ -75,15 +87,25 @@ class PaymentForm extends React.Component {
 									onFocus={this.handleInputFocus}
 								/>
 
-								<Input 
-								className="shadow-none"
-								style={PaymentFormInputStyle}
+								<Input
+									className="shadow-none"
+									style={PaymentFormInputStyle}
 									type="tel"
 									name="cvc"
 									placeholder="cvc"
 									onChange={this.handleInputChange}
 									onFocus={this.handleInputFocus}
 								/>
+
+								 <FormGroup
+								    check
+								    inline
+								  >
+								    <Input type="checkbox" />
+								    <Label check>
+								      Save card
+								    </Label>
+								  </FormGroup>
 
 								<Button color="success">Submit</Button>
 							</form>
@@ -98,13 +120,16 @@ class PaymentForm extends React.Component {
 const Deposit: NextPage = () => {
 	return (
 		<div>
+		<AuthenticatedNavbar></AuthenticatedNavbar>
+			<AddedCardsSection> </AddedCardsSection>
+
 			<PaymentForm></PaymentForm>
 		</div>
 	);
 };
 
-const PaymentFormInputStyle ={
-	margin: '5px'
-}
+const PaymentFormInputStyle = {
+	margin: "5px",
+};
 
 export default Deposit;
