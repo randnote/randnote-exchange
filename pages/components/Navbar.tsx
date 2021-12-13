@@ -23,15 +23,13 @@ const MainNavbar = (props: any) => {
 
 	return (
 		<div>
-			<Navbar style={mainNavbarStyle}  light expand="md">
+			<Navbar style={mainNavbarStyle} light expand="md">
 				<NavbarBrand style={mainNavbarBrandStyle} href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
-					
-					
 						<UncontrolledDropdown nav inNavbar>
 							<DropdownToggle nav caret>
 								Options
@@ -44,8 +42,6 @@ const MainNavbar = (props: any) => {
 							</DropdownMenu>
 						</UncontrolledDropdown>
 					</Nav>
-
-					
 				</Collapse>
 			</Navbar>
 		</div>
@@ -60,7 +56,7 @@ export const AuthenticatedNavbar = (props: any) => {
 	return (
 		<div>
 			<Navbar style={AuthNavStyles} expand="md">
-				<NavbarBrand  href="/">
+				<NavbarBrand href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
@@ -105,13 +101,13 @@ export const AuthenticatedNavbar = (props: any) => {
 };
 
 const mainNavbarBrandStyle = {
-	color: 'white'
-}
+	color: "white",
+};
 
 const mainNavbarStyle = {
 	backgroundColor: "#364f6b",
-	color: 'white'
-}
+	color: "white",
+};
 
 const AuthNavStyles = {
 	backgroundColor: "#2cb978",
