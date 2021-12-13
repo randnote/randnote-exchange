@@ -1,12 +1,21 @@
 import type { NextPage } from "next";
-import { Container, Button, Input, Row, Col , Alert, FormGroup, Label} from "reactstrap";
+import {
+	Container,
+	Button,
+	Input,
+	Row,
+	Col,
+	Alert,
+	FormGroup,
+	Label,
+} from "reactstrap";
 import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import React from "react";
 import Cards from "react-credit-cards";
-import AddedCardsSection from "./components/bankCards/AddedCardsSection"
+import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 
 class PaymentForm extends React.Component {
 	state = {
@@ -30,19 +39,10 @@ class PaymentForm extends React.Component {
 	render() {
 		return (
 			<div id="PaymentForm">
-				
-
 				<Container style={{ marginTop: "10px" }}>
-
-
-				  <Alert
-
-				    color="warning"
-				    dismissible
-				  >
-				    Use valid, but fake card details!
-				  </Alert>
-				
+					<Alert color="warning" dismissible>
+						Use valid, but fake card details!
+					</Alert>
 
 					<Row>
 						<Col md="6">
@@ -97,15 +97,10 @@ class PaymentForm extends React.Component {
 									onFocus={this.handleInputFocus}
 								/>
 
-								 <FormGroup
-								    check
-								    inline
-								  >
-								    <Input type="checkbox" />
-								    <Label check>
-								      Save card
-								    </Label>
-								  </FormGroup>
+								<FormGroup check inline>
+									<Input type="checkbox" />
+									<Label check>Save card</Label>
+								</FormGroup>
 
 								<Button color="success">Submit</Button>
 							</form>
@@ -120,7 +115,7 @@ class PaymentForm extends React.Component {
 const Deposit: NextPage = () => {
 	return (
 		<div>
-		<AuthenticatedNavbar></AuthenticatedNavbar>
+			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<AddedCardsSection> </AddedCardsSection>
 
 			<PaymentForm></PaymentForm>

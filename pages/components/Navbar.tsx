@@ -23,21 +23,15 @@ const MainNavbar = (props: any) => {
 
 	return (
 		<div>
-			<Navbar color="light" light expand="md">
-				<NavbarBrand href="/">
+			<Navbar style={mainNavbarStyle}  light expand="md">
+				<NavbarBrand style={mainNavbarBrandStyle} href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
-						<NavItem>
-							<NavLink href="/components/">Components</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="https://github.com/reactstrap/reactstrap">
-								GitHub
-							</NavLink>
-						</NavItem>
+					
+					
 						<UncontrolledDropdown nav inNavbar>
 							<DropdownToggle nav caret>
 								Options
@@ -51,27 +45,7 @@ const MainNavbar = (props: any) => {
 						</UncontrolledDropdown>
 					</Nav>
 
-					<Nav className="navbar-nav ms-auto">
-						<NavItem className="ms-auto">
-							<Button className="primary">
-								<Link href="signin">SignIn</Link>
-							</Button>
-							<Button>
-								<Link href="signup">SignUp</Link>
-							</Button>
-						</NavItem>
-					</Nav>
-
-					<Nav className="navbar-nav ms-auto">
-						<NavItem className="ms-auto">
-							<Button className="primary">
-								<Link href="signin">Buy/Sell</Link>
-							</Button>
-							<Button>
-								<Link href="signup">Send/Receive</Link>
-							</Button>
-						</NavItem>
-					</Nav>
+					
 				</Collapse>
 			</Navbar>
 		</div>
@@ -86,7 +60,7 @@ export const AuthenticatedNavbar = (props: any) => {
 	return (
 		<div>
 			<Navbar style={AuthNavStyles} expand="md">
-				<NavbarBrand href="/">
+				<NavbarBrand  href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
@@ -129,6 +103,15 @@ export const AuthenticatedNavbar = (props: any) => {
 		</div>
 	);
 };
+
+const mainNavbarBrandStyle = {
+	color: 'white'
+}
+
+const mainNavbarStyle = {
+	backgroundColor: "#364f6b",
+	color: 'white'
+}
 
 const AuthNavStyles = {
 	backgroundColor: "#2cb978",

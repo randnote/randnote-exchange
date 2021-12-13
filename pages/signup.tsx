@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import MainNavbar from "./components/Navbar";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
 	Container,
 	Col,
@@ -33,11 +35,14 @@ const Signup: NextPage = () => {
 		// })
 	};
 	return (
+		<div>
+		<MainNavbar></MainNavbar>
 		<Container>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<FormGroup>
-					<Label for="">First name</Label>
+					<Label tyle={firstnameLabelStyle} for="">First name</Label>
 					<Input
+					style={signupInputStyle}
 						{...register("firstname")}
 						type="text"
 						name="firstname"
@@ -47,6 +52,7 @@ const Signup: NextPage = () => {
 				<FormGroup>
 					<Label for="">Last name</Label>
 					<Input
+					style={signupInputStyle}
 						{...register("lastname")}
 						type="lastname"
 						name="lastname"
@@ -56,6 +62,7 @@ const Signup: NextPage = () => {
 				<FormGroup>
 					<Label for="">Email</Label>
 					<Input
+					style={signupInputStyle}
 						{...register("email")}
 						type="email"
 						name="email"
@@ -65,6 +72,7 @@ const Signup: NextPage = () => {
 				<FormGroup>
 					<Label for="">Password</Label>
 					<Input
+					style={signupInputStyle}
 						{...register("password")}
 						type="password"
 						name="password"
@@ -72,6 +80,7 @@ const Signup: NextPage = () => {
 					/>
 				</FormGroup>
 				<Button
+				style={submitButtonStyle}
 					id="submitButton"
 					className="btn btn-primary"
 					type="submit"
@@ -80,6 +89,22 @@ const Signup: NextPage = () => {
 				</Button>
 			</form>
 		</Container>
+		</div>
 	);
 };
+
+const firstnameLabelStyle = {
+	marginTop: '20px'
+}
+
+const signupInputStyle = {
+	borderRadius: '60px',
+	marginTop: '10px',
+	marginBottom: '10px'
+}
+
+const submitButtonStyle = {
+	borderRadius: '60px'
+}
+
 export default Signup;
