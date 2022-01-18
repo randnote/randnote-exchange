@@ -2,6 +2,10 @@ import type { NextPage } from "next";
 import MainNavbar from "./components/Navbar";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Link from "next/link";
+
+
 import {
 	Container,
 	Col,
@@ -33,53 +37,81 @@ const Signup: NextPage = () => {
 		// })
 	};
 	return (
-		<Container>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<FormGroup>
-					<Label for="">First name</Label>
-					<Input
-						{...register("firstname")}
-						type="text"
-						name="firstname"
-						id=""
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="">Last name</Label>
-					<Input
-						{...register("lastname")}
-						type="lastname"
-						name="lastname"
-						id=""
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="">Email</Label>
-					<Input
-						{...register("email")}
-						type="email"
-						name="email"
-						id=""
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="">Password</Label>
-					<Input
-						{...register("password")}
-						type="password"
-						name="password"
-						id=""
-					/>
-				</FormGroup>
-				<Button
-					id="submitButton"
-					className="btn btn-primary"
-					type="submit"
-				>
-					Signup
-				</Button>
-			</form>
-		</Container>
+		<div>
+			<MainNavbar></MainNavbar>
+			<Container>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<FormGroup>
+						<Label tyle={firstnameLabelStyle} for="">
+							First name
+						</Label>
+						<Input
+							style={signupInputStyle}
+							{...register("firstname")}
+							type="text"
+							name="firstname"
+							id=""
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="">Last name</Label>
+						<Input
+							style={signupInputStyle}
+							{...register("lastname")}
+							type="lastname"
+							name="lastname"
+							id=""
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="">Email</Label>
+						<Input
+							style={signupInputStyle}
+							{...register("email")}
+							type="email"
+							name="email"
+							id=""
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="">Password</Label>
+						<Input
+							style={signupInputStyle}
+							{...register("password")}
+							type="password"
+							name="password"
+							id=""
+						/>
+					</FormGroup>
+					<Button
+						style={submitButtonStyle}
+						id="submitButton"
+						className="btn btn-primary"
+						type="submit"
+					>
+						Signup
+					</Button>
+					<br/>
+
+					<Link href="signin">Already have an account? Signin here</Link>
+				</form>
+			</Container>
+		</div>
 	);
 };
+
+const firstnameLabelStyle = {
+	marginTop: "20px",
+};
+
+const signupInputStyle = {
+	borderRadius: "60px",
+	marginTop: "10px",
+	marginBottom: "10px",
+};
+
+const submitButtonStyle = {
+	borderRadius: "60px",
+};
+
 export default Signup;

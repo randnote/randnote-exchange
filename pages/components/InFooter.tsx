@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import styles from "./styles/infooter.module.css";
 
 const footerClassName = `${styles.footer} page-footer font-small blue pt-4 `;

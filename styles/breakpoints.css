@@ -1,0 +1,31 @@
+/*
+This styling page is only to be used for styling the breakepoints,
+ any other styling should be done in its respective tsx or css files
+*/
+
+
+
+@media (min-width: 576px) { 
+	
+
+
+   .DepositForm{
+   		margin-top: 10px;
+   }
+}
+
+@media (min-width: 768px) {
+	
+}
+
+
+@media (min-width: 992px) {  
+
+}
+
+@media (min-width: 1200px) {
+ }
+
+@media (min-width: 1400px) {
+
+}
