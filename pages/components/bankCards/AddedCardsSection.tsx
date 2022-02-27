@@ -19,19 +19,19 @@ const AddedCardsSection = () => {
 						<th scope="row">Mastercard ending in ...</th>
 						<td>Expires in 2025</td>
 						<td>
-							<Button
+							{/*<Button
 								onClick={this.toggle}
 								id="Popover1"
 								type="button"
 							>
 								Launch Popover
-							</Button>
+							</Button>*/}
 						</td>
 					</tr>
 				</tbody>
 			</Table>
 
-			<Popover
+			{/*<Popover
 				placement="bottom"
 				target="Popover1"
 				toggle={function noRefCheck() {}}
@@ -41,7 +41,7 @@ const AddedCardsSection = () => {
 					Sed posuere consectetur est at lobortis. Aenean eu leo quam.
 					Pellentesque ornare sem lacinia quam venenatis vestibulum.
 				</PopoverBody>
-			</Popover>
+			</Popover>*/}
 		</Container>
 	);
 };

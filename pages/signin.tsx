@@ -5,7 +5,6 @@ import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 
-
 import MainNavbar from "./components/Navbar";
 import {
 	Container,
@@ -86,8 +85,10 @@ const Signin: NextPage = () => {
 						>
 							Login
 						</Button>
-						<br/>
-						<Link href="signup">Don't have an account yet? Signup here</Link>
+						<br />
+						<Link href="signup">
+							Don't have an account yet? Signup here
+						</Link>
 					</form>
 				</Row>
 			</Container>

@@ -5,7 +5,6 @@ import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 
-
 import {
 	Container,
 	Col,
@@ -91,9 +90,11 @@ const Signup: NextPage = () => {
 					>
 						Signup
 					</Button>
-					<br/>
+					<br />
 
-					<Link href="signin">Already have an account? Signin here</Link>
+					<Link href="signin">
+						Already have an account? Signin here
+					</Link>
 				</form>
 			</Container>
 		</div>
