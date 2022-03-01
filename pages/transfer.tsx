@@ -12,9 +12,8 @@ import {
 	FormGroup,
 	Label,
 	Collapse,
-	Button
+	Button,
 } from "reactstrap";
-
 
 const Transfer: NextPage = () => {
 	const { register, handleSubmit } = useForm();
@@ -29,72 +28,78 @@ const Transfer: NextPage = () => {
 		});
 	};
 
-
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<Container>
+			<Container style={{maxWidth: '600px'}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
-						
-						<Row>
-							{/*<FormGroup>
-								<Label for="">Card number</Label>
-								<Input
-									{...register("cardnumber")}
-									type="text"
-									name="cardnumber"
-									id=""
-								/>
-							</FormGroup>
+					<Row>
+						<Col md='12'>
+							<h3>YOUR BALANCE: <span style={{color: 'green', textDecoration: 'underline'}}>RR 400</span></h3>
+							
+						</Col>
+					</Row>
 
-							<FormGroup>
-								<Label for="">Card details</Label>
-								<Input
-									{...register("carddetails")}
-									type="text"
-									name="carddetails"
-									id=""
-								/>
-							</FormGroup>
-
-							<Button>Continue</Button>*/}
-
-							<Col md='4'>
-								Your Randnote
-								<h4>Your Randnote balance</h4>
-								<h3>RR 400</h3>
-							</Col>
-
-							<Col md='4'>
-								TO
-							</Col>
-
-							<Col md='4'>
-								<input {...register("receiversAddress")}
-									type="text"
-									name="receiversAddress"
-									id="" placeholder="input recievers address">
-								</input>
-							</Col>
-						</Row>
-						<hr></hr>
-
-						<Row>
-							<h3>Amount</h3>
+					<Row>
+						<Col md='12'>
+							<h3>Receiver's Address</h3>
+						</Col>
 							<input
-								{...register("amount")}
-									type="text"
-									name="amount"
-									 placeholder="RR 33"></input>
-						</Row>
+								{...register("receiversAddressInput")}
+								type="text"
+								name="receiversAddress"
+								className="form-control"
+								placeholder="input recievers address"
+							></input>
+					</Row>
+					<hr></hr>
 
-						<Row>
-							<small>*Disclaimer: Before transfering of funds, make sure that you have read our terms or agreement.</small>
-						</Row>
+					<Row>
+						<h3>Amount</h3>
+						<input
+						style={amountInputStyle}
+							{...register("amount")}
+							type="text"
+							name="amount"
+							className='form-control'
+							placeholder="RR 33"
+						></input>
+					</Row>
+					<hr></hr>
 
-					</form>
+					<Row>
+					<Col md='12'>
+						<Button style={continueButtonStyle}>Continue</Button>
+					</Col>
+					</Row>
+
+					<Row>
+						<small>
+							*Disclaimer: Before transfering of funds, make sure
+							that you have read our terms or agreement.
+						</small>
+					</Row>
+				</form>
 			</Container>
 		</div>
 	);
 };
+
+const receiversAddressInput ={
+	borderRadius: '60px'
+}
+const amountInputStyle = {
+	borderRadius: '10px',
+	maxWidth: '200px'
+}
+
+const continueButtonStyle = {
+	maxWidth: '200px',
+	borderRadius: '10px',
+	backgroundColor: 'green',
+	color: 'white'
+
+}
+
+
 export default Transfer;
