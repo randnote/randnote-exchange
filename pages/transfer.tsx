@@ -31,46 +31,57 @@ const Transfer: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<Container style={{maxWidth: '600px'}}>
+			<Container style={{ maxWidth: "600px" }}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Row>
-						<Col md='12'>
-							<h3>YOUR BALANCE: <span style={{color: 'green', textDecoration: 'underline'}}>RR 400</span></h3>
-							
+						<Col md="12">
+							<h3>
+								YOUR BALANCE:{" "}
+								<span
+									style={{
+										color: "green",
+										textDecoration: "underline",
+									}}
+								>
+									RR 400
+								</span>
+							</h3>
 						</Col>
 					</Row>
 
 					<Row>
-						<Col md='12'>
+						<Col md="12">
 							<h3>Receiver's Address</h3>
 						</Col>
-							<input
-								{...register("receiversAddressInput")}
-								type="text"
-								name="receiversAddress"
-								className="form-control"
-								placeholder="input recievers address"
-							></input>
+						<input
+							{...register("receiversAddressInput")}
+							type="text"
+							name="receiversAddress"
+							className="form-control"
+							placeholder="input recievers address"
+						></input>
 					</Row>
 					<hr></hr>
 
 					<Row>
 						<h3>Amount</h3>
 						<input
-						style={amountInputStyle}
+							style={amountInputStyle}
 							{...register("amount")}
 							type="text"
 							name="amount"
-							className='form-control'
+							className="form-control"
 							placeholder="RR 33"
 						></input>
 					</Row>
 					<hr></hr>
 
 					<Row>
-					<Col md='12'>
-						<Button style={continueButtonStyle}>Continue</Button>
-					</Col>
+						<Col md="12">
+							<Button style={continueButtonStyle}>
+								Continue
+							</Button>
+						</Col>
 					</Row>
 
 					<Row>
@@ -85,21 +96,19 @@ const Transfer: NextPage = () => {
 	);
 };
 
-const receiversAddressInput ={
-	borderRadius: '60px'
-}
+const receiversAddressInput = {
+	borderRadius: "60px",
+};
 const amountInputStyle = {
-	borderRadius: '10px',
-	maxWidth: '200px'
-}
+	borderRadius: "10px",
+	maxWidth: "200px",
+};
 
 const continueButtonStyle = {
-	maxWidth: '200px',
-	borderRadius: '10px',
-	backgroundColor: 'green',
-	color: 'white'
-
-}
-
+	maxWidth: "200px",
+	borderRadius: "10px",
+	backgroundColor: "green",
+	color: "white",
+};
 
 export default Transfer;

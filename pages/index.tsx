@@ -25,7 +25,22 @@ const MainComponent = () => {
 
 // About section
 const AboutComponent = () => {
-	return <div>About</div>;
+	return <div style={AboutComponentDiv}>
+		<Container >
+			<div className='text-center'>
+				<Row>
+				<p className='text-center'>Randnote is lorem ipsum...............................h1</p>
+				</Row>
+
+				<Row>
+				<p className='text-center'>
+					<Button style={{color: 'white', backgroundColor: 'green', borderRadius:'20px', maxWidth: '300px'}}>WHITEPAPER</Button>
+				</p>
+				</Row>
+			</div>
+			
+		</Container>
+	</div>
 };
 
 // Page
@@ -39,5 +54,10 @@ const Home: NextPage = () => {
 		</div>
 	);
 };
+
+const AboutComponentDiv ={
+	backgroundColor: 'green'
+}
+
 
 export default Home;

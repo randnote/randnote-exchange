@@ -44,6 +44,7 @@ const PaymentForm = () => {
 
 	return (
 		<div>
+		<Container>
 			<Button
 				color="primary"
 				onClick={() => {
@@ -109,8 +110,13 @@ const PaymentForm = () => {
 							id=""
 						/>
 					</FormGroup>
+					
+					<Button color='success'>
+						Add Card
+					</Button>
 				</form>
 			</Collapse>
+			</Container>
 		</div>
 	);
 };
