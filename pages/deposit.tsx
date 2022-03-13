@@ -10,6 +10,8 @@ import {
 	Label,
 	Collapse,
 } from "reactstrap";
+import Axios from "axios";
+
 import { useForm } from "react-hook-form";
 
 import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
@@ -25,97 +27,96 @@ const PaymentForm = () => {
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	const onSubmit = (data: any) => {
-		Axios.post(`${process.env.REACT_APP_SERVER}/signup`, {
+		Axios.post(`http://localhost:8024/card`, {
 			cardnumber: data.cardnumber,
-			details: data.details,
+			user_id: '1',
+			carddetails: data.carddetails,
 			month: data.month,
 			year: data.year,
 			cvc: data.cvc,
-		});
-		// .then((res)=>{
-		// 	console.log(res.data);
-		// 	createSession(res.data);
-		// 	history.push("/create");
-		// })
-		// .catch( err =>{
-		// 	console.log(err);
-		// })
+		})
+		.then((res)=>{
+			console.log(res.data);
+			
+		})
+		.catch( err =>{
+			console.log(err);
+		})
 	};
 
 	return (
 		<div>
-		<Container>
-			<Button
-				color="primary"
-				onClick={() => {
-					setIsOpen(!isOpen);
-				}}
-			>
-				Add a payments card
-			</Button>
+			<Container>
+				<Button
+					color="primary"
+					onClick={() => {
+						setIsOpen(!isOpen);
+					}}
+				>
+					Add a payments card
+				</Button>
 
-			<Collapse isOpen={isOpen}>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<FormGroup>
-						<Label for="">Card number</Label>
-						<Input
-							style={cardnumberInputStyle}
-							{...register("cardnumber")}
-							type="text"
-							name="cardnumber"
-							id=""
-						/>
-					</FormGroup>
+				<Collapse isOpen={isOpen}>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<FormGroup>
+							<Label for="">Card number</Label>
+							<input
+								style={cardnumberInputStyle}
+								{...register("cardnumber")}
+								type="text"
+								name="cardnumber"
+								id=""
+								class=''
+							/>
+						</FormGroup>
 
-					<FormGroup>
-						<Label for="">Card details</Label>
-						<Input
-							style={carddetailsInputStyle}
-							{...register("carddetails")}
-							type="text"
-							name="carddetails"
-							id=""
-						/>
-					</FormGroup>
+						<FormGroup>
+							<Label for="">Card details</Label>
+							<input
+								style={carddetailsInputStyle}
+								{...register("carddetails")}
+								type="text"
+								name="carddetails"
+								id=""
+							/>
+						</FormGroup>
 
-					<FormGroup>
-						<Label for="">Expiry month</Label>
-						<Input
-							style={monthInputStyle}
-							{...register("month")}
-							type="text"
-							name="month"
-							id=""
-						/>
-					</FormGroup>
+						<FormGroup>
+							<Label for="">Expiry month</Label>
+							<input
+								style={monthInputStyle}
+								{...register("month")}
+								type="text"
+								name="month"
+								id=""
+							/>
+						</FormGroup>
 
-					<FormGroup>
-						<Label for="">Expiry year</Label>
-						<Input
-							style={yearInputStyle}
-							{...register("year")}
-							type="text"
-							name="year"
-							id=""
-						/>
-					</FormGroup>
+						<FormGroup>
+							<Label for="">Expiry year</Label>
+							<input
+								style={yearInputStyle}
+								{...register("year")}
+								type="text"
+								name="year"
+								id=""
+							/>
+						</FormGroup>
 
-					<FormGroup>
-						<Label for="">CVC</Label>
-						<Input
-							style={CVCInputStyle}
-							{...register("cvc")}
-							type="text"
-							name="cvc"
-							id=""
-						/>
-					</FormGroup>
-					
-					<Button color='success'>
-						Add Card
-					</Button>
-				</form>
-			</Collapse>
+						<FormGroup>
+							<Label for="">CVC</Label>
+							<input
+								style={CVCInputStyle}
+								{...register("cvc")}
+								type="text"
+								name="cvc"
+								id=""
+							/>
+						</FormGroup>
+
+						<Button type='submit'  color="success">Add Card</Button>
+					</form>
+				</Collapse>
 			</Container>
 		</div>
 	);
