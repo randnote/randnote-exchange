@@ -19,19 +19,16 @@ const MainComponent = () => {
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
-		socket.on("FromAPI", data => {
-		  setResponse(data);
+		socket.on("FromAPI", (data) => {
+			setResponse(data);
 		});
-	  }, []);
-
+	}, []);
 
 	return (
 		<Container className="text-center">
 			<Row>
 				<h1>Rand Note Exchange</h1>
 				<p>This is the RandNote official website and exchange.</p>
-
-				
 				It's <time dateTime={response}>{response}</time>
 			</Row>
 

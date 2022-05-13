@@ -29,19 +29,18 @@ const PaymentForm = () => {
 	const onSubmit = (data: any) => {
 		Axios.post(`http://localhost:8024/card`, {
 			cardnumber: data.cardnumber,
-			user_id: '1',
+			user_id: "1",
 			carddetails: data.carddetails,
 			month: data.month,
 			year: data.year,
 			cvc: data.cvc,
 		})
-		.then((res)=>{
-			console.log(res.data);
-			
-		})
-		.catch( err =>{
-			console.log(err);
-		})
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (
@@ -66,7 +65,7 @@ const PaymentForm = () => {
 								type="text"
 								name="cardnumber"
 								id=""
-								class=''
+								class=""
 							/>
 						</FormGroup>
 
@@ -114,7 +113,9 @@ const PaymentForm = () => {
 							/>
 						</FormGroup>
 
-						<Button type='submit'  color="success">Add Card</Button>
+						<Button type="submit" color="success">
+							Add Card
+						</Button>
 					</form>
 				</Collapse>
 			</Container>
