@@ -1,4 +1,1 @@
-
-const signout = () =>{
-    
-}
+const signout = () => {};
