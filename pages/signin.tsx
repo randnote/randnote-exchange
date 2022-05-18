@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
+import { SetLocalStorage } from "./components/authentication/localstorage";
+import { useRouter } from "next/router";
 
 import MainNavbar from "./components/Navbar";
 import {
@@ -18,35 +20,34 @@ import {
 	FormText,
 	Alert,
 } from "reactstrap";
-// import {createSession} from '../session.js'
-// import {isAuthenticated} from '../authentication';
+import validate from "./components/authentication/validate";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 	const [isAuthorized, setIsAuthorized] = React.useState(false);
-
-	// React.useEffect( () => {
-	// 	if(isAuthenticated() === true){
-	// 		setIsAuthorized(true)
-	// 		history.push('/create')
-	// 	}else{
-	// 		console.log('no')
-	// 	}
-
-	// }, []);
+	const router = useRouter();
+	
 
 	const onSubmit = (data: any) => {
-		Axios.post(`${process.env.SERVER}/login`, {
+		// ${process.env.SERVER}/login
+		Axios.post(`http://localhost:8024/signin`, {
 			email: data.email,
 			password: data.password,
-		});
-		// 	.then((res)=>{
-		// 		console.log(res.data);
-		// 		createSession(res.data);
-		// 		history.push("/create");
-		// 	}).catch((err)=>{
-		// 		console.log(err)
-		// 	})
+		})
+		.then((res)=>{
+			if (res.data.success === true) {
+				let localStorageDataObject = {
+					id: res.data.id,
+					firstname: res.data.firstname,
+					lastname: res.data.lastname,
+					email: res.data.email,
+				};
+				SetLocalStorage("randnoteUser", localStorageDataObject);
+				router.push("/dashboard");
+			}
+		}).catch((err)=>{
+			console.log(err)
+		})
 	};
 
 	return (
@@ -59,7 +60,7 @@ const Signin: NextPage = () => {
 							<Label style={emailLabelStyle} for="">
 								Email
 							</Label>
-							<Input
+							<input
 								style={loginInputBoxStyle}
 								{...register("email")}
 								type="email"
@@ -69,7 +70,7 @@ const Signin: NextPage = () => {
 						</FormGroup>
 						<FormGroup>
 							<Label for="">Password</Label>
-							<Input
+							<input
 								style={loginInputBoxStyle}
 								{...register("password")}
 								type="password"
