@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
-import { NextResponse, NextRequest } from 'next/server'
+import { NextResponse, NextRequest } from "next/server";
 import MainNavbar from "./components/Navbar";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
-import { useRouter } from 'next/router'
-import GetLocalStorage,{SetLocalStorage} from "./components/authentication/localstorage";
+import { useRouter } from "next/router";
+import GetLocalStorage, {
+	SetLocalStorage,
+} from "./components/authentication/localstorage";
 
 import {
 	Container,
@@ -21,7 +23,7 @@ import {
 
 const Signup: NextPage = () => {
 	const { register, handleSubmit } = useForm();
-	const router = useRouter()
+	const router = useRouter();
 
 	const onSubmit = (data: any) => {
 		//${process.env.REACT_APP_SERVER}/signup`
@@ -32,24 +34,23 @@ const Signup: NextPage = () => {
 			email: data.email,
 			password: data.password,
 		})
-		.then((res) => {
-			console.log(res.data);
+			.then((res) => {
+				console.log(res.data);
 
-			if (res.data.success === true) {
-
-				let localStorageDataObject = {
-					id: res.data.data.id,
-					firstname: res.data.data.firstname,
-					lastname : res.data.data.lastname,
-					email: res.data.data.email
+				if (res.data.success === true) {
+					let localStorageDataObject = {
+						id: res.data.data.id,
+						firstname: res.data.data.firstname,
+						lastname: res.data.data.lastname,
+						email: res.data.data.email,
+					};
+					SetLocalStorage("randnoteUser", localStorageDataObject);
+					router.push("/dashboard");
 				}
-				SetLocalStorage("randnoteUser", localStorageDataObject)
-				router.push('/dashboard')
-			}
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 	return (
 		<div>
