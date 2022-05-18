@@ -76,7 +76,7 @@ export const AuthenticatedNavbar = (props: any) => {
 						<NavItem className="ms-auto">
 							<Link href="signin">
 								<button
-									class="btn "
+									className="btn "
 									styles={AuthNavbarButtonStyles}
 									color=""
 								>

@@ -8,13 +8,7 @@ import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
 
 import MainNavbar from "./components/Navbar";
-import {
-	Container,
-	Row,
-	Button,
-	FormGroup,
-	Label
-} from "reactstrap";
+import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();

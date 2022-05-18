@@ -5,14 +5,9 @@ import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {SetLocalStorage} from "./components/authentication/localstorage";
+import { SetLocalStorage } from "./components/authentication/localstorage";
 
-import {
-	Container,
-	Label,
-	FormGroup,
-	Button,
-} from "reactstrap";
+import { Container, Label, FormGroup, Button } from "reactstrap";
 
 const Signup: NextPage = () => {
 	const { register, handleSubmit } = useForm();
