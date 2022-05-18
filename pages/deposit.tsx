@@ -19,8 +19,9 @@ import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import React from "react";
-import Cards from "react-credit-cards";
+// import Cards from "react-credit-cards";
 import AddedCardsSection from "./components/bankCards/AddedCardsSection";
+import validate from "./components/authentication/validate";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
@@ -124,6 +125,7 @@ const PaymentForm = () => {
 };
 
 const Deposit: NextPage = () => {
+	validate();
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
