@@ -10,23 +10,16 @@ import { useRouter } from "next/router";
 import MainNavbar from "./components/Navbar";
 import {
 	Container,
-	Col,
 	Row,
 	Button,
-	Form,
 	FormGroup,
-	Label,
-	Input,
-	FormText,
-	Alert,
+	Label
 } from "reactstrap";
-import validate from "./components/authentication/validate";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 	const [isAuthorized, setIsAuthorized] = React.useState(false);
 	const router = useRouter();
-	
 
 	const onSubmit = (data: any) => {
 		// ${process.env.SERVER}/login
@@ -34,20 +27,21 @@ const Signin: NextPage = () => {
 			email: data.email,
 			password: data.password,
 		})
-		.then((res)=>{
-			if (res.data.success === true) {
-				let localStorageDataObject = {
-					id: res.data.id,
-					firstname: res.data.firstname,
-					lastname: res.data.lastname,
-					email: res.data.email,
-				};
-				SetLocalStorage("randnoteUser", localStorageDataObject);
-				router.push("/dashboard");
-			}
-		}).catch((err)=>{
-			console.log(err)
-		})
+			.then((res) => {
+				if (res.data.success === true) {
+					let localStorageDataObject = {
+						id: res.data.id,
+						firstname: res.data.firstname,
+						lastname: res.data.lastname,
+						email: res.data.email,
+					};
+					SetLocalStorage("randnoteUser", localStorageDataObject);
+					router.push("/dashboard");
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (
