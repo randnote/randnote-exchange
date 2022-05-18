@@ -20,20 +20,28 @@ const Signup: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data: any) => {
-		Axios.post(`${process.env.REACT_APP_SERVER}/signup`, {
+		//${process.env.REACT_APP_SERVER}/signup`
+		console.log(data)
+		Axios.post(`http://localhost:8024/signup`, {
 			firstname: data.firstname,
 			lastname: data.lastname,
 			email: data.email,
 			password: data.password,
-		});
-		// .then((res)=>{
-		// 	console.log(res.data);
-		// 	createSession(res.data);
-		// 	history.push("/create");
-		// })
-		// .catch( err =>{
-		// 	console.log(err);
-		// })
+		})
+		.then((res)=>{
+			console.log(res.data);
+
+			if(res.data.success === true){
+				// add to localstorage & send to dashboard
+				// history.push("/create");
+			}
+
+
+			
+		})
+		.catch( err =>{
+			console.log(err);
+		})
 	};
 	return (
 		<div>
@@ -44,7 +52,7 @@ const Signup: NextPage = () => {
 						<Label tyle={firstnameLabelStyle} for="">
 							First name
 						</Label>
-						<Input
+						<input
 							style={signupInputStyle}
 							{...register("firstname")}
 							type="text"
@@ -54,7 +62,7 @@ const Signup: NextPage = () => {
 					</FormGroup>
 					<FormGroup>
 						<Label for="">Last name</Label>
-						<Input
+						<input
 							style={signupInputStyle}
 							{...register("lastname")}
 							type="lastname"
@@ -64,7 +72,7 @@ const Signup: NextPage = () => {
 					</FormGroup>
 					<FormGroup>
 						<Label for="">Email</Label>
-						<Input
+						<input
 							style={signupInputStyle}
 							{...register("email")}
 							type="email"
@@ -74,7 +82,7 @@ const Signup: NextPage = () => {
 					</FormGroup>
 					<FormGroup>
 						<Label for="">Password</Label>
-						<Input
+						<input
 							style={signupInputStyle}
 							{...register("password")}
 							type="password"
