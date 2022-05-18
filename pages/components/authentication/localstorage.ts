@@ -1,12 +1,12 @@
 // takes in the key of the storage variable and returns the value-object:
 const GetLocalStorage = (key: string) => {
-    let item: any = localStorage.getItem(key)
-	if ( item !== null || undefined) {
+	let item: any = localStorage.getItem(key);
+	if (item !== null || undefined) {
 		let information: any = localStorage.getItem(key);
 		let localstorageData: any = JSON.parse(information);
 		return localstorageData;
 	} else {
-        return null
+		return null;
 		// throw Error("Local storage key is undefined");
 	}
 };
