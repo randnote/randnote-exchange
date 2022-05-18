@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
+import { NextResponse, NextRequest } from 'next/server'
 import MainNavbar from "./components/Navbar";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
+import { useRouter } from 'next/router'
+import GetLocalStorage,{SetLocalStorage} from "./components/authentication/localstorage";
 
 import {
 	Container,
@@ -18,30 +21,35 @@ import {
 
 const Signup: NextPage = () => {
 	const { register, handleSubmit } = useForm();
+	const router = useRouter()
 
 	const onSubmit = (data: any) => {
 		//${process.env.REACT_APP_SERVER}/signup`
-		console.log(data)
+		console.log(data);
 		Axios.post(`http://localhost:8024/signup`, {
 			firstname: data.firstname,
 			lastname: data.lastname,
 			email: data.email,
 			password: data.password,
 		})
-		.then((res)=>{
+		.then((res) => {
 			console.log(res.data);
 
-			if(res.data.success === true){
-				// add to localstorage & send to dashboard
-				// history.push("/create");
+			if (res.data.success === true) {
+
+				let localStorageDataObject = {
+					id: res.data.data.id,
+					firstname: res.data.data.firstname,
+					lastname : res.data.data.lastname,
+					email: res.data.data.email
+				}
+				SetLocalStorage("randnoteUser", localStorageDataObject)
+				router.push('/dashboard')
 			}
-
-
-			
 		})
-		.catch( err =>{
+		.catch((err) => {
 			console.log(err);
-		})
+		});
 	};
 	return (
 		<div>
