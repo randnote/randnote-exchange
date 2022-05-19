@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import React from "react";
 // import Cards from "react-credit-cards";
-import AddedCardsSection from "./components/bankCards/AddedCardsSection";
+// import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 import validate from "./components/authentication/validate";
 
 const PaymentForm = () => {
@@ -66,7 +66,7 @@ const PaymentForm = () => {
 								type="text"
 								name="cardnumber"
 								id=""
-								class=""
+								className="form-control"
 							/>
 						</FormGroup>
 
@@ -78,6 +78,7 @@ const PaymentForm = () => {
 								type="text"
 								name="carddetails"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 
@@ -89,6 +90,7 @@ const PaymentForm = () => {
 								type="text"
 								name="month"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 
@@ -100,6 +102,7 @@ const PaymentForm = () => {
 								type="text"
 								name="year"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 
@@ -111,6 +114,7 @@ const PaymentForm = () => {
 								type="text"
 								name="cvc"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 
@@ -129,7 +133,7 @@ const Deposit: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<AddedCardsSection> </AddedCardsSection>
+			{/* <AddedCardsSection> </AddedCardsSection> */}
 
 			<PaymentForm></PaymentForm>
 		</div>

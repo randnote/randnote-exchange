@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
+import GetLocalStorage from "./authentication/localstorage";
 import Link from "next/link";
 import {
 	Collapse,
@@ -18,9 +19,7 @@ import {
 
 const MainNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
-
 	const toggle = () => setIsOpen(!isOpen);
-
 	return (
 		<div>
 			<Navbar style={mainNavbarStyle} light expand="md">
@@ -50,8 +49,18 @@ const MainNavbar = (props: any) => {
 
 export const AuthenticatedNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
-
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
+
+	useEffect(() => {
+		if (localStorage) {
+			if (GetLocalStorage("randnoteUser") === null) {
+				setIsAuthenticated(false);
+			}else{
+				setIsAuthenticated(true);
+			}
+		}
+	}, []);
 
 	return (
 		<div>
@@ -61,39 +70,66 @@ export const AuthenticatedNavbar = (props: any) => {
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
+					
+
 					<Nav className="mr-auto" navbar>
 						<NavItem>
 							<NavLink
 								style={{ color: "white" }}
-								href="/components/"
+								href="/deposit/"
 							>
-								Components
+								Deposits
 							</NavLink>
 						</NavItem>
 					</Nav>
 
-					<Nav className="navbar-nav ms-auto">
-						<NavItem className="ms-auto">
-							<Link href="signin">
-								<button
-									className="btn "
-									styles={AuthNavbarButtonStyles}
-									color=""
-								>
-									SignIn
-								</button>
-							</Link>
-
-							<Link href="signup">
-								<Button
-									styles={AuthNavbarButtonStyles}
-									color="primary"
-								>
-									SignUp
-								</Button>
-							</Link>
+					<Nav className="mr-auto" navbar>
+						<NavItem>
+							<NavLink
+								style={{ color: "white" }}
+								href="/transactions/"
+							>
+								Transactions
+							</NavLink>
 						</NavItem>
 					</Nav>
+
+					<Nav className="mr-auto" navbar>
+						<NavItem>
+							<NavLink
+								style={{ color: "white" }}
+								href="/chart/"
+							>
+								Chart
+							</NavLink>
+						</NavItem>
+					</Nav>
+
+					{
+						isAuthenticated ? '': (<Nav className="navbar-nav ms-auto">
+							<NavItem className="ms-auto">
+								<Link href="signin">
+									<button
+										className="btn "
+										// styles={AuthNavbarButtonStyles}
+										color=""
+									>
+										SignIn
+									</button>
+								</Link>
+
+								<Link href="signup">
+									<Button
+										styles={AuthNavbarButtonStyles}
+										color="primary"
+									>
+										SignUp
+									</Button>
+								</Link>
+							</NavItem>
+						</Nav>)
+					}
+					
 				</Collapse>
 			</Navbar>
 		</div>

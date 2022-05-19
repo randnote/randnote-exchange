@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GetLocalStorage from "./localstorage";
 import { useRouter } from "next/router";
 
@@ -8,11 +8,7 @@ const validate = () => {
 
 	useEffect(() => {
 		if (localStorage) {
-			// if user is ALREADY validated:
-			// if (GetLocalStorage("randnoteUser") !== null) {
-			// 	router.push("/dashboard");
-			// }
-
+			
 			// if user is NOT validated:
 			if (GetLocalStorage("randnoteUser") === null) {
 				router.push("/signin");
@@ -20,5 +16,18 @@ const validate = () => {
 		}
 	}, []);
 };
+
+// const checkLocalStorage  = () =>{
+// 	const router = useRouter();
+// 	const [auth, setAuth] = useState(false);
+
+// 	useEffect(() => {
+// 		if (localStorage) {
+// 			if (GetLocalStorage("randnoteUser") === null) {
+// 				setAuth(false);
+// 			}
+// 		}
+// 	}, []);
+// }
 
 export default validate;

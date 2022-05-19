@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.css";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8024";
 
-import MainNavbar from "./components/Navbar";
+import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
 import { Container, Button, Row } from "reactstrap";
 import Chart from "./components/chart";
@@ -74,7 +74,7 @@ const AboutComponent = () => {
 const Home: NextPage = () => {
 	return (
 		<div>
-			<MainNavbar></MainNavbar>
+			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<MainComponent></MainComponent>
 			<AboutComponent></AboutComponent>
 			<MainFooter></MainFooter>
