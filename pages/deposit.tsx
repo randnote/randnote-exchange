@@ -3,19 +3,13 @@ import { useState } from "react";
 import {
 	Container,
 	Button,
-	Input,
-	Row,
-	Col,
-	Alert,
 	FormGroup,
 	Label,
 	Collapse,
 } from "reactstrap";
 import Axios from "axios";
-import { alertProps } from "./components/alerts/alerts";
 import { useForm } from "react-hook-form";
-
-import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
+import { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
@@ -48,10 +42,9 @@ const PaymentForm = () => {
 	return (
 		<div>
 			<Container>
-
 				{
 					// alert area:
-					addedCardAlert ? <AlertDismissible></AlertDismissible>: ''
+					addedCardAlert ? <AlertDismissible></AlertDismissible> : ""
 				}
 
 				<Button

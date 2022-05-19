@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {  DisplayAlert } from "./components/alerts/alerts";
+import { DisplayAlert } from "./components/alerts/alerts";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
