@@ -9,8 +9,7 @@ import { useRouter } from "next/router";
 import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { alertProps, DisplayAlert } from "./components/alerts";
-
+import {  DisplayAlert } from "./components/alerts/alerts";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
@@ -24,32 +23,32 @@ const Signin: NextPage = () => {
 			email: data.email,
 			password: data.password,
 		})
-		.then(async (res) => {
-			console.log(res.data);
+			.then(async (res) => {
+				console.log(res.data);
 
-			if (res.data.success === true) {
-				let { id, firstname, lastname, email }: any =
-					res.data.data.result;
+				if (res.data.success === true) {
+					let { id, firstname, lastname, email }: any =
+						res.data.data.result;
 
-				let localStorageDataObject = {
-					id: id,
-					firstname: firstname,
-					lastname: lastname,
-					email: email,
-				};
+					let localStorageDataObject = {
+						id: id,
+						firstname: firstname,
+						lastname: lastname,
+						email: email,
+					};
 
-				SetLocalStorage("randnoteUser", localStorageDataObject);
-				router.push("/dashboard");
-			}else if(res.data.success === false){
-				// WrongUsernamePasswordAlert();
-				setFailedPassword(true);
-			}
-			console.log(res.data)
-		})
-		.then(() => {})
-		.catch((err) => {
-			console.log(err);
-		});
+					SetLocalStorage("randnoteUser", localStorageDataObject);
+					router.push("/dashboard");
+				} else if (res.data.success === false) {
+					// WrongUsernamePasswordAlert();
+					setFailedPassword(true);
+				}
+				console.log(res.data);
+			})
+			.then(() => {})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (
@@ -57,9 +56,14 @@ const Signin: NextPage = () => {
 			<MainNavbar></MainNavbar>
 			<Container className="">
 				<Row>
-					{
-						failedPassword ? <DisplayAlert information="Wrong username or password" color="danger"></DisplayAlert> : ''
-					}
+					{failedPassword ? (
+						<DisplayAlert
+							information="Wrong username or password"
+							color="danger"
+						></DisplayAlert>
+					) : (
+						""
+					)}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<FormGroup>
 							<Label style={emailLabelStyle} for="">

@@ -21,7 +21,7 @@ export const SetLocalStorage = (key: string, info: any) => {
 			lastname: info.lastname,
 			email: info.email,
 		};
-		
+
 		localStorage.setItem(key, JSON.stringify(data));
 	} else {
 		return Error("Storage key is undefined");

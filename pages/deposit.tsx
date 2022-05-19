@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import {useState} from 'react'
+import { useState } from "react";
 import {
 	Container,
 	Button,
@@ -12,17 +12,19 @@ import {
 	Collapse,
 } from "reactstrap";
 import Axios from "axios";
-import { alertProps } from "./components/alerts";
+import { alertProps } from "./components/alerts/alerts";
 import { useForm } from "react-hook-form";
 
 import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
+import { AlertDismissible } from "./components/alerts/dismissableAlerts";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
 	const [isOpen, setIsOpen] = useState(false);
+	const [addedCardAlert, setAddedCardAlert] = useState(false);
 
 	const onSubmit = (data: any) => {
 		Axios.post(`http://localhost:8024/card`, {
@@ -36,6 +38,7 @@ const PaymentForm = () => {
 			.then((res) => {
 				console.log(res.data);
 				// notification that yiour card has been added
+				setAddedCardAlert(true);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -45,6 +48,12 @@ const PaymentForm = () => {
 	return (
 		<div>
 			<Container>
+
+				{
+					// alert area:
+					addedCardAlert ? <AlertDismissible></AlertDismissible>: ''
+				}
+
 				<Button
 					color="primary"
 					onClick={() => {
