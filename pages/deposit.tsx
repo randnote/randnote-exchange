@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
 import { AlertDismissible } from "./components/alerts/dismissableAlerts";
 import AddedCardsSection from "./components/bankCards/AddedCardsSection";
+import GetLocalStorage from "./components/authentication/localstorage";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
@@ -16,32 +17,30 @@ const PaymentForm = () => {
 	const [addedCardAlert, setAddedCardAlert] = useState(false);
 
 	const onSubmit = (data: any) => {
-
 		// i first need to get the user whos logged in ...
-		const callApi = async () =>{
+		const callApi = async () => {
+			let info = await GetLocalStorage("randnoteUser"); // this; because we need the logged in users ID
 
-			
-			console.log(data)
+			console.log(data);
 			Axios.post(`http://localhost:8024/card`, {
 				cardnumber: data.cardnumber,
-				user_id: '',
+				user_id: info.id,
 				carddetails: data.carddetails,
 				month: data.month,
 				year: data.year,
 				cvc: data.cvc,
 			})
-			.then((res) => {
-				console.log(res.data);
-				// notification that yiour card has been added
-				setAddedCardAlert(true);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		}
+				.then((res) => {
+					console.log(res.data);
+					// notification that yiour card has been added
+					setAddedCardAlert(true);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		};
 
-
-		
+		callApi()
 	};
 
 	return (

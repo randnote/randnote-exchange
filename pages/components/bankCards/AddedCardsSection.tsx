@@ -7,38 +7,34 @@ import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
 
 const AddedCardsSection = () => {
-
 	const [cards, setCards] = useState([]);
 
-	useEffect(  () => {
-        
-        let userId = '';
-        // const getUserId = async() =>{
-        //     let info = await GetLocalStorage("randnoteUser");
-        //     return info;
-        // }
-        // let info =  getUserId();
-        // info.then((res)=>{
-        //     console.log(res.id)
-        //     userId =  res.id
-        // })
+	useEffect(() => {
+		let userId = "";
+		// const getUserId = async() =>{
+		//     let info = await GetLocalStorage("randnoteUser");
+		//     return info;
+		// }
+		// let info =  getUserId();
+		// info.then((res)=>{
+		//     console.log(res.id)
+		//     userId =  res.id
+		// })
 
-        const callApi = async() =>{
-
-            let info = await GetLocalStorage("randnoteUser");
-            // console.log(info)
-            Axios.get(`http://localhost:8024/cards/${info.id}`).then((res) => {
-                    // setPosts(res.data.slice(0, 10));
-                    console.log(res.data);
-                    setCards(res.data);
-                }).catch((err)=>{
-                console.log(err)
-                });
-           
-        }
-        callApi();
-       
-		
+		const callApi = async () => {
+			let info = await GetLocalStorage("randnoteUser");
+			// console.log(info)
+			Axios.get(`http://localhost:8024/cards/${info.id}`)
+				.then((res) => {
+					// setPosts(res.data.slice(0, 10));
+					console.log(res.data);
+					setCards(res.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		};
+		callApi();
 	}, []);
 
 	return (
