@@ -21,21 +21,28 @@ const Signin: NextPage = () => {
 			email: data.email,
 			password: data.password,
 		})
-			.then((res) => {
-				if (res.data.success === true) {
-					let localStorageDataObject = {
-						id: res.data.id,
-						firstname: res.data.firstname,
-						lastname: res.data.lastname,
-						email: res.data.email,
-					};
-					SetLocalStorage("randnoteUser", localStorageDataObject);
-					router.push("/dashboard");
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		.then(async(res) => {
+			console.log(res.data);
+
+			if (res.data.success === true) {
+				let {id, firstname, lastname, email, } : any = res.data.data.result;
+				
+				let localStorageDataObject = {
+					id: id,
+					firstname: firstname,
+					lastname: lastname,
+					email: email
+				};
+				
+				 SetLocalStorage("randnoteUser", localStorageDataObject);
+				router.push("/dashboard");
+			}
+		}).then( ()=>{
+
+		}) 
+		.catch((err) => {
+			console.log(err);
+		});
 	};
 
 	return (

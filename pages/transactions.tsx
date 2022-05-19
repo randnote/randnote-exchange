@@ -6,7 +6,7 @@ import { AuthenticatedNavbar } from "./components/Navbar";
 const Transactions: NextPage = () => {
 	return (
 		<div>
-            <AuthenticatedNavbar></AuthenticatedNavbar>
+			<AuthenticatedNavbar></AuthenticatedNavbar>
 			table here
 		</div>
 	);

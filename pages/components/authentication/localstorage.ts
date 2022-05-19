@@ -21,11 +21,12 @@ export const SetLocalStorage = (key: string, info: any) => {
 			lastname: info.lastname,
 			email: info.email,
 		};
+		// console.log(" ")
+		// console.log(data)
 		localStorage.setItem(key, JSON.stringify(data));
 	} else {
 		return Error("Storage key is undefined");
 	}
-	
 };
 
 export const DeleteLocalStorage = (key: string) => {

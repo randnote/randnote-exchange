@@ -8,7 +8,6 @@ const validate = () => {
 
 	useEffect(() => {
 		if (localStorage) {
-			
 			// if user is NOT validated:
 			if (GetLocalStorage("randnoteUser") === null) {
 				router.push("/signin");

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import GetLocalStorage from "./authentication/localstorage";
 import Link from "next/link";
 import {
@@ -56,7 +56,7 @@ export const AuthenticatedNavbar = (props: any) => {
 		if (localStorage) {
 			if (GetLocalStorage("randnoteUser") === null) {
 				setIsAuthenticated(false);
-			}else{
+			} else {
 				setIsAuthenticated(true);
 			}
 		}
@@ -70,8 +70,6 @@ export const AuthenticatedNavbar = (props: any) => {
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
-					
-
 					<Nav className="mr-auto" navbar>
 						<NavItem>
 							<NavLink
@@ -96,17 +94,16 @@ export const AuthenticatedNavbar = (props: any) => {
 
 					<Nav className="mr-auto" navbar>
 						<NavItem>
-							<NavLink
-								style={{ color: "white" }}
-								href="/chart/"
-							>
+							<NavLink style={{ color: "white" }} href="/chart/">
 								Chart
 							</NavLink>
 						</NavItem>
 					</Nav>
 
-					{
-						isAuthenticated ? '': (<Nav className="navbar-nav ms-auto">
+					{isAuthenticated ? (
+						""
+					) : (
+						<Nav className="navbar-nav ms-auto">
 							<NavItem className="ms-auto">
 								<Link href="signin">
 									<button
@@ -127,9 +124,8 @@ export const AuthenticatedNavbar = (props: any) => {
 									</Button>
 								</Link>
 							</NavItem>
-						</Nav>)
-					}
-					
+						</Nav>
+					)}
 				</Collapse>
 			</Navbar>
 		</div>
