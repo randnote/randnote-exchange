@@ -1,17 +1,21 @@
+import { type } from "os";
 import React from "react";
-import { Alert } from "reactstrap";
+import { Alert } from 'reactstrap';
+// all alerts are dismissable cards
 
-const WrongUsernamePasswordAlert = (props: any) => {
+
+
+export type alertProps = {
+	color: string,
+	information: string
+}
+
+const DisplayAlert = (props: alertProps) => {
 	return (
-		<div>
-			<Alert color="primary">
-				This is a primary alert — check it out!
-			</Alert>
-			<Alert color="secondary">
-				This is a secondary alert — check it out!
-			</Alert>
-		</div>
+		<Alert color={props.color}>
+			{props.information}
+	  </Alert>
 	);
 };
 
-export { WrongUsernamePasswordAlert };
+export { DisplayAlert };

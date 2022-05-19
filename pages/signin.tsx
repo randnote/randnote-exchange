@@ -6,13 +6,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
-
 import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { alertProps, DisplayAlert } from "./components/alerts";
+
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 	const [isAuthorized, setIsAuthorized] = React.useState(false);
+	const [failedPassword, setFailedPassword] = React.useState(false);
 	const router = useRouter();
 
 	const onSubmit = (data: any) => {
@@ -21,25 +24,29 @@ const Signin: NextPage = () => {
 			email: data.email,
 			password: data.password,
 		})
-		.then(async(res) => {
+		.then(async (res) => {
 			console.log(res.data);
 
 			if (res.data.success === true) {
-				let {id, firstname, lastname, email, } : any = res.data.data.result;
-				
+				let { id, firstname, lastname, email }: any =
+					res.data.data.result;
+
 				let localStorageDataObject = {
 					id: id,
 					firstname: firstname,
 					lastname: lastname,
-					email: email
+					email: email,
 				};
-				
-				 SetLocalStorage("randnoteUser", localStorageDataObject);
-				router.push("/dashboard");
-			}
-		}).then( ()=>{
 
-		}) 
+				SetLocalStorage("randnoteUser", localStorageDataObject);
+				router.push("/dashboard");
+			}else if(res.data.success === false){
+				// WrongUsernamePasswordAlert();
+				setFailedPassword(true);
+			}
+			console.log(res.data)
+		})
+		.then(() => {})
 		.catch((err) => {
 			console.log(err);
 		});
@@ -50,6 +57,9 @@ const Signin: NextPage = () => {
 			<MainNavbar></MainNavbar>
 			<Container className="">
 				<Row>
+					{
+						failedPassword ? <DisplayAlert information="Wrong username or password" color="danger"></DisplayAlert> : ''
+					}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<FormGroup>
 							<Label style={emailLabelStyle} for="">
