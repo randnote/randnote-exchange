@@ -1,12 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import {
-	Container,
-	Button,
-	FormGroup,
-	Label,
-	Collapse,
-} from "reactstrap";
+import { Container, Button, FormGroup, Label, Collapse } from "reactstrap";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
 import { AuthenticatedNavbar } from "./components/Navbar";
@@ -14,6 +8,7 @@ import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
 import { AlertDismissible } from "./components/alerts/dismissableAlerts";
+import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
@@ -21,14 +16,20 @@ const PaymentForm = () => {
 	const [addedCardAlert, setAddedCardAlert] = useState(false);
 
 	const onSubmit = (data: any) => {
-		Axios.post(`http://localhost:8024/card`, {
-			cardnumber: data.cardnumber,
-			user_id: "1",
-			carddetails: data.carddetails,
-			month: data.month,
-			year: data.year,
-			cvc: data.cvc,
-		})
+
+		// i first need to get the user whos logged in ...
+		const callApi = async () =>{
+
+			
+			console.log(data)
+			Axios.post(`http://localhost:8024/card`, {
+				cardnumber: data.cardnumber,
+				user_id: '',
+				carddetails: data.carddetails,
+				month: data.month,
+				year: data.year,
+				cvc: data.cvc,
+			})
 			.then((res) => {
 				console.log(res.data);
 				// notification that yiour card has been added
@@ -37,6 +38,10 @@ const PaymentForm = () => {
 			.catch((err) => {
 				console.log(err);
 			});
+		}
+
+
+		
 	};
 
 	return (
@@ -133,7 +138,7 @@ const Deposit: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			{/* <AddedCardsSection> </AddedCardsSection> */}
+			<AddedCardsSection> </AddedCardsSection>
 
 			<PaymentForm></PaymentForm>
 		</div>
