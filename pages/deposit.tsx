@@ -17,7 +17,6 @@ const PaymentForm = () => {
 	const [addedCardAlert, setAddedCardAlert] = useState(false);
 
 	const onSubmit = (data: any) => {
-		// i first need to get the user whos logged in ...
 		const callApi = async () => {
 			let info = await GetLocalStorage("randnoteUser"); // this; because we need the logged in users ID
 
@@ -29,18 +28,16 @@ const PaymentForm = () => {
 				month: data.month,
 				year: data.year,
 				cvc: data.cvc,
+			}).then((res) => {
+				console.log(res.data);
+				setAddedCardAlert(true); // notifications... needs to ... send the right information
 			})
-				.then((res) => {
-					console.log(res.data);
-					// notification that yiour card has been added
-					setAddedCardAlert(true);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+			.catch((err) => {
+				console.log(err);
+			});
 		};
 
-		callApi()
+		callApi();
 	};
 
 	return (

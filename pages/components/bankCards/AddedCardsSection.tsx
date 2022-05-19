@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, Button, Popover, PopoverBody, PopoverHeader } from "reactstrap";
 import { useState, useEffect } from "react";
@@ -10,20 +9,8 @@ const AddedCardsSection = () => {
 	const [cards, setCards] = useState([]);
 
 	useEffect(() => {
-		let userId = "";
-		// const getUserId = async() =>{
-		//     let info = await GetLocalStorage("randnoteUser");
-		//     return info;
-		// }
-		// let info =  getUserId();
-		// info.then((res)=>{
-		//     console.log(res.id)
-		//     userId =  res.id
-		// })
-
 		const callApi = async () => {
 			let info = await GetLocalStorage("randnoteUser");
-			// console.log(info)
 			Axios.get(`http://localhost:8024/cards/${info.id}`)
 				.then((res) => {
 					// setPosts(res.data.slice(0, 10));
@@ -46,11 +33,11 @@ const AddedCardsSection = () => {
 					</tr>
 				</thead>
 
-				{/* <tbody>
+				<tbody>
 					{cards != undefined ? (
-						cards.map((card) => (
-							<div key="a">
-								<tr>
+						cards.map((card: any) => (
+							
+								<tr key={card.cardnumber}>
 									<td scope="row">
 										Mastercard ending in {card.cardnumber}
 									</td>
@@ -74,25 +61,13 @@ const AddedCardsSection = () => {
 										</Button>
 									</td>
 								</tr>
-							</div>
+							
 						))
 					) : (
 						<div>You do not have any deposit methods yet.</div>
 					)}
-				</tbody> */}
+				</tbody>
 			</Table>
-
-			{/*<Popover
-				placement="bottom"
-				target="Popover1"
-				toggle={function noRefCheck() {}}
-			>
-				<PopoverHeader>Popover Title</PopoverHeader>
-				<PopoverBody>
-					Sed posuere consectetur est at lobortis. Aenean eu leo quam.
-					Pellentesque ornare sem lacinia quam venenatis vestibulum.
-				</PopoverBody>
-			</Popover>*/}
 		</Container>
 	);
 };
