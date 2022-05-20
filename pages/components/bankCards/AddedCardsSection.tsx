@@ -36,32 +36,30 @@ const AddedCardsSection = () => {
 				<tbody>
 					{cards != undefined ? (
 						cards.map((card: any) => (
-							
-								<tr key={card.cardnumber}>
-									<td scope="row">
-										Mastercard ending in {card.cardnumber}
-									</td>
-									<td>Expires in {card.year}</td>
-									<td>
-										<Button
-											color="success"
-											id="Popover1"
-											type="button"
-										>
-											Deposit
-										</Button>
-									</td>
-									<td>
-										<Button
-											color="danger"
-											id="Popover1"
-											type="button"
-										>
-											X
-										</Button>
-									</td>
-								</tr>
-							
+							<tr key={card.cardnumber}>
+								<td scope="row">
+									Mastercard ending in {card.cardnumber}
+								</td>
+								<td>Expires in {card.year}</td>
+								<td>
+									<Button
+										color="success"
+										id="Popover1"
+										type="button"
+									>
+										Deposit
+									</Button>
+								</td>
+								<td>
+									<Button
+										color="danger"
+										id="Popover1"
+										type="button"
+									>
+										X
+									</Button>
+								</td>
+							</tr>
 						))
 					) : (
 						<div>You do not have any deposit methods yet.</div>

@@ -28,13 +28,14 @@ const PaymentForm = () => {
 				month: data.month,
 				year: data.year,
 				cvc: data.cvc,
-			}).then((res) => {
-				console.log(res.data);
-				setAddedCardAlert(true); // notifications... needs to ... send the right information
 			})
-			.catch((err) => {
-				console.log(err);
-			});
+				.then((res) => {
+					console.log(res.data);
+					setAddedCardAlert(true); // notifications... needs to ... send the right information
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		};
 
 		callApi();
