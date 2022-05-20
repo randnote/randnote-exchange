@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import {useState} from 'react'
+import { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
@@ -24,10 +24,10 @@ const Transactions: NextPage = () => {
 								<Card.Title>ZAR balance</Card.Title>
 
 								<Card.Text>ZAR 123.00</Card.Text>
-								
+
 								<Button variant="primary" onClick={handleShow}>
 									Make deposit
-									</Button>
+								</Button>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -68,35 +68,28 @@ const Transactions: NextPage = () => {
 				</Tabs>
 			</Container>
 
-				<Modal show={showModal} onHide={handleClose}>
+			<Modal show={showModal} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Modal heading</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+				<Modal.Body>
+					Woohoo, you're reading this text in a modal!
+				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
-					Close
+						Close
 					</Button>
 					<Button variant="primary" onClick={handleClose}>
-					Save Changes
+						Save Changes
 					</Button>
 				</Modal.Footer>
-				</Modal>
+			</Modal>
 		</div>
 	);
 };
 
 function DepositModal() {
-	
-  
-	return (
-	  <>
-		
-  
-		
-	  </>
-	);
-  }
-
+	return <></>;
+}
 
 export default Transactions;
