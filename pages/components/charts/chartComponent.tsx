@@ -42,10 +42,10 @@ export const options = {
 	},
 };
 
-const ChartComponent = () => {
+const ChartComponent = (props: any) => {
+	const [price , setPrice ] = useState(0);
 	const [response, setResponse] = useState({
 		labels: [], // x axis- timestamps
-
 		datasets: [
 			{
 				label: "Dataset 1",
@@ -56,10 +56,19 @@ const ChartComponent = () => {
 		],
 	});
 
+	const onTrigger = (price :number) =>{
+		props.parentCallBack(price);
+		console.log(`we are sending over : ${price}`)
+		// event.preventDefault();
+	}
+
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
+			setPrice(data.price);
+
 			console.log(data);
+			onTrigger(data.price)
 
 			let price: number = data.price;
 			let arrayLabels: any = response.labels;
