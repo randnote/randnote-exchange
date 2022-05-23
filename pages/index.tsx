@@ -1,38 +1,22 @@
 import type { NextPage } from "next";
-import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-// const { Server } = require("socket.io");
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://127.0.0.1:8024";
 
-import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
+import  { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
 import { Container, Button, Row } from "reactstrap";
-import Chart from "./components/chart";
+import ChartComponent from "./components/charts/chartComponent";
 
 // Main section
 const MainComponent = () => {
-	const [response, setResponse] = useState("");
-
-	useEffect(() => {
-		const socket = socketIOClient(ENDPOINT);
-		socket.on("FromAPI", (data) => {
-			setResponse(data);
-		});
-	}, []);
-
 	return (
 		<Container className="text-center">
 			<Row>
 				<h1>Rand Note Exchange</h1>
 				<p>This is the RandNote official website and exchange.</p>
-				It's <time dateTime={response}>{response}</time>
+				<ChartComponent></ChartComponent>
 			</Row>
 
-			<Chart></Chart>
+			
 		</Container>
 	);
 };
