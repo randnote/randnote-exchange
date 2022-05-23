@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import  { AuthenticatedNavbar } from "./components/Navbar";
+import { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
 import { Container, Button, Row } from "reactstrap";
 import ChartComponent from "./components/charts/chartComponent";
@@ -15,8 +15,6 @@ const MainComponent = () => {
 				<p>This is the RandNote official website and exchange.</p>
 				<ChartComponent></ChartComponent>
 			</Row>
-
-			
 		</Container>
 	);
 };

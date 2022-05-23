@@ -26,25 +26,26 @@ ChartJS.register(
 );
 
 export const options = {
-    scales: {x: { title: { display: true, text: 'TIME' }},
-y: {title: {display: true, text: '($) PRICE'}}},
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'RANDNOTE PRICE/TIME',
-      },
-    },
-  };
+	scales: {
+		x: { title: { display: true, text: "TIME" } },
+		y: { title: { display: true, text: "($) PRICE" } },
+	},
+	responsive: true,
+	plugins: {
+		legend: {
+			position: "top" as const,
+		},
+		title: {
+			display: true,
+			text: "RANDNOTE PRICE/TIME",
+		},
+	},
+};
 
-
-const ChartComponent = () =>{
-    const [response, setResponse] = useState({
+const ChartComponent = () => {
+	const [response, setResponse] = useState({
 		labels: [], // x axis- timestamps
-       
+
 		datasets: [
 			{
 				label: "Dataset 1",
@@ -58,24 +59,26 @@ const ChartComponent = () =>{
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
-                console.log(data)
-            
+			console.log(data);
+
 			let price: number = data.price;
 			let arrayLabels: any = response.labels;
 			let arrayPrices: any = response.datasets[0].data;
-			arrayLabels.push(`${data.time.hours}: ${data.time.minutes}: ${data.time.seconds}`);
+			arrayLabels.push(
+				`${data.time.hours}: ${data.time.minutes}: ${data.time.seconds}`
+			);
 			arrayPrices.push(data.price);
 
 			let newObj: any = {
 				labels: arrayLabels,
-               
+
 				datasets: [
 					{
 						label: "RANDNOTE.",
 						data: arrayPrices,
-                        borderColor: 'rgba(53, 162, 235, 0.5)',
-                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                        tension: 0.2,
+						borderColor: "rgba(53, 162, 235, 0.5)",
+						backgroundColor: "rgba(53, 162, 235, 0.5)",
+						tension: 0.2,
 					},
 				],
 			};
@@ -83,13 +86,11 @@ const ChartComponent = () =>{
 			setResponse(newObj);
 		});
 	}, []);
-    return (
-        <div>
-            return <Line options={options} data={response} />
-        </div>
-    )
-} 
-
-
+	return (
+		<div>
+			return <Line options={options} data={response} />
+		</div>
+	);
+};
 
 export default ChartComponent;
