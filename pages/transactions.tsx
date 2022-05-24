@@ -1,15 +1,43 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
-// import Tabs from 'react-bootstrap/Tabs'
+import Axios from "axios";
+import GetLocalStorage from "./components/authentication/localstorage";
+import { localstorageUserType } from "./components/authentication/localstorage";
 
 const Transactions: NextPage = () => {
-	const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
+
+	useEffect(() => {
+		const getUserFromLocalStorage = async () => {
+			let userInformation: localstorageUserType = await GetLocalStorage(
+				"randnoteUser"
+			); // this; because we need the logged in users ID
+
+			// console.log(userInformation)
+
+			Axios.get(`http://localhost:8024/zarbalance/${userInformation.id}`)
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		};
+
+		const getDepositsAndWithdrawals = async () => {};
+
+		// get the zar balance from backend:
+
+		//get the Notes balance from blockchain:
+		getUserFromLocalStorage();
+	}, []);
 
 	return (
 		<div>
@@ -57,7 +85,31 @@ const Transactions: NextPage = () => {
 						eventKey="websiteTransactions"
 						title="Website Transactions"
 					>
-						masesdfsdf
+						website trans
+						<table className="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">First</th>
+									<th scope="col">Last</th>
+									<th scope="col">Handle</th>
+								</tr>
+							</thead>
+							<tbody>
+								{/* {transactionsWebsite.length > 0 ? (
+						transactionsWebsite.map((transaction: any) => (
+							<tr key={transaction.id}>
+								<td>{card.cardnumber}</td>
+								<td>Otto</td>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td>nothing</td>
+						</tr>
+					)} */}
+							</tbody>
+						</table>
 					</Tab>
 					<Tab
 						eventKey="blockchainTransactions"
@@ -87,9 +139,5 @@ const Transactions: NextPage = () => {
 		</div>
 	);
 };
-
-function DepositModal() {
-	return <></>;
-}
 
 export default Transactions;

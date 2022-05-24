@@ -60,7 +60,7 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<MainComponent ></MainComponent>
+			<MainComponent></MainComponent>
 			<AboutComponent></AboutComponent>
 			<MainFooter></MainFooter>
 		</div>

@@ -7,11 +7,9 @@ import { Container, Row, Col } from "reactstrap";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import { Line } from "react-chartjs-2";
 
-
 import socketIOClient from "socket.io-client";
 import MainFooter from "./components/Footer";
 const ENDPOINT = "http://127.0.0.1:8024";
-
 
 import {
 	Chart as ChartJS,
@@ -34,7 +32,6 @@ ChartJS.register(
 	Legend
 );
 
-
 export const options = {
 	scales: {
 		x: { title: { display: true, text: "TIME" } },
@@ -51,7 +48,6 @@ export const options = {
 		},
 	},
 };
-
 
 const Chart: NextPage = () => {
 	const [price, setPrice] = useState(0);
@@ -73,7 +69,7 @@ const Chart: NextPage = () => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			// setPrice(0)
-			
+
 			setPrice(data.price);
 
 			let price: number = data.price;
@@ -98,22 +94,16 @@ const Chart: NextPage = () => {
 			};
 
 			setResponse(newObj);
-			
 		});
-		console.log(`${price}... ${previousPrice.current}`)
-		if(price > previousPrice.current){
-			
-			setPriceMovementColor('green')
-		}else if(price < previousPrice.current){
-			setPriceMovementColor('red')
-			
-		}else if(price == previousPrice.current){
-			setPriceMovementColor('black')
-
+		console.log(`${price}... ${previousPrice.current}`);
+		if (price > previousPrice.current) {
+			setPriceMovementColor("green");
+		} else if (price < previousPrice.current) {
+			setPriceMovementColor("red");
+		} else if (price == previousPrice.current) {
+			setPriceMovementColor("black");
 		}
 		previousPrice.current = price;
-		
-
 	}, [price]);
 
 	return (
@@ -123,7 +113,7 @@ const Chart: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="8">
-					<Line options={options} data={response} />
+						<Line options={options} data={response} />
 					</Col>
 				</Row>
 				<hr />
@@ -141,9 +131,7 @@ const Chart: NextPage = () => {
 												fontSize: "30px",
 											}}
 										>
-											${
-												price.toFixed(2)
-											}
+											${price.toFixed(2)}
 										</span>
 									) : (
 										""

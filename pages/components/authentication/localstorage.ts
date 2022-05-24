@@ -1,4 +1,12 @@
 // takes in the key of the storage variable and returns the value-object:
+
+export interface localstorageUserType {
+	id: number;
+	email: string;
+	firstname: string;
+	lastname: string;
+}
+
 const GetLocalStorage = (key: string) => {
 	let item: any = localStorage.getItem(key);
 	if (item !== null || undefined) {

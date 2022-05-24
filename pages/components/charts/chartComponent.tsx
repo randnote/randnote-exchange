@@ -56,13 +56,10 @@ const ChartComponent = (props: any) => {
 		],
 	});
 
-	
-
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			setPrice(data.price);
-
 
 			let price: number = data.price;
 			let arrayLabels: any = response.labels;
@@ -91,7 +88,7 @@ const ChartComponent = (props: any) => {
 	}, []);
 	return (
 		<div>
-			 <Line options={options} data={response} />
+			<Line options={options} data={response} />
 		</div>
 	);
 };

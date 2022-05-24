@@ -9,7 +9,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
 import { AlertDismissible } from "./components/alerts/dismissableAlerts";
 import AddedCardsSection from "./components/bankCards/AddedCardsSection";
-import GetLocalStorage from "./components/authentication/localstorage";
+import GetLocalStorage, {
+	localstorageUserType,
+} from "./components/authentication/localstorage";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
@@ -18,7 +20,9 @@ const PaymentForm = () => {
 
 	const onSubmit = (data: any) => {
 		const callApi = async () => {
-			let info = await GetLocalStorage("randnoteUser"); // this; because we need the logged in users ID
+			let info: localstorageUserType = await GetLocalStorage(
+				"randnoteUser"
+			); // this; because we need the logged in users ID
 
 			console.log(data);
 			Axios.post(`http://localhost:8024/card`, {
