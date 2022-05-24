@@ -56,19 +56,13 @@ const ChartComponent = (props: any) => {
 		],
 	});
 
-	const onTrigger = (price: number) => {
-		props.parentCallBack(price);
-		console.log(`we are sending over : ${price}`);
-		// event.preventDefault();
-	};
+	
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			setPrice(data.price);
 
-			console.log(data);
-			onTrigger(data.price);
 
 			let price: number = data.price;
 			let arrayLabels: any = response.labels;
@@ -97,7 +91,7 @@ const ChartComponent = (props: any) => {
 	}, []);
 	return (
 		<div>
-			return <Line options={options} data={response} />
+			 <Line options={options} data={response} />
 		</div>
 	);
 };

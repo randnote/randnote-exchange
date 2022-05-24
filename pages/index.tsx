@@ -1,13 +1,16 @@
 import type { NextPage } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
 import { Container, Button, Row } from "reactstrap";
 import ChartComponent from "./components/charts/chartComponent";
 
+interface Props {
+	text: string;
+}
+
 // Main section
-const MainComponent = () => {
+const MainComponent: React.FC = () => {
 	return (
 		<Container className="text-center">
 			<Row>
@@ -57,7 +60,7 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<MainComponent></MainComponent>
+			<MainComponent ></MainComponent>
 			<AboutComponent></AboutComponent>
 			<MainFooter></MainFooter>
 		</div>

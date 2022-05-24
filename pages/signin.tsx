@@ -13,8 +13,8 @@ import { DisplayAlert } from "./components/alerts/alerts";
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
-	const [isAuthorized, setIsAuthorized] = React.useState(false);
-	const [failedPassword, setFailedPassword] = React.useState(false);
+	const [isAuthorized, setIsAuthorized] = React.useState<boolean>(false);
+	const [failedPassword, setFailedPassword] = React.useState<boolean>(false);
 	const router = useRouter();
 
 	const onSubmit = (data: any) => {

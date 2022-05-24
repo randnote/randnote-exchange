@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 
 const MainNavbar = (props: any) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const toggle = () => setIsOpen(!isOpen);
 	return (
 		<div>
