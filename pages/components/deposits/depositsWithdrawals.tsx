@@ -21,16 +21,14 @@ const Deposits: React.FC = (props: any) => {
 			Axios.get(`http://localhost:8024/cards/${user.id}`)
 				.then((res) => {
 					//
-                    console.log(res)
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+					console.log(res);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		};
 		callApi();
 	}, []);
-
-	
 
 	return (
 		<div>
@@ -81,11 +79,10 @@ const Deposits: React.FC = (props: any) => {
 							<td>nothing</td>
 						</tr>
 					)}*/}
-				</tbody> 
+				</tbody>
 			</table>
 		</div>
 	);
 };
-
 
 export default Deposits;
