@@ -1,9 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, Button, Popover, PopoverBody, PopoverHeader } from "reactstrap";
+import {FormGroup, Label} from "reactstrap";
 import { useState, useEffect } from "react";
 import { Container, Row } from "reactstrap";
+import { Tabs, Tab, Card, Modal } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
+
 
 export interface depositType {
 	userId: number;
@@ -12,7 +16,11 @@ export interface depositType {
 }
 
 const AddedCardsSection: React.FC = (props: any) => {
-	const [cards, setCards] = useState([]);
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const { register, handleSubmit } = useForm();
+	const handleClose = () => setShowModal(false);
+	const handleShow = () => setShowModal(true);
+	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 
 	useEffect(() => {
@@ -43,26 +51,31 @@ const AddedCardsSection: React.FC = (props: any) => {
 	}, []);
 
 	const handleDeposit = async (cardId: number) => {
+		handleShow();
+
+	};
+
+	const onSubmitDeposit = ()=>{
 		// let user = await GetLocalStorage("randnoteUser");
 
-		console.log(cardId);
-		console.log(user.id);
-		// console.log()
+		// console.log(cardId);
+		// console.log(user.id);
+		// // console.log()
 
-		let depositObject: depositType = {
-			userId: user.id,
-			cardId: cardId,
-			amount: 100,
-		};
+		// let depositObject: depositType = {
+		// 	userId: user.id,
+		// 	cardId: cardId,
+		// 	amount: 100,
+		// };
 
-		Axios.post(`http://localhost:8024/deposit`, depositObject)
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+		// Axios.post(`http://localhost:8024/deposit`, depositObject)
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+	}
 
 	const handleDelete = (cardId: number) => {
 		Axios.get(`http://localhost:8024/deletecard/${cardId}`)
@@ -102,6 +115,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 									>
 										Deposit
 									</Button>
+									
 								</td>
 
 								<td>
@@ -125,6 +139,53 @@ const AddedCardsSection: React.FC = (props: any) => {
 					)}
 				</tbody>
 			</table>
+
+			<Modal show={showModal} onHide={handleClose}>
+				<form onSubmit={handleSubmit(onSubmitDeposit)}>
+					<Modal.Header closeButton>
+						<Modal.Title>You're about to make a deposit</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+
+						<FormGroup>
+									<Label for="">Card:</Label>
+									<input
+										{...register("amount")}
+										type="text"
+										name="amount"
+										id=""
+										className="form-control"
+										disabled={true}
+										placeholder="Card ending in ...5543"
+										value=""
+									/>
+						</FormGroup>
+					
+						<FormGroup>
+							<Label for="">Amount:</Label>
+							<input
+								{...register("amount")}
+								type="text"
+								name="amount"
+								id=""
+								className="form-control"
+								value="100"
+							/>
+						</FormGroup>
+
+							
+						
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+						<Button  variant="outline-success" onClick={handleClose}>
+							Deposit
+						</Button>
+					</Modal.Footer>
+					</form>
+			</Modal>
 		</div>
 	);
 };
