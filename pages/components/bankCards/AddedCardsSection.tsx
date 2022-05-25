@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, Button, Popover, PopoverBody, PopoverHeader } from "reactstrap";
-import {FormGroup, Label} from "reactstrap";
+import { FormGroup, Label } from "reactstrap";
 import { useState, useEffect } from "react";
 import { Container, Row } from "reactstrap";
 import { Tabs, Tab, Card, Modal } from "react-bootstrap";
@@ -8,11 +8,16 @@ import { useForm } from "react-hook-form";
 import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
 
-
 export interface depositType {
 	userId: number;
 	cardId: number;
 	amount: number;
+}
+
+interface cardType {
+	cardId: number;
+	cardnumber: number;
+	amount: number
 }
 
 const AddedCardsSection: React.FC = (props: any) => {
@@ -22,6 +27,8 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const handleShow = () => setShowModal(true);
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
+
+	const [cardSelected, setCardSelected] = useState({});
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -50,24 +57,27 @@ const AddedCardsSection: React.FC = (props: any) => {
 		callApi();
 	}, []);
 
-	const handleDeposit = async (cardId: number) => {
+	const handleDeposit = async (cardObject: any) => {
+		// set the state with the card selected:
+		
+		setCardSelected(cardObject);
 		handleShow();
-
 	};
 
-	const onSubmitDeposit = ()=>{
-		// let user = await GetLocalStorage("randnoteUser");
+	const onSubmitDeposit = (data: any) => {
+		console.log(data)
+		console.log(cardSelected)
+		// now we have the card selected and the amount ... and we need to get usersID and send the request...
 
+		// let user = await GetLocalStorage("randnoteUser");
 		// console.log(cardId);
 		// console.log(user.id);
 		// // console.log()
-
 		// let depositObject: depositType = {
 		// 	userId: user.id,
 		// 	cardId: cardId,
 		// 	amount: 100,
 		// };
-
 		// Axios.post(`http://localhost:8024/deposit`, depositObject)
 		// 	.then((res) => {
 		// 		console.log(res);
@@ -75,7 +85,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 		// 	.catch((err) => {
 		// 		console.log(err);
 		// 	});
-	}
+	};
 
 	const handleDelete = (cardId: number) => {
 		Axios.get(`http://localhost:8024/deletecard/${cardId}`)
@@ -110,12 +120,14 @@ const AddedCardsSection: React.FC = (props: any) => {
 										id="Popover1"
 										type="button"
 										onClick={() => {
-											handleDeposit(card.id);
+											handleDeposit({
+												cardId: card.id,
+												cardnumber: card.cardnumber
+											});
 										}}
 									>
 										Deposit
 									</Button>
-									
 								</td>
 
 								<td>
@@ -143,24 +155,25 @@ const AddedCardsSection: React.FC = (props: any) => {
 			<Modal show={showModal} onHide={handleClose}>
 				<form onSubmit={handleSubmit(onSubmitDeposit)}>
 					<Modal.Header closeButton>
-						<Modal.Title>You're about to make a deposit</Modal.Title>
+						<Modal.Title>
+							You're about to make a deposit
+						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-
 						<FormGroup>
-									<Label for="">Card:</Label>
-									<input
-										{...register("amount")}
-										type="text"
-										name="amount"
-										id=""
-										className="form-control"
-										disabled={true}
-										placeholder="Card ending in ...5543"
-										value=""
-									/>
+							<Label for="">Card:</Label>
+							<input
+								{...register("amount")}
+								type="text"
+								name="amount"
+								id=""
+								className="form-control"
+								disabled={true}
+								placeholder="Card ending in ...5543"
+								value=""
+							/>
 						</FormGroup>
-					
+
 						<FormGroup>
 							<Label for="">Amount:</Label>
 							<input
@@ -172,19 +185,16 @@ const AddedCardsSection: React.FC = (props: any) => {
 								value="100"
 							/>
 						</FormGroup>
-
-							
-						
 					</Modal.Body>
 					<Modal.Footer>
 						<Button variant="secondary" onClick={handleClose}>
 							Close
 						</Button>
-						<Button  variant="outline-success" onClick={handleClose}>
+						<Button variant="outline-success" onClick={onSubmitDeposit} type='submit'>
 							Deposit
 						</Button>
 					</Modal.Footer>
-					</form>
+				</form>
 			</Modal>
 		</div>
 	);
