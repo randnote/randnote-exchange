@@ -25,7 +25,7 @@ interface cardType {
 const AddedCardsSection: React.FC = (props: any) => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const { register, handleSubmit } = useForm();
-	
+
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 
@@ -45,7 +45,6 @@ const AddedCardsSection: React.FC = (props: any) => {
 					if (res.status === 200) {
 						setCards(res.data.result);
 						setUser(user);
-						
 					}
 				})
 				.catch((err) => {
@@ -65,29 +64,25 @@ const AddedCardsSection: React.FC = (props: any) => {
 	};
 
 	const onSubmitDeposit = async (data: any) => {
-		
 		// now we have the card selected and the amount ... and we need to get usersID and send the request...
 
 		let user = await GetLocalStorage("randnoteUser");
-	
+
 		let depositObject: depositType = {
 			userId: user.id,
 			cardId: cardSelected.cardId,
 			amount: 100,
 		};
-	
 
 		Axios.post(`http://localhost:8024/deposit`, depositObject)
-		.then((res) => {
-			console.log("deposit made")
-			handleClose()
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-		console.log(data)
-		
-	
+			.then((res) => {
+				console.log("deposit made");
+				handleClose();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		console.log(data);
 	};
 
 	const handleDelete = (cardId: number) => {

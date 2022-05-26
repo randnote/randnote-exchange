@@ -10,6 +10,7 @@ import { localstorageUserType } from "./components/authentication/localstorage";
 
 const Transactions: NextPage = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [zarBalance, setZarBalance] = useState<number>(0);
 	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
@@ -25,6 +26,7 @@ const Transactions: NextPage = () => {
 			Axios.get(`http://localhost:8024/zarbalance/${userInformation.id}`)
 				.then((res) => {
 					console.log(res);
+					setZarBalance(res.data.balance)
 				})
 				.catch((err) => {
 					console.log(err);
@@ -51,7 +53,7 @@ const Transactions: NextPage = () => {
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
-								<Card.Text>ZAR 123.00</Card.Text>
+								<Card.Text>{zarBalance ? <>{zarBalance}</>: <>Loading</>}</Card.Text>
 
 								<Button variant="primary" onClick={handleShow}>
 									Make deposit
