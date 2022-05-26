@@ -144,7 +144,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 						))
 					) : (
 						<tr>
-							<td>nothing</td>
+							<td><h5>You do not have any Cards. To make a deposit, you first need to add a card.</h5></td>
 						</tr>
 					)}
 				</tbody>

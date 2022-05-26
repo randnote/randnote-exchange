@@ -19,11 +19,15 @@ interface orderExampeType {
 }
 
 const Transactions: NextPage = () => {
+	// Buy/Sell notes modal
 	const [showModal, setShowModal] = useState<boolean>(false);
-	const [zarBalance, setZarBalance] = useState<number>(0);
-	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
+
+	//M
+
+	const [zarBalance, setZarBalance] = useState<number>(0);
+	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const { register, handleSubmit } = useForm();
 	const [price, setPrice] = useState<number>(0);
 	const [orderType, setOrderType] = useState<string>("");
@@ -76,7 +80,7 @@ const Transactions: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="6">
-						<Card >
+						<Card>
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
@@ -99,25 +103,28 @@ const Transactions: NextPage = () => {
 					</Col>
 
 					<Col md="6">
-						<Card >
+						<Card>
 							<Card.Body>
 								<Row>
-									<Col md='12'>
+									<Col md="12">
 										<Card.Title>Notes balance</Card.Title>
 									</Col>
-									
 								</Row>
 
 								<Row>
-									<Col md='12'>
-										<Card.Text><i><b>N</b></i> 29293.000023</Card.Text>
+									<Col md="12">
+										<Card.Text>
+											<i>
+												<b>N</b>
+											</i>{" "}
+											29293.000023
+										</Card.Text>
 									</Col>
 								</Row>
-								<br/>
-								
+								<br />
 
 								<Row>
-									<Col md='6'>
+									<Col md="6">
 										<Button
 											variant="outline-success"
 											onClick={handleShow}
@@ -126,7 +133,7 @@ const Transactions: NextPage = () => {
 										</Button>
 									</Col>
 
-									<Col md='6'>
+									<Col md="6">
 										<Button
 											variant="outline-success"
 											onClick={handleShow}
@@ -135,10 +142,6 @@ const Transactions: NextPage = () => {
 										</Button>
 									</Col>
 								</Row>
-
-								
-
-								
 							</Card.Body>
 						</Card>
 					</Col>
@@ -195,7 +198,9 @@ const Transactions: NextPage = () => {
 			<Modal show={showModal} onHide={handleClose}>
 				<form>
 					<Modal.Header closeButton>
-						<Modal.Title>You are about to make an Order</Modal.Title>
+						<Modal.Title>
+							You are about to make an Order
+						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<FormGroup>
@@ -267,8 +272,15 @@ const Transactions: NextPage = () => {
 						<Button variant="secondary" onClick={handleClose}>
 							Close
 						</Button>
-						<Button variant={orderType === "sell" ? "outline-danger": "outline-success" } onClick={handleClose}>
-								{orderType === "sell" ? "SELL": "BUY" }
+						<Button
+							variant={
+								orderType === "sell"
+									? "outline-danger"
+									: "outline-success"
+							}
+							onClick={handleClose}
+						>
+							{orderType === "sell" ? "SELL" : "BUY"}
 						</Button>
 					</Modal.Footer>
 				</form>
