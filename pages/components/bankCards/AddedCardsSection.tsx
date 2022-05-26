@@ -180,7 +180,6 @@ const AddedCardsSection: React.FC = (props: any) => {
 								name="amount"
 								id=""
 								className="form-control"
-								value="100"
 							/>
 						</FormGroup>
 					</Modal.Body>

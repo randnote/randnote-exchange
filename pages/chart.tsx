@@ -7,8 +7,9 @@ import { Container, Row, Col } from "reactstrap";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import { Line } from "react-chartjs-2";
 
-import socketIOClient from "socket.io-client";
+
 import MainFooter from "./components/Footer";
+import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 import {
