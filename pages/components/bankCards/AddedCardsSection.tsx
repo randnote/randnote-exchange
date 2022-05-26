@@ -7,6 +7,8 @@ import { Tabs, Tab, Card, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
+// import fetch from 'node-fetch';
+import { copyFileSync } from "fs";
 
 export interface depositType {
 	userId: number;
@@ -23,69 +25,69 @@ interface cardType {
 const AddedCardsSection: React.FC = (props: any) => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const { register, handleSubmit } = useForm();
-	const handleClose = () => setShowModal(false);
-	const handleShow = () => setShowModal(true);
+	
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 
-	const [cardSelected, setCardSelected] = useState({cardId: 0, cardnumber: 0}); // had to store these dafualt vaules to eliminate error, look into...
+	const [cardSelected, setCardSelected] = useState({
+		cardId: 0,
+		cardnumber: 0,
+	}); // had to store these dafualt vaules to eliminate error, look into...
+
+	const handleClose = () => setShowModal(false);
+	const handleShow = () => setShowModal(true);
 
 	useEffect(() => {
 		const callApi = async () => {
 			let user = await GetLocalStorage("randnoteUser");
 			Axios.get(`http://localhost:8024/cards/${user.id}`)
 				.then((res) => {
-					// setPosts(res.data.slice(0, 10));
-					//console.log(res.status === 200)
-					// console.log(res.data);
 					if (res.status === 200) {
-						console.log("yes");
 						setCards(res.data.result);
 						setUser(user);
-						console.log(res.data);
-						// return
+						
 					}
-					// if(res.data.success === true){
-					// 	setCards(res.data);
-
-					// }
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 		};
 		callApi();
-	}, []);
+	}, [cardSelected]);
 
 	const handleDeposit = async (cardObject: any) => {
 		// set the state with the card selected:
-
+		// console.log(cardObject)
+		// console.log(cardObject.cardId)
+		// console.log(cardObject.cardnumber)
 		setCardSelected(cardObject);
 		handleShow();
 	};
 
-	const onSubmitDeposit = async(data: any) => {
-		console.log(data);
-		console.log(cardSelected["cardId"]);
+	const onSubmitDeposit = async (data: any) => {
+		
 		// now we have the card selected and the amount ... and we need to get usersID and send the request...
 
 		let user = await GetLocalStorage("randnoteUser");
-		// console.log(cardId);
-		//console.log(user.id);
-		// // console.log()
-
+	
 		let depositObject: depositType = {
 			userId: user.id,
-			cardId: cardSelected["cardId"],
+			cardId: cardSelected.cardId,
 			amount: 100,
 		};
+	
+
 		Axios.post(`http://localhost:8024/deposit`, depositObject)
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		.then((res) => {
+			console.log("deposit made")
+			handleClose()
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+		console.log(data)
+		
+	
 	};
 
 	const handleDelete = (cardId: number) => {
@@ -154,7 +156,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 			</table>
 
 			<Modal show={showModal} onHide={handleClose}>
-				<form onSubmit={handleSubmit(onSubmitDeposit)}>
+				<form onSubmit={handleSubmit(handleDeposit)}>
 					<Modal.Header closeButton>
 						<Modal.Title>
 							You're about to make a deposit
@@ -191,13 +193,13 @@ const AddedCardsSection: React.FC = (props: any) => {
 						<Button variant="secondary" onClick={handleClose}>
 							Close
 						</Button>
-						<Button
-							variant="outline-success"
+						<button
+							// variant="outline-success"
 							onClick={onSubmitDeposit}
 							type="submit"
 						>
 							Deposit
-						</Button>
+						</button>
 					</Modal.Footer>
 				</form>
 			</Modal>
