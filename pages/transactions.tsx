@@ -13,12 +13,10 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 interface orderExampeType {
-	zarAmount: number, 
-	price: number, 
-	notes: number
+	zarAmount: number;
+	price: number;
+	notes: number;
 }
-
-
 
 const Transactions: NextPage = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -27,16 +25,16 @@ const Transactions: NextPage = () => {
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
 	const { register, handleSubmit } = useForm();
-	const [price , setPrice] = useState<number>(0);
-	const [orderType, setOrderType] = useState<string>('')
+	const [price, setPrice] = useState<number>(0);
+	const [orderType, setOrderType] = useState<string>("");
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			// setPrice(0)
 			setPrice(data.price);
-		})
-			
+		});
+
 		const getUserFromLocalStorage = async () => {
 			let userInformation: localstorageUserType = await GetLocalStorage(
 				"randnoteUser"
@@ -59,14 +57,16 @@ const Transactions: NextPage = () => {
 		getUserFromLocalStorage();
 	}, []);
 
-	const OrderExampleCalculation = (orderExampleObject: orderExampeType): orderExampeType =>{
-		let returnObject: orderExampeType ={
-			zarAmount: orderExampleObject.price *orderExampleObject.notes,
+	const OrderExampleCalculation = (
+		orderExampleObject: orderExampeType
+	): orderExampeType => {
+		let returnObject: orderExampeType = {
+			zarAmount: orderExampleObject.price * orderExampleObject.notes,
 			price: orderExampleObject.zarAmount * orderExampleObject.notes,
-			notes: orderExampleObject.price * orderExampleObject.zarAmount
-		}
+			notes: orderExampleObject.price * orderExampleObject.zarAmount,
+		};
 		return returnObject;
-	}
+	};
 
 	return (
 		<div>
@@ -88,7 +88,10 @@ const Transactions: NextPage = () => {
 									)}
 								</Card.Text>
 
-								<Button variant="outline-primary" onClick={handleShow}>
+								<Button
+									variant="outline-primary"
+									onClick={handleShow}
+								>
 									Make deposit
 								</Button>
 							</Card.Body>
@@ -101,9 +104,12 @@ const Transactions: NextPage = () => {
 								<Card.Title>Notes balance</Card.Title>
 
 								<Card.Text>N 29293.000023</Card.Text>
-								
-								<Button variant="outline-success" onClick={handleShow}>
-								Buy/Sell <i>NOTES</i>
+
+								<Button
+									variant="outline-success"
+									onClick={handleShow}
+								>
+									Buy/Sell <i>NOTES</i>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -160,69 +166,83 @@ const Transactions: NextPage = () => {
 
 			<Modal show={showModal} onHide={handleClose}>
 				<form>
-				<Modal.Header closeButton>
-					<Modal.Title>Modal heading</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<FormGroup>
-						<p>Current price per <i>NOTE</i> is <b>ZAR {price}</b></p>
-					</FormGroup>
-
-					<FormGroup>
-						<select
-						
-						 className="form-control" {...register("ordertype",
-						 {
-							onChange: (e) => {
-								// console.log(e.target.value)
-								setOrderType(e.target.value)
-							},
-							onBlur: (e) => {},
-						  }
-						 )}
-
-						>
-							<option value="buy">Buy order</option>
-							<option value="sell">Sell order</option>
-						</select>
+					<Modal.Header closeButton>
+						<Modal.Title>Modal heading</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<FormGroup>
+							<p>
+								Current price per <i>NOTE</i> is{" "}
+								<b>ZAR {price}</b>
+							</p>
 						</FormGroup>
-					
 
-					<FormGroup>
-						<Label for="">Amount:</Label>
-						<input
-							{...register("zaramount")}
-							type="text"
-							name="zaramount"
-							className="form-control"
-							placeholder="Enter amount in Zar"
-						/>
-					</FormGroup>
+						<FormGroup>
+							<select
+								className="form-control"
+								{...register("ordertype", {
+									onChange: (e) => {
+										// console.log(e.target.value)
+										setOrderType(e.target.value);
+									},
+									onBlur: (e) => {},
+								})}
+							>
+								<option value="buy">Buy order</option>
+								<option value="sell">Sell order</option>
+							</select>
+						</FormGroup>
 
-					<FormGroup>
-						{
-							 orderType==='sell' ? <p>Selling at this price will earn you <b>ZAR 455</b></p>:
-							 (<p>Buying at this price, you will recieve  <b>ZAR 300</b></p>)
+						<FormGroup>
+							<Label for="">Amount:</Label>
+							<input
+								{...register("zaramount")}
+								type="text"
+								name="zaramount"
+								className="form-control"
+								placeholder="Enter amount in Zar"
+							/>
+						</FormGroup>
 
-						}
-						
-					</FormGroup>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Close
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Save Changes
-					</Button>
+						<FormGroup>
+							<Label for=""><i>Notes</i>:</Label>
+							<input
+								{...register("notes")}
+								type="text"
+								name="notes"
+								className="form-control"
+								placeholder={
+									orderType == 'sell'? "Enter quantity of Notes to sell": "Enter quantity of Notes to buy"
+								}
+							/>
+						</FormGroup>
+
+						<FormGroup>
+							{orderType === "sell" ? (
+								<p>
+									Selling at this price will earn you{" "}
+									<b>ZAR 455</b>
+								</p>
+							) : (
+								<p>
+									Buying at this price, you will recieve{" "}
+									<b>ZAR 300</b>
+								</p>
+							)}
+						</FormGroup>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+						<Button variant="primary" onClick={handleClose}>
+							Save Changes
+						</Button>
 					</Modal.Footer>
 				</form>
-				
 			</Modal>
 		</div>
 	);
 };
-
-
 
 export default Transactions;
