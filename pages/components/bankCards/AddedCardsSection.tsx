@@ -17,7 +17,7 @@ export interface depositType {
 interface cardType {
 	cardId: number;
 	cardnumber: number;
-	amount: number
+	amount: number;
 }
 
 const AddedCardsSection: React.FC = (props: any) => {
@@ -28,7 +28,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 
-	const [cardSelected, setCardSelected] = useState({});
+	const [cardSelected, setCardSelected] = useState({cardId: 0, cardnumber: 0}); // had to store these dafualt vaules to eliminate error, look into...
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -59,32 +59,33 @@ const AddedCardsSection: React.FC = (props: any) => {
 
 	const handleDeposit = async (cardObject: any) => {
 		// set the state with the card selected:
-		
+
 		setCardSelected(cardObject);
 		handleShow();
 	};
 
-	const onSubmitDeposit = (data: any) => {
-		console.log(data)
-		console.log(cardSelected)
+	const onSubmitDeposit = async(data: any) => {
+		console.log(data);
+		console.log(cardSelected["cardId"]);
 		// now we have the card selected and the amount ... and we need to get usersID and send the request...
 
-		// let user = await GetLocalStorage("randnoteUser");
+		let user = await GetLocalStorage("randnoteUser");
 		// console.log(cardId);
-		// console.log(user.id);
+		//console.log(user.id);
 		// // console.log()
-		// let depositObject: depositType = {
-		// 	userId: user.id,
-		// 	cardId: cardId,
-		// 	amount: 100,
-		// };
-		// Axios.post(`http://localhost:8024/deposit`, depositObject)
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
+
+		let depositObject: depositType = {
+			userId: user.id,
+			cardId: cardSelected["cardId"],
+			amount: 100,
+		};
+		Axios.post(`http://localhost:8024/deposit`, depositObject)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const handleDelete = (cardId: number) => {
@@ -122,7 +123,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 										onClick={() => {
 											handleDeposit({
 												cardId: card.id,
-												cardnumber: card.cardnumber
+												cardnumber: card.cardnumber,
 											});
 										}}
 									>
@@ -190,7 +191,11 @@ const AddedCardsSection: React.FC = (props: any) => {
 						<Button variant="secondary" onClick={handleClose}>
 							Close
 						</Button>
-						<Button variant="outline-success" onClick={onSubmitDeposit} type='submit'>
+						<Button
+							variant="outline-success"
+							onClick={onSubmitDeposit}
+							type="submit"
+						>
 							Deposit
 						</Button>
 					</Modal.Footer>
