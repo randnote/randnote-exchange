@@ -76,7 +76,7 @@ const Transactions: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="6">
-						<Card style={{ width: "18rem" }}>
+						<Card >
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
@@ -99,18 +99,46 @@ const Transactions: NextPage = () => {
 					</Col>
 
 					<Col md="6">
-						<Card style={{ width: "18rem" }}>
+						<Card >
 							<Card.Body>
-								<Card.Title>Notes balance</Card.Title>
+								<Row>
+									<Col md='12'>
+										<Card.Title>Notes balance</Card.Title>
+									</Col>
+									
+								</Row>
 
-								<Card.Text>N 29293.000023</Card.Text>
+								<Row>
+									<Col md='12'>
+										<Card.Text><i><b>N</b></i> 29293.000023</Card.Text>
+									</Col>
+								</Row>
+								<br/>
+								
 
-								<Button
-									variant="outline-success"
-									onClick={handleShow}
-								>
-									Buy/Sell <i>NOTES</i>
-								</Button>
+								<Row>
+									<Col md='6'>
+										<Button
+											variant="outline-success"
+											onClick={handleShow}
+										>
+											Buy/Sell <i>NOTES</i>
+										</Button>
+									</Col>
+
+									<Col md='6'>
+										<Button
+											variant="outline-success"
+											onClick={handleShow}
+										>
+											Send <i>NOTES</i> to another user.
+										</Button>
+									</Col>
+								</Row>
+
+								
+
+								
 							</Card.Body>
 						</Card>
 					</Col>
@@ -167,7 +195,7 @@ const Transactions: NextPage = () => {
 			<Modal show={showModal} onHide={handleClose}>
 				<form>
 					<Modal.Header closeButton>
-						<Modal.Title>Modal heading</Modal.Title>
+						<Modal.Title>You are about to make an Order</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<FormGroup>
@@ -205,14 +233,18 @@ const Transactions: NextPage = () => {
 						</FormGroup>
 
 						<FormGroup>
-							<Label for=""><i>Notes</i>:</Label>
+							<Label for="">
+								<i>Notes</i>:
+							</Label>
 							<input
 								{...register("notes")}
 								type="text"
 								name="notes"
 								className="form-control"
 								placeholder={
-									orderType == 'sell'? "Enter quantity of Notes to sell": "Enter quantity of Notes to buy"
+									orderType == "sell"
+										? "Enter quantity of Notes to sell"
+										: "Enter quantity of Notes to buy"
 								}
 							/>
 						</FormGroup>
@@ -235,8 +267,8 @@ const Transactions: NextPage = () => {
 						<Button variant="secondary" onClick={handleClose}>
 							Close
 						</Button>
-						<Button variant="primary" onClick={handleClose}>
-							Save Changes
+						<Button variant={orderType === "sell" ? "outline-danger": "outline-success" } onClick={handleClose}>
+								{orderType === "sell" ? "SELL": "BUY" }
 						</Button>
 					</Modal.Footer>
 				</form>
