@@ -73,7 +73,7 @@ const Transactions: NextPage = () => {
 	}, []);
 
 	const onChangeOrderAmount = (value: any) => {
-		let calcualtedNotes = price * value;
+		let calcualtedNotes = price / value;
 		let newOrder = {
 			orderType: order.orderType,
 			zarAmount: value,
@@ -101,7 +101,6 @@ const Transactions: NextPage = () => {
 	};
 
 	const makeTransaction = () => {
-		
 		console.log(order);
 	};
 
