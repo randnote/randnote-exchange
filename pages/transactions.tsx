@@ -37,6 +37,12 @@ const Transactions: NextPage = () => {
 	const [price, setPrice] = useState<number>(0);
 	const [orderType, setOrderType] = useState<string>("");
 
+	const [order, setOrder] = useState({
+		orderType: 'buy',
+		zarAmount: 0,
+		notes: 0
+	})
+
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
@@ -66,15 +72,43 @@ const Transactions: NextPage = () => {
 		getUserFromLocalStorage();
 	}, []);
 
-	const OrderExampleCalculation = (
-		orderExampleObject: orderExampeType
-	): orderExampeType => {
-		let returnObject: orderExampeType = {
-			zarAmount: orderExampleObject.price * orderExampleObject.notes,
-			price: orderExampleObject.zarAmount * orderExampleObject.notes,
-			notes: orderExampleObject.price * orderExampleObject.zarAmount,
-		};
-		return returnObject;
+	const onChangeOrderAmount = (value: any)=>{
+		let calcualtedNotes = price * value
+		let newOrder = {
+			orderType: order.orderType,
+			zarAmount: value,
+			notes: calcualtedNotes
+		}
+		setOrder(newOrder)
+	}
+	const onChangeOrderNotes = (value: any)=>{
+		let calculatedAmount = price * value;
+		let newOrder = {
+			orderType: order.orderType,
+			zarAmount: calculatedAmount,
+			notes: value
+		}
+		setOrder(newOrder)
+	}
+	const onChangeOrderType = (value: any)=>{
+		let myOrder = order;
+		let newOrder = {
+			orderType: value,
+			zarAmount: order.zarAmount,
+			notes: order.notes
+		}
+		setOrder(newOrder)
+	}
+
+	const OrderExampleCalculation = () => {
+		// let myPrice : number = price;
+		// let returnObject: orderExampeType = {
+		// 	zarAmount: orderExampleObject.price * orderExampleObject.notes,
+		// 	price: orderExampleObject.zarAmount * orderExampleObject.notes,
+		// 	notes: orderExampleObject.price * orderExampleObject.zarAmount,
+		// };
+		// return returnObject;
+		console.log(order)
 	};
 
 	return (
@@ -221,7 +255,7 @@ const Transactions: NextPage = () => {
 								{...register("ordertype", {
 									onChange: (e) => {
 										// console.log(e.target.value)
-										setOrderType(e.target.value);
+										onChangeOrderType(e.target.value);
 									},
 									onBlur: (e) => {},
 								})}
@@ -234,11 +268,20 @@ const Transactions: NextPage = () => {
 						<FormGroup>
 							<Label for="">Amount:</Label>
 							<input
-								{...register("zaramount")}
+								{...register("zaramount", {
+									onChange: (e) => {
+										// console.log(e.target.value)
+										// setOrderType(e.target.value);
+										onChangeOrderAmount(e.target.value)
+									},
+									onBlur: (e) => {},
+									
+								})}
 								type="text"
 								name="zaramount"
 								className="form-control"
 								placeholder="Enter amount in Zar"
+								value={order.zarAmount}
 							/>
 						</FormGroup>
 
@@ -247,7 +290,15 @@ const Transactions: NextPage = () => {
 								<i>Notes</i>:
 							</Label>
 							<input
-								{...register("notes")}
+								{...register("notes", {
+									onChange: (e) => {
+										// console.log(e.target.value)
+										// setOrderType(e.target.value);
+										onChangeOrderNotes(e.target.value)
+									},
+									onBlur: (e) => {},
+									
+								})}
 								type="text"
 								name="notes"
 								className="form-control"
@@ -256,6 +307,7 @@ const Transactions: NextPage = () => {
 										? "Enter quantity of Notes to sell"
 										: "Enter quantity of Notes to buy"
 								}
+								value={order.notes}
 							/>
 						</FormGroup>
 
@@ -283,7 +335,7 @@ const Transactions: NextPage = () => {
 									? "outline-danger"
 									: "outline-success"
 							}
-							onClick={handleClose}
+							onClick={OrderExampleCalculation}
 						>
 							{orderType === "sell" ? "SELL" : "BUY"}
 						</Button>
@@ -295,16 +347,20 @@ const Transactions: NextPage = () => {
 				<form>
 					<Modal.Header closeButton>
 						<Modal.Title>
-							You are about to send <i>NOTES</i> to another address
+							You are about to send <i>NOTES</i> to another
+							address
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<FormGroup>
-							<small>Make sure that the address you have entered is correct.</small>
+							<small>
+								Make sure that the address you have entered is
+								correct.
+							</small>
 						</FormGroup>
 
 						<FormGroup>
-						<Label for="">
+							<Label for="">
 								<i>Notes</i>:
 							</Label>
 							<input
@@ -314,11 +370,10 @@ const Transactions: NextPage = () => {
 								className="form-control"
 								placeholder="E.g 0.004 Notes"
 							/>
-
 						</FormGroup>
-						
+
 						<FormGroup>
-						<Label for="">
+							<Label for="">
 								<i>Address</i>:
 							</Label>
 							<input
@@ -329,8 +384,6 @@ const Transactions: NextPage = () => {
 								placeholder="Copy paste in the addresss you want to send to"
 							/>
 						</FormGroup>
-
-					
 					</Modal.Body>
 					<Modal.Footer>
 						<Button variant="secondary" onClick={handleClose}>
@@ -339,7 +392,6 @@ const Transactions: NextPage = () => {
 						<Button variant="outline-success">
 							Send <i>NOTES</i>
 						</Button>
-						
 					</Modal.Footer>
 				</form>
 			</Modal>
