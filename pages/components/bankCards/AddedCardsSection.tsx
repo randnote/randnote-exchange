@@ -28,6 +28,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
+	const [amountToDeposit, setAmountToDeposit] = useState<number>(0);
 
 	const [cardSelected, setCardSelected] = useState({
 		cardId: 0,
@@ -56,9 +57,6 @@ const AddedCardsSection: React.FC = (props: any) => {
 
 	const handleDeposit = async (cardObject: any) => {
 		// set the state with the card selected:
-		// console.log(cardObject)
-		// console.log(cardObject.cardId)
-		// console.log(cardObject.cardnumber)
 		setCardSelected(cardObject);
 		handleShow();
 	};
@@ -71,7 +69,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 		let depositObject: depositType = {
 			userId: user.id,
 			cardId: cardSelected.cardId,
-			amount: 100,
+			amount: data.amount,
 		};
 
 		Axios.post(`http://localhost:8024/deposit`, depositObject)
@@ -156,7 +154,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 			</table>
 
 			<Modal show={showModal} onHide={handleClose}>
-				<form onSubmit={handleSubmit(handleDeposit)}>
+				<form onSubmit={handleSubmit(onSubmitDeposit)}>
 					<Modal.Header closeButton>
 						<Modal.Title>
 							You're about to make a deposit
@@ -166,9 +164,9 @@ const AddedCardsSection: React.FC = (props: any) => {
 						<FormGroup>
 							<Label for="">Card:</Label>
 							<input
-								{...register("amount")}
+								{...register("cardinfo")}
 								type="text"
-								name="amount"
+								name="cardinfo"
 								id=""
 								className="form-control"
 								disabled={true}
@@ -194,7 +192,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 						</Button>
 						<button
 							// variant="outline-success"
-							onClick={onSubmitDeposit}
+							// onClick={onSubmitDeposit}
 							type="submit"
 						>
 							Deposit
