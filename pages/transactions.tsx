@@ -24,6 +24,11 @@ const Transactions: NextPage = () => {
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
 
+	// Send notes modal:
+	const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
+	const handleCloseNotes = () => setShowModalNotes(false);
+	const handleShowNotes = () => setShowModalNotes(true);
+
 	//M
 
 	const [zarBalance, setZarBalance] = useState<number>(0);
@@ -136,7 +141,7 @@ const Transactions: NextPage = () => {
 									<Col md="6">
 										<Button
 											variant="outline-success"
-											onClick={handleShow}
+											onClick={handleShowNotes}
 										>
 											Send <i>NOTES</i> to another user.
 										</Button>
@@ -282,6 +287,59 @@ const Transactions: NextPage = () => {
 						>
 							{orderType === "sell" ? "SELL" : "BUY"}
 						</Button>
+					</Modal.Footer>
+				</form>
+			</Modal>
+
+			<Modal show={showModalNotes} onHide={handleCloseNotes}>
+				<form>
+					<Modal.Header closeButton>
+						<Modal.Title>
+							You are about to send <i>NOTES</i> to another address
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<FormGroup>
+							<small>Make sure that the address you have entered is correct.</small>
+						</FormGroup>
+
+						<FormGroup>
+						<Label for="">
+								<i>Notes</i>:
+							</Label>
+							<input
+								{...register("notes")}
+								type="text"
+								name="notes"
+								className="form-control"
+								placeholder="E.g 0.004 Notes"
+							/>
+
+						</FormGroup>
+						
+						<FormGroup>
+						<Label for="">
+								<i>Address</i>:
+							</Label>
+							<input
+								{...register("address")}
+								type="text"
+								name="address"
+								className="form-control"
+								placeholder="Copy paste in the addresss you want to send to"
+							/>
+						</FormGroup>
+
+					
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+						<Button variant="outline-success">
+							Send <i>NOTES</i>
+						</Button>
+						
 					</Modal.Footer>
 				</form>
 			</Modal>
