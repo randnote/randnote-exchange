@@ -10,13 +10,14 @@ import { localstorageUserType } from "./components/authentication/localstorage";
 import { useForm } from "react-hook-form";
 import { FormGroup, Label } from "reactstrap";
 import socketIOClient from "socket.io-client";
+import { transcode } from "buffer";
 const ENDPOINT = "http://127.0.0.1:8024";
 
-interface orderExampeType {
-	zarAmount: number;
-	price: number;
-	notes: number;
-}
+// interface orderExampeType {
+// 	zarAmount: number;
+// 	price: number;
+// 	notes: number;
+// }
 
 const Transactions: NextPage = () => {
 	// Buy/Sell notes modal
@@ -36,6 +37,7 @@ const Transactions: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 	const [price, setPrice] = useState<number>(0);
 	const [orderType, setOrderType] = useState<string>("");
+	const [websiteTransactionsArray, setWebsiteTransactionsrray] = useState([]);
 
 	const [order, setOrder] = useState({
 		orderType: "buy",
@@ -49,28 +51,45 @@ const Transactions: NextPage = () => {
 			// setPrice(0)
 			setPrice(data.price);
 		});
-
+		
 		const getUserFromLocalStorage = async () => {
-			let userInformation: localstorageUserType = await GetLocalStorage(
+			let user: localstorageUserType = await GetLocalStorage(
 				"randnoteUser"
-			); // this; because we need the logged in users ID
-			Axios.get(`http://localhost:8024/zarbalance/${userInformation.id}`)
-				.then((res) => {
-					console.log(res);
-					setZarBalance(res.data.balance);
+			); 
+			Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
+				.then(async(res) => {
+					await setZarBalance(res.data.balance);
+					// console.log(res)
+					Axios.get(`http://localhost:8024/transactionWebsite/${user.id}`)
+						.then((res) => {
+							// console.log(res);
+							if(res.status==200){
+								console.log(res.data.data)
+								setWebsiteTransactionsrray(res.data.data);
+							}
+						})
+						.catch((err)=>{
+							console.log(err)
+						})
+						console.log("we ran")
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 		};
 
-		const getDepositsAndWithdrawals = async () => {};
+		
+		 getUserFromLocalStorage();
 
-		// get the zar balance from backend:
+	}, []); // end of useEffect
 
-		//get the Notes balance from blockchain:
-		getUserFromLocalStorage();
-	}, []);
+	
+
+	const setTransactionWebsite = (userId: number) =>{
+		// set all the transactions:
+		
+
+	}
 
 	const onChangeOrderAmount = (value: any) => {
 		let calcualtedNotes = price / value;
@@ -100,8 +119,31 @@ const Transactions: NextPage = () => {
 		setOrder(newOrder);
 	};
 
-	const makeTransaction = () => {
-		console.log(order);
+	const makeTransaction = async() => {
+		let user: localstorageUserType = await GetLocalStorage(
+			"randnoteUser"
+		);
+		let newNotes: any = parseFloat((order.notes).toString());
+		let orderObject ={
+			user_id: user.id,
+			price: price,
+			ordertype: order.orderType,
+			amount: order.zarAmount,
+			notes: newNotes
+		}
+
+		console.log(orderObject)
+
+		Axios.post(`http://localhost:8024/transactionWebsite`, orderObject)
+		.then((res) => {
+			console.log("Transaction made");
+			handleCloseNotes();
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+		
 	};
 
 	return (
@@ -192,29 +234,35 @@ const Transactions: NextPage = () => {
 						eventKey="websiteTransactions"
 						title="Website Transactions"
 					>
-						website trans
 						<table className="table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">First</th>
-									<th scope="col">Last</th>
-									<th scope="col">Handle</th>
+									<th scope="col">Order type</th>
+									<th scope="col">ZAR amount</th>
+									<th scope="col">@ Price</th>
+									<th scope="col"><i>Notes</i></th>
+									<th scope="col">Timestamp</th>
 								</tr>
 							</thead>
 							<tbody>
-								{/* {transactionsWebsite.length > 0 ? (
-						transactionsWebsite.map((transaction: any) => (
-							<tr key={transaction.id}>
-								<td>{card.cardnumber}</td>
-								<td>Otto</td>
-							</tr>
-						))
-					) : (
-						<tr>
-							<td>nothing</td>
-						</tr>
-					)} */}
+								{websiteTransactionsArray.length > 0 ? (
+									websiteTransactionsArray.map((transaction: any) => (
+										<tr key={transaction.id}>
+											<td>{transaction.id}</td>
+											<td>{transaction.ordertype}</td>
+											<td>{transaction.amount}</td>
+											<td>{transaction.price}</td>
+											<td>{transaction.notes}</td>
+											<td>{transaction.timestamp}</td>
+										</tr>
+									))
+								) : (
+									<tr>
+										<td>nothing</td>
+									</tr>
+								)}
+								
 							</tbody>
 						</table>
 					</Tab>
