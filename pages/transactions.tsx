@@ -38,10 +38,10 @@ const Transactions: NextPage = () => {
 	const [orderType, setOrderType] = useState<string>("");
 
 	const [order, setOrder] = useState({
-		orderType: 'buy',
+		orderType: "buy",
 		zarAmount: 0,
-		notes: 0
-	})
+		notes: 0,
+	});
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
@@ -72,43 +72,37 @@ const Transactions: NextPage = () => {
 		getUserFromLocalStorage();
 	}, []);
 
-	const onChangeOrderAmount = (value: any)=>{
-		let calcualtedNotes = price * value
+	const onChangeOrderAmount = (value: any) => {
+		let calcualtedNotes = price * value;
 		let newOrder = {
 			orderType: order.orderType,
 			zarAmount: value,
-			notes: calcualtedNotes
-		}
-		setOrder(newOrder)
-	}
-	const onChangeOrderNotes = (value: any)=>{
+			notes: calcualtedNotes,
+		};
+		setOrder(newOrder);
+	};
+	const onChangeOrderNotes = (value: any) => {
 		let calculatedAmount = price * value;
 		let newOrder = {
 			orderType: order.orderType,
 			zarAmount: calculatedAmount,
-			notes: value
-		}
-		setOrder(newOrder)
-	}
-	const onChangeOrderType = (value: any)=>{
+			notes: value,
+		};
+		setOrder(newOrder);
+	};
+	const onChangeOrderType = (value: any) => {
 		let myOrder = order;
 		let newOrder = {
 			orderType: value,
 			zarAmount: order.zarAmount,
-			notes: order.notes
-		}
-		setOrder(newOrder)
-	}
+			notes: order.notes,
+		};
+		setOrder(newOrder);
+	};
 
-	const OrderExampleCalculation = () => {
-		// let myPrice : number = price;
-		// let returnObject: orderExampeType = {
-		// 	zarAmount: orderExampleObject.price * orderExampleObject.notes,
-		// 	price: orderExampleObject.zarAmount * orderExampleObject.notes,
-		// 	notes: orderExampleObject.price * orderExampleObject.zarAmount,
-		// };
-		// return returnObject;
-		console.log(order)
+	const makeTransaction = () => {
+		
+		console.log(order);
 	};
 
 	return (
@@ -272,10 +266,9 @@ const Transactions: NextPage = () => {
 									onChange: (e) => {
 										// console.log(e.target.value)
 										// setOrderType(e.target.value);
-										onChangeOrderAmount(e.target.value)
+										onChangeOrderAmount(e.target.value);
 									},
 									onBlur: (e) => {},
-									
 								})}
 								type="text"
 								name="zaramount"
@@ -294,10 +287,9 @@ const Transactions: NextPage = () => {
 									onChange: (e) => {
 										// console.log(e.target.value)
 										// setOrderType(e.target.value);
-										onChangeOrderNotes(e.target.value)
+										onChangeOrderNotes(e.target.value);
 									},
 									onBlur: (e) => {},
-									
 								})}
 								type="text"
 								name="notes"
@@ -335,7 +327,7 @@ const Transactions: NextPage = () => {
 									? "outline-danger"
 									: "outline-success"
 							}
-							onClick={OrderExampleCalculation}
+							onClick={makeTransaction}
 						>
 							{orderType === "sell" ? "SELL" : "BUY"}
 						</Button>
