@@ -146,7 +146,7 @@ const Transactions: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="6">
-						<Card>
+						<Card style={zarBalanceCardStyle}>
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
@@ -159,6 +159,7 @@ const Transactions: NextPage = () => {
 								</Card.Text>
 
 								<Button
+									style={makeDepositButtonStyle}
 									variant="outline-primary"
 									onClick={handleShow}
 								>
@@ -169,7 +170,7 @@ const Transactions: NextPage = () => {
 					</Col>
 
 					<Col md="6">
-						<Card>
+						<Card style={notesBalanceCard}>
 							<Card.Body>
 								<Row>
 									<Col md="12">
@@ -192,15 +193,18 @@ const Transactions: NextPage = () => {
 								<Row>
 									<Col md="6">
 										<Button
+											style={buySellNotesButtonStyle}
 											variant="outline-success"
 											onClick={handleShow}
 										>
 											Buy/Sell <i>NOTES</i>
 										</Button>
 									</Col>
+									
 
 									<Col md="6">
 										<Button
+										style={sendNotesButtonStyle}
 											variant="outline-success"
 											onClick={handleShowNotes}
 										>
@@ -226,8 +230,8 @@ const Transactions: NextPage = () => {
 						eventKey="websiteTransactions"
 						title="Website Transactions"
 					>
-						<table className="table">
-							<thead>
+						<table style={stylesTable} className=" table   table-bordered border-default">
+							<thead className="table-success">
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Order type</th>
@@ -432,5 +436,33 @@ const Transactions: NextPage = () => {
 		</div>
 	);
 };
+
+const stylesTable = {
+	margin: "10px",
+};
+
+const zarBalanceCardStyle = {
+	borderRadius: "0px",
+	marginTop: "40px",
+};
+const makeDepositButtonStyle = {
+	borderRadius: "0px",
+	width: '100%'
+}
+const notesBalanceCard ={
+	borderRadius: "0px",
+	marginTop: "40px",
+	width: '100%'
+}
+const buySellNotesButtonStyle ={
+	borderRadius: '0px',
+	width: '100%',
+	marginTop: '5px'
+}
+const sendNotesButtonStyle = {
+	borderRadius: '0px',
+	width: '100%',
+	marginTop: '5px'
+}
 
 export default Transactions;

@@ -54,7 +54,7 @@ const Signin: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container style={{marginTop: '40px'}}>
+			<Container style={{ marginTop: "40px" }}>
 				<Row>
 					{failedPassword ? (
 						<DisplayAlert
@@ -109,8 +109,6 @@ const Signin: NextPage = () => {
 	);
 };
 
-
-
 const emailLabelStyle = {
 	marginTop: "10px",
 };
@@ -123,9 +121,8 @@ const loginInputBoxStyle = {
 
 const submitButtonStyle = {
 	borderRadius: "60px",
-	marginBottom: '40px',
-	width: '100px'
-
+	marginBottom: "40px",
+	width: "100px",
 };
 
 export default Signin;

@@ -27,7 +27,6 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const { register, handleSubmit } = useForm();
 	const [zarBalance, setZarBalance] = useState<number>(0);
 
-
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 	const [amountToDeposit, setAmountToDeposit] = useState<number>(0);
@@ -98,87 +97,84 @@ const AddedCardsSection: React.FC = (props: any) => {
 	return (
 		<div>
 			<Container>
+				<Row>
+					<Card style={zarBalanceCardStyle}>
+						<Card.Body>
+							<Card.Title>ZAR balance</Card.Title>
 
-			<Row>
-				<Card style={zarBalanceCardStyle}>
-					<Card.Body>
-						<Card.Title>ZAR balance</Card.Title>
+							<Card.Text>
+								{zarBalance ? <>{zarBalance}</> : <>Loading</>}
+							</Card.Text>
+						</Card.Body>
+					</Card>
+				</Row>
 
-						<Card.Text>
-							{zarBalance ? (
-								<>{zarBalance}</>
+				<Row>
+					<table
+						style={stylesTable}
+						className=" table   table-bordered border-default"
+					>
+						<thead className="table-success">
+							<tr>
+								<th scope="col">Card number</th>
+								<th scope="col">Deposit</th>
+								<th scope="col">Delete card</th>
+							</tr>
+						</thead>
+						<tbody>
+							{cards.length > 0 ? (
+								cards.map((card: any) => (
+									<tr key={card.id}>
+										<td>{card.cardnumber}</td>
+
+										<td>
+											<Button
+												color="outline-success"
+												id="Popover1"
+												type="button"
+												style={depositButtonStyle}
+												onClick={() => {
+													handleDeposit({
+														cardId: card.id,
+														cardnumber:
+															card.cardnumber,
+													});
+												}}
+											>
+												Deposit
+											</Button>
+										</td>
+
+										<td>
+											<Button
+												color="outline-danger"
+												id="Popover1"
+												type="button"
+												style={deleteButtonStyle}
+												onClick={() => {
+													handleDelete(card.id);
+												}}
+											>
+												X
+											</Button>
+										</td>
+									</tr>
+								))
 							) : (
-								<>Loading</>
-							)}
-						</Card.Text>
-
-						
-					</Card.Body>
-				</Card>
-			</Row>
-
-			<Row>
-				<table style={stylesTable} className=" table   table-bordered border-default">
-					
-					<thead className="table-success">
-						<tr><th scope="col">Card number</th>
-							<th scope="col">Deposit</th>
-							<th scope="col">Delete card</th>
-						</tr>
-					</thead>
-					<tbody>
-						{cards.length > 0 ? (
-							cards.map((card: any) => (
-								<tr key={card.id}>
-									<td>{card.cardnumber}</td>
-									
+								<tr>
 									<td>
-										<Button
-											color="outline-success"
-											id="Popover1"
-											type="button"
-											style={depositButtonStyle}
-											onClick={() => {
-												handleDeposit({
-													cardId: card.id,
-													cardnumber: card.cardnumber,
-												});
-											}}
-										>
-											Deposit
-										</Button>
-									</td>
-
-									<td>
-										<Button
-											color="outline-danger"
-											id="Popover1"
-											type="button"
-											style={deleteButtonStyle}
-											onClick={() => {
-												handleDelete(card.id);
-											}}
-											
-										>
-											X
-										</Button>
+										<h5>
+											You do not have any Cards. To make a
+											deposit, you first need to add a
+											card.
+										</h5>
 									</td>
 								</tr>
-							))
-						) : (
-							<tr>
-								<td>
-									<h5>
-										You do not have any Cards. To make a
-										deposit, you first need to add a card.
-									</h5>
-								</td>
-							</tr>
-						)}
-					</tbody>
+							)}
+						</tbody>
 					</table>
 				</Row>
-				</Container>
+			</Container>
 
 			<Modal show={showModal} onHide={handleClose}>
 				<form onSubmit={handleSubmit(onSubmitDeposit)}>
@@ -236,19 +232,19 @@ const stylesTable = {
 };
 
 const cardsTable = {
-	margin: "40px"
-}
-
-const depositButtonStyle =  {
-	borderRadius: '0px'
-}
-const deleteButtonStyle = {
-	borderRadius: '0px'
-}
-const zarBalanceCardStyle ={
-	borderRadius: '0px',
 	margin: "40px",
-}
+};
+
+const depositButtonStyle = {
+	borderRadius: "0px",
+};
+const deleteButtonStyle = {
+	borderRadius: "0px",
+};
+const zarBalanceCardStyle = {
+	borderRadius: "0px",
+	margin: "40px",
+};
 
 const tableHeaderNameStyle = {
 	color: "#2cb978",

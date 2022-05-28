@@ -43,7 +43,7 @@ const Signup: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container style={{marginTop: '40px'}}>
+			<Container style={{ marginTop: "40px" }}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<FormGroup>
 						<Label tyle={firstnameLabelStyle} for="">
@@ -123,9 +123,8 @@ const signupInputStyle = {
 
 const submitButtonStyle = {
 	borderRadius: "60px",
-	marginBottom: '40px',
-	width: '100px'
-
+	marginBottom: "40px",
+	width: "100px",
 };
 
 export default Signup;

@@ -55,7 +55,7 @@ export const AuthenticatedNavbar = (props: any) => {
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
-				<Nav className="mr-auto" navbar>
+					<Nav className="mr-auto" navbar>
 						<NavItem>
 							<NavLink
 								style={{ color: "white" }}
