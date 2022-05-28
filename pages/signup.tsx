@@ -43,7 +43,7 @@ const Signup: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container>
+			<Container style={{marginTop: '40px'}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<FormGroup>
 						<Label tyle={firstnameLabelStyle} for="">
@@ -55,6 +55,7 @@ const Signup: NextPage = () => {
 							type="text"
 							name="firstname"
 							id=""
+							className="form-control"
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -65,6 +66,7 @@ const Signup: NextPage = () => {
 							type="lastname"
 							name="lastname"
 							id=""
+							className="form-control"
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -75,6 +77,7 @@ const Signup: NextPage = () => {
 							type="email"
 							name="email"
 							id=""
+							className="form-control"
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -85,6 +88,7 @@ const Signup: NextPage = () => {
 							type="password"
 							name="password"
 							id=""
+							className="form-control"
 						/>
 					</FormGroup>
 					<Button
@@ -92,6 +96,7 @@ const Signup: NextPage = () => {
 						id="submitButton"
 						className="btn btn-primary"
 						type="submit"
+						color="success"
 					>
 						Signup
 					</Button>
@@ -118,6 +123,9 @@ const signupInputStyle = {
 
 const submitButtonStyle = {
 	borderRadius: "60px",
+	marginBottom: '40px',
+	width: '100px'
+
 };
 
 export default Signup;

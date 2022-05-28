@@ -54,7 +54,8 @@ const PaymentForm = () => {
 				}
 
 				<Button
-					color="primary"
+					color="outline-primary"
+					style={addPaymentCardButtonStyle}
 					onClick={() => {
 						setIsOpen(!isOpen);
 					}}
@@ -124,7 +125,7 @@ const PaymentForm = () => {
 							/>
 						</FormGroup>
 
-						<Button type="submit" color="success">
+						<Button style={addCardButtonStyle} type="submit" color="outline-success">
 							Add Card
 						</Button>
 					</form>
@@ -145,6 +146,15 @@ const Deposit: NextPage = () => {
 		</div>
 	);
 };
+
+const addCardButtonStyle= {
+	width: `100px`,
+	borderRadius: '0px'
+}
+const addPaymentCardButtonStyle ={
+	width: `400px`,
+	borderRadius: '0px'
+}
 
 const PaymentFormInputStyle = {
 	margin: "5px",

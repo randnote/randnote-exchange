@@ -54,7 +54,7 @@ const Signin: NextPage = () => {
 	return (
 		<div>
 			<MainNavbar></MainNavbar>
-			<Container className="">
+			<Container style={{marginTop: '40px'}}>
 				<Row>
 					{failedPassword ? (
 						<DisplayAlert
@@ -75,6 +75,7 @@ const Signin: NextPage = () => {
 								type="email"
 								name="email"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 						<FormGroup>
@@ -85,6 +86,7 @@ const Signin: NextPage = () => {
 								type="password"
 								name="password"
 								id=""
+								className="form-control"
 							/>
 						</FormGroup>
 						<Button
@@ -92,6 +94,7 @@ const Signin: NextPage = () => {
 							id="submitButton"
 							className="btn btn-primary"
 							type="submit"
+							color="success"
 						>
 							Login
 						</Button>
@@ -106,6 +109,8 @@ const Signin: NextPage = () => {
 	);
 };
 
+
+
 const emailLabelStyle = {
 	marginTop: "10px",
 };
@@ -118,6 +123,9 @@ const loginInputBoxStyle = {
 
 const submitButtonStyle = {
 	borderRadius: "60px",
+	marginBottom: '40px',
+	width: '100px'
+
 };
 
 export default Signin;

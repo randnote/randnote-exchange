@@ -22,26 +22,11 @@ const MainNavbar = (props: any) => {
 	const toggle = () => setIsOpen(!isOpen);
 	return (
 		<div>
-			<Navbar style={mainNavbarStyle} light expand="md">
+			<Navbar style={AuthNavStyles} light expand="md">
 				<NavbarBrand style={mainNavbarBrandStyle} href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
-				<Collapse isOpen={isOpen} navbar>
-					<Nav className="mr-auto" navbar>
-						<UncontrolledDropdown nav inNavbar>
-							<DropdownToggle nav caret>
-								Options
-							</DropdownToggle>
-							<DropdownMenu right>
-								<DropdownItem>Option 1</DropdownItem>
-								<DropdownItem>Option 2</DropdownItem>
-								<DropdownItem divider />
-								<DropdownItem>Reset</DropdownItem>
-							</DropdownMenu>
-						</UncontrolledDropdown>
-					</Nav>
-				</Collapse>
 			</Navbar>
 		</div>
 	);
@@ -70,6 +55,17 @@ export const AuthenticatedNavbar = (props: any) => {
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
+				<Nav className="mr-auto" navbar>
+						<NavItem>
+							<NavLink
+								style={{ color: "white" }}
+								href="/dashboard/"
+							>
+								Dashboard
+							</NavLink>
+						</NavItem>
+					</Nav>
+
 					<Nav className="mr-auto" navbar>
 						<NavItem>
 							<NavLink
