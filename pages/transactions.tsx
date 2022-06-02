@@ -200,11 +200,10 @@ const Transactions: NextPage = () => {
 											Buy/Sell <i>NOTES</i>
 										</Button>
 									</Col>
-									
 
 									<Col md="6">
 										<Button
-										style={sendNotesButtonStyle}
+											style={sendNotesButtonStyle}
 											variant="outline-success"
 											onClick={handleShowNotes}
 										>
@@ -230,7 +229,10 @@ const Transactions: NextPage = () => {
 						eventKey="websiteTransactions"
 						title="Website Transactions"
 					>
-						<table style={stylesTable} className=" table   table-bordered border-default">
+						<table
+							style={stylesTable}
+							className=" table   table-bordered border-default"
+						>
 							<thead className="table-success">
 								<tr>
 									<th scope="col">#</th>
@@ -447,22 +449,22 @@ const zarBalanceCardStyle = {
 };
 const makeDepositButtonStyle = {
 	borderRadius: "0px",
-	width: '100%'
-}
-const notesBalanceCard ={
+	width: "100%",
+};
+const notesBalanceCard = {
 	borderRadius: "0px",
 	marginTop: "40px",
-	width: '100%'
-}
-const buySellNotesButtonStyle ={
-	borderRadius: '0px',
-	width: '100%',
-	marginTop: '5px'
-}
+	width: "100%",
+};
+const buySellNotesButtonStyle = {
+	borderRadius: "0px",
+	width: "100%",
+	marginTop: "5px",
+};
 const sendNotesButtonStyle = {
-	borderRadius: '0px',
-	width: '100%',
-	marginTop: '5px'
-}
+	borderRadius: "0px",
+	width: "100%",
+	marginTop: "5px",
+};
 
 export default Transactions;
