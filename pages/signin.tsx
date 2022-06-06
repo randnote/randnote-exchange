@@ -8,8 +8,12 @@ import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
 import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { DisplayAlert } from "./components/alerts/alerts";
+
+// style imports:
+import styles from '../styles/Signin.module.scss';
+
+let loginInputBoxClass: string = `form-control ${styles.loginInputBox}`;
 
 const Signin: NextPage = () => {
 	const { register, handleSubmit } = useForm();
@@ -66,27 +70,27 @@ const Signin: NextPage = () => {
 					)}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<FormGroup>
-							<Label style={emailLabelStyle} for="">
+							<label className={styles.label} >
 								Email
-							</Label>
+							</label>
 							<input
-								style={loginInputBoxStyle}
+								
 								{...register("email")}
 								type="email"
 								name="email"
 								id=""
-								className="form-control"
+								className={loginInputBoxClass}
 							/>
 						</FormGroup>
 						<FormGroup>
 							<Label for="">Password</Label>
 							<input
-								style={loginInputBoxStyle}
+
 								{...register("password")}
 								type="password"
 								name="password"
 								id=""
-								className="form-control"
+								className={loginInputBoxClass}
 							/>
 						</FormGroup>
 						<Button
@@ -109,15 +113,8 @@ const Signin: NextPage = () => {
 	);
 };
 
-const emailLabelStyle = {
-	marginTop: "10px",
-};
 
-const loginInputBoxStyle = {
-	borderRadius: "60px",
-	marginTop: "10px",
-	marginBottom: "10px",
-};
+
 
 const submitButtonStyle = {
 	borderRadius: "60px",
