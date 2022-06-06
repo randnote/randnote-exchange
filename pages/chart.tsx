@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useState, useEffect, useRef } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import ChartComponent from "./components/charts/chartComponent";
 import { Container, Row, Col } from "reactstrap";
@@ -172,7 +171,7 @@ const Chart: NextPage = () => {
 							<Card.Body>
 								<Card.Title>Price change (24 H)</Card.Title>
 								<Card.Text>
-									{" "}
+									
 									<span style={{ color: "green" }}>
 										+$222.45
 									</span>

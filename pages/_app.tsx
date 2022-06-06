@@ -1,5 +1,5 @@
-import "../styles/globals.css";
-import "../styles/breakpoints.css";
+import "../styles/globals.scss";
+import "../styles/breakpoints.scss";
 import type { AppProps } from "next/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 

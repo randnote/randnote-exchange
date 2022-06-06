@@ -2,7 +2,6 @@ import React from "react";
 import type { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
