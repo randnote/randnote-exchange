@@ -11,7 +11,7 @@ import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 import { DisplayAlert } from "./components/alerts/alerts";
 
 // style imports:
-import styles from '../styles/Signin.module.scss';
+import styles from "../styles/Signin.module.scss";
 
 let loginInputBoxClass: string = `form-control ${styles.loginInputBox}`;
 
@@ -42,7 +42,7 @@ const Signin: NextPage = () => {
 					};
 
 					SetLocalStorage("randnoteUser", localStorageDataObject);
-					router.push("/dashboard");
+					router.push("/transactions");
 				} else if (res.data.success === false) {
 					// WrongUsernamePasswordAlert();
 					setFailedPassword(true);
@@ -70,11 +70,8 @@ const Signin: NextPage = () => {
 					)}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<FormGroup>
-							<label className={styles.label} >
-								Email
-							</label>
+							<label className={styles.label}>Email</label>
 							<input
-								
 								{...register("email")}
 								type="email"
 								name="email"
@@ -85,7 +82,6 @@ const Signin: NextPage = () => {
 						<FormGroup>
 							<Label for="">Password</Label>
 							<input
-
 								{...register("password")}
 								type="password"
 								name="password"
@@ -112,9 +108,6 @@ const Signin: NextPage = () => {
 		</div>
 	);
 };
-
-
-
 
 const submitButtonStyle = {
 	borderRadius: "60px",

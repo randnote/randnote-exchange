@@ -33,7 +33,7 @@ const Signup: NextPage = () => {
 						email: res.data.data.email,
 					};
 					SetLocalStorage("randnoteUser", localStorageDataObject);
-					router.push("/dashboard");
+					router.push("/transactions");
 				}
 			})
 			.catch((err) => {
