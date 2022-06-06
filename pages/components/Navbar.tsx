@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 
 // style imports:
-import styles from '../../styles/Navbar.module.scss'
+import styles from "../../styles/Navbar.module.scss";
 
 const MainNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -52,7 +52,7 @@ export const AuthenticatedNavbar = (props: any) => {
 
 	return (
 		<div>
-			<Navbar style={AuthNavStyles} responsive >
+			<Navbar  className={styles.authNavStyles} responsive>
 				<NavbarBrand href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
@@ -141,7 +141,7 @@ const mainNavbarStyle = {
 };
 
 const AuthNavStyles = {
-	backgroundColor: "#2cb978"
+	backgroundColor: "#2cb978",
 };
 
 const AuthNavbarButtonStyles = {

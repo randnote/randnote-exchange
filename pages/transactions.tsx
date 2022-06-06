@@ -13,11 +13,8 @@ import socketIOClient from "socket.io-client";
 import { transcode } from "buffer";
 const ENDPOINT = "http://127.0.0.1:8024";
 
-// interface orderExampeType {
-// 	zarAmount: number;
-// 	price: number;
-// 	notes: number;
-// }
+// styles imports:
+import styles from '../styles/transactions.module.scss'
 
 const Transactions: NextPage = () => {
 	// Buy/Sell notes modal
@@ -146,7 +143,7 @@ const Transactions: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="6">
-						<Card style={zarBalanceCardStyle}>
+						<Card className={styles.zarBalanceCardStyle} >
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
@@ -159,7 +156,8 @@ const Transactions: NextPage = () => {
 								</Card.Text>
 
 								<Button
-									style={makeDepositButtonStyle}
+									className={styles.makeDepositButtonStyle}
+									
 									variant="outline-primary"
 									onClick={handleShow}
 								>
@@ -170,7 +168,7 @@ const Transactions: NextPage = () => {
 					</Col>
 
 					<Col md="6">
-						<Card style={notesBalanceCard}>
+						<Card className={styles.notesBalanceCardStyle} >
 							<Card.Body>
 								<Row>
 									<Col md="12">
@@ -193,7 +191,7 @@ const Transactions: NextPage = () => {
 								<Row>
 									<Col md="6">
 										<Button
-											style={buySellNotesButtonStyle}
+											className={styles.buySellNotesButtonStyle}
 											variant="outline-success"
 											onClick={handleShow}
 										>
@@ -203,7 +201,7 @@ const Transactions: NextPage = () => {
 
 									<Col md="6">
 										<Button
-											style={sendNotesButtonStyle}
+											className={styles.sendNotesButtonStyle}
 											variant="outline-success"
 											onClick={handleShowNotes}
 										>
@@ -230,8 +228,8 @@ const Transactions: NextPage = () => {
 						title="Website Transactions"
 					>
 						<table
-							style={stylesTable}
-							className=" table   table-bordered border-default"
+							
+							className={` table table-bordered border-default ${styles.stylesTable}`}
 						>
 							<thead className="table-success">
 								<tr>
@@ -439,32 +437,6 @@ const Transactions: NextPage = () => {
 	);
 };
 
-const stylesTable = {
-	margin: "10px",
-};
 
-const zarBalanceCardStyle = {
-	borderRadius: "0px",
-	marginTop: "40px",
-};
-const makeDepositButtonStyle = {
-	borderRadius: "0px",
-	width: "100%",
-};
-const notesBalanceCard = {
-	borderRadius: "0px",
-	marginTop: "40px",
-	width: "100%",
-};
-const buySellNotesButtonStyle = {
-	borderRadius: "0px",
-	width: "100%",
-	marginTop: "5px",
-};
-const sendNotesButtonStyle = {
-	borderRadius: "0px",
-	width: "100%",
-	marginTop: "5px",
-};
 
 export default Transactions;

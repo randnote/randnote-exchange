@@ -171,7 +171,6 @@ const Chart: NextPage = () => {
 							<Card.Body>
 								<Card.Title>Price change (24 H)</Card.Title>
 								<Card.Text>
-									
 									<span style={{ color: "green" }}>
 										+$222.45
 									</span>
