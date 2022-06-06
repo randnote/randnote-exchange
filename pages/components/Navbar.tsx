@@ -20,20 +20,7 @@ import {
 // style imports:
 import styles from "../../styles/Navbar.module.scss";
 
-const MainNavbar = (props: any) => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const toggle = () => setIsOpen(!isOpen);
-	return (
-		<div>
-			<Navbar style={AuthNavStyles} light expand="md">
-				<NavbarBrand style={mainNavbarBrandStyle} href="/">
-					<b>RANDNOTE</b>
-				</NavbarBrand>
-				<NavbarToggler onClick={toggle} />
-			</Navbar>
-		</div>
-	);
-};
+
 
 export const AuthenticatedNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -52,12 +39,15 @@ export const AuthenticatedNavbar = (props: any) => {
 
 	return (
 		<div>
-			<Navbar  className={styles.authNavStyles} responsive>
+			<Navbar className={styles.authNavStyles} responsive>
 				<NavbarBrand href="/">
 					<b>RANDNOTE</b>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
+
+					
+
 					<Nav className="mr-auto" navbar>
 						<NavItem>
 							<NavLink
@@ -150,4 +140,4 @@ const AuthNavbarButtonStyles = {
 	borderRadius: "10px",
 };
 
-export default MainNavbar;
+

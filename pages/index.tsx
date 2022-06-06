@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
 import { Container, Button, Row } from "reactstrap";
 import ChartComponent from "./components/charts/chartComponent";
+
+// styles imports:
+import styles from '../styles/Home.module.scss'
 
 interface Props {
 	text: string;
@@ -12,13 +14,15 @@ interface Props {
 // Main section
 const MainComponent: React.FC = () => {
 	return (
-		<Container className="text-center">
-			<Row>
-				<h1>Rand Note Exchange</h1>
-				<p>This is the RandNote official website and exchange.</p>
-				<ChartComponent></ChartComponent>
-			</Row>
-		</Container>
+		<div className={styles.mainComponent}>
+			<Container className={styles.mainComponentMainContainer}>
+				<Row className={styles.mainRow}>
+					<h1>Rand Note Exchange</h1>
+					<p>This is the RandNote official website and exchange.</p>
+					
+				</Row>
+			</Container>
+		</div>
 	);
 };
 
@@ -60,7 +64,7 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			<MainComponent></MainComponent>
+			
 			<AboutComponent></AboutComponent>
 			<MainFooter></MainFooter>
 		</div>

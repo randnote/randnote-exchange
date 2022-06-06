@@ -14,7 +14,7 @@ import { transcode } from "buffer";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 // styles imports:
-import styles from '../styles/transactions.module.scss'
+import styles from "../styles/transactions.module.scss";
 
 const Transactions: NextPage = () => {
 	// Buy/Sell notes modal
@@ -143,7 +143,7 @@ const Transactions: NextPage = () => {
 			<Container>
 				<Row>
 					<Col md="6">
-						<Card className={styles.zarBalanceCardStyle} >
+						<Card className={styles.zarBalanceCardStyle}>
 							<Card.Body>
 								<Card.Title>ZAR balance</Card.Title>
 
@@ -157,7 +157,6 @@ const Transactions: NextPage = () => {
 
 								<Button
 									className={styles.makeDepositButtonStyle}
-									
 									variant="outline-primary"
 									onClick={handleShow}
 								>
@@ -168,7 +167,7 @@ const Transactions: NextPage = () => {
 					</Col>
 
 					<Col md="6">
-						<Card className={styles.notesBalanceCardStyle} >
+						<Card className={styles.notesBalanceCardStyle}>
 							<Card.Body>
 								<Row>
 									<Col md="12">
@@ -191,7 +190,9 @@ const Transactions: NextPage = () => {
 								<Row>
 									<Col md="6">
 										<Button
-											className={styles.buySellNotesButtonStyle}
+											className={
+												styles.buySellNotesButtonStyle
+											}
 											variant="outline-success"
 											onClick={handleShow}
 										>
@@ -201,7 +202,9 @@ const Transactions: NextPage = () => {
 
 									<Col md="6">
 										<Button
-											className={styles.sendNotesButtonStyle}
+											className={
+												styles.sendNotesButtonStyle
+											}
 											variant="outline-success"
 											onClick={handleShowNotes}
 										>
@@ -228,7 +231,6 @@ const Transactions: NextPage = () => {
 						title="Website Transactions"
 					>
 						<table
-							
 							className={` table table-bordered border-default ${styles.stylesTable}`}
 						>
 							<thead className="table-success">
@@ -436,7 +438,5 @@ const Transactions: NextPage = () => {
 		</div>
 	);
 };
-
-
 
 export default Transactions;
