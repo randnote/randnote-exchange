@@ -85,9 +85,9 @@ const Transactions: NextPage = () => {
 		// set all the transactions:
 	};
 
-	const sendToDepositPage = () =>{
+	const sendToDepositPage = () => {
 		Router.push("/deposit");
-	}
+	};
 
 	const onChangeOrderAmount = (value: any) => {
 		let calcualtedNotes = price / value;
@@ -163,9 +163,7 @@ const Transactions: NextPage = () => {
 								<Button
 									className={styles.makeDepositButtonStyle}
 									variant="outline-primary"
-									onClick={()=>{
-										
-
+									onClick={() => {
 										sendToDepositPage();
 									}}
 								>
