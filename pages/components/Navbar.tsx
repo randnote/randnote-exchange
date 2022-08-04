@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import GetLocalStorage from "./authentication/localstorage";
 import Link from "next/link";
 
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {Button} from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 // style imports:
 import styles from "../../styles/Navbar.module.scss";
@@ -27,20 +25,19 @@ export const AuthenticatedNavbar = (props: any) => {
 		}
 	}, []);
 
-
 	return (
-		<Navbar bg="light" expand="lg">
+		<Navbar  expand="lg" className={`${styles.authNavStyles}`}>
 			<Container>
-				<Navbar.Brand href="/">
+				<Navbar.Brand className={styles.navbarBrand} href="/">
 					<b>RANDNOTE</b>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<Nav.Link href="/transactions">Transactions</Nav.Link>
-						<Nav.Link href="/deposit">Deposit</Nav.Link>
-						<Nav.Link href="/chart">Chart</Nav.Link>
+				<Navbar.Collapse className={styles.collapse} id="basic-navbar-nav">
+					<Nav className={`${styles.nav} me-auto`} >
+						<Nav.Link className={styles.navLink} href="/transactions">Transactions</Nav.Link>
+						<Nav.Link className={styles.navLink} href="/deposit">Deposit</Nav.Link>
+						<Nav.Link className={styles.navLink} href="/chart">Chart</Nav.Link>
 					</Nav>
 
 					{isAuthenticated ? (

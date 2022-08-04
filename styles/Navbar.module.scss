@@ -2,6 +2,20 @@
 
 .authNavStyles{
     background-color: $color-primary-green;
-
+    // color: white;
     // background-color: $background-color-green;
+    // background-color: green;
+
+    .navbarBrand{
+        color: white;
+    }
+    
+    .collapse{
+        .nav{
+            .navLink{
+                color: white;
+            } 
+        }
+    }
+   
 }
