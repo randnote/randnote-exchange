@@ -271,7 +271,42 @@ const Transactions: NextPage = () => {
 						eventKey="blockchainTransactions"
 						title="Blockchain Transactions"
 					>
-						sdfsdf
+						<table
+							className={` table table-bordered border-default ${styles.stylesTable}`}
+						>
+							<thead className="table-success">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Order type</th>
+									<th scope="col">ZAR amount</th>
+									<th scope="col">@ Price</th>
+									<th scope="col">
+										<i>Notes</i>
+									</th>
+									<th scope="col">Timestamp</th>
+								</tr>
+							</thead>
+							<tbody>
+								{websiteTransactionsArray.length > 0 ? (
+									websiteTransactionsArray.map(
+										(transaction: any) => (
+											<tr key={transaction.id}>
+												<td>{transaction.id}</td>
+												<td>{transaction.ordertype}</td>
+												<td>{transaction.amount}</td>
+												<td>{transaction.price}</td>
+												<td>{transaction.notes}</td>
+												<td>{transaction.timestamp}</td>
+											</tr>
+										)
+									)
+								) : (
+									<tr>
+										<td>nothing</td>
+									</tr>
+								)}
+							</tbody>
+						</table>
 					</Tab>
 				</Tabs>
 			</Container>

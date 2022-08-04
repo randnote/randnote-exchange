@@ -5,7 +5,7 @@ import { Container, Button, Row } from "reactstrap";
 import ChartComponent from "./components/charts/chartComponent";
 
 // styles imports:
-import styles from '../styles/Home.module.scss'
+import styles from "../styles/Home.module.scss";
 
 interface Props {
 	text: string;
@@ -19,7 +19,6 @@ const MainComponent: React.FC = () => {
 				<Row className={styles.mainRow}>
 					<h1>Rand Note Exchange</h1>
 					<p>This is the RandNote official website and exchange.</p>
-					
 				</Row>
 			</Container>
 		</div>
@@ -64,7 +63,7 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
-			
+
 			<AboutComponent></AboutComponent>
 			<MainFooter></MainFooter>
 		</div>

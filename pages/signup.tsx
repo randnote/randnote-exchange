@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import MainNavbar from "./components/Navbar";
+import MainNavbar, { AuthenticatedNavbar } from "./components/Navbar";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import Link from "next/link";
@@ -41,7 +41,8 @@ const Signup: NextPage = () => {
 	};
 	return (
 		<div>
-			<MainNavbar></MainNavbar>
+			{/* <MainNavbar></MainNavbar> */}
+			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<Container style={{ marginTop: "40px" }}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<FormGroup>
