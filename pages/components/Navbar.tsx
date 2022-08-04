@@ -26,18 +26,30 @@ export const AuthenticatedNavbar = (props: any) => {
 	}, []);
 
 	return (
-		<Navbar  expand="lg" className={`${styles.authNavStyles}`}>
+		<Navbar expand="lg" className={`${styles.authNavStyles}`}>
 			<Container>
 				<Navbar.Brand className={styles.navbarBrand} href="/">
 					<b>RANDNOTE</b>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-				<Navbar.Collapse className={styles.collapse} id="basic-navbar-nav">
-					<Nav className={`${styles.nav} me-auto`} >
-						<Nav.Link className={styles.navLink} href="/transactions">Transactions</Nav.Link>
-						<Nav.Link className={styles.navLink} href="/deposit">Deposit</Nav.Link>
-						<Nav.Link className={styles.navLink} href="/chart">Chart</Nav.Link>
+				<Navbar.Collapse
+					className={styles.collapse}
+					id="basic-navbar-nav"
+				>
+					<Nav className={`${styles.nav} me-auto`}>
+						<Nav.Link
+							className={styles.navLink}
+							href="/transactions"
+						>
+							Transactions
+						</Nav.Link>
+						<Nav.Link className={styles.navLink} href="/deposit">
+							Deposit
+						</Nav.Link>
+						<Nav.Link className={styles.navLink} href="/chart">
+							Chart
+						</Nav.Link>
 					</Nav>
 
 					{isAuthenticated ? (

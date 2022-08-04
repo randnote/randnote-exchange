@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import Axios from "axios";
+import Router, { useRouter } from "next/router";
 import GetLocalStorage from "./components/authentication/localstorage";
 import { localstorageUserType } from "./components/authentication/localstorage";
 import { useForm } from "react-hook-form";
@@ -84,6 +85,10 @@ const Transactions: NextPage = () => {
 		// set all the transactions:
 	};
 
+	const sendToDepositPage = () =>{
+		Router.push("/deposit");
+	}
+
 	const onChangeOrderAmount = (value: any) => {
 		let calcualtedNotes = price / value;
 		let newOrder = {
@@ -158,7 +163,11 @@ const Transactions: NextPage = () => {
 								<Button
 									className={styles.makeDepositButtonStyle}
 									variant="outline-primary"
-									onClick={handleShow}
+									onClick={()=>{
+										
+
+										sendToDepositPage();
+									}}
 								>
 									Make deposit
 								</Button>
