@@ -32,7 +32,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const [user, setUser] = useState<any>({});
 	const [amountToDeposit, setAmountToDeposit] = useState<number>(0);
 	const [addedCardAlert, setAddedCardAlert] = useState(false);
-	const [deletedCardAlert, setDeletedCardAlert] = useState(false)
+	const [deletedCardAlert, setDeletedCardAlert] = useState(false);
 
 	const [cardSelected, setCardSelected] = useState({
 		cardId: 0,
@@ -102,8 +102,6 @@ const AddedCardsSection: React.FC = (props: any) => {
 	return (
 		<div>
 			<Container>
-				
-				
 				<Row>
 					<Card style={zarBalanceCardStyle}>
 						<Card.Body>
