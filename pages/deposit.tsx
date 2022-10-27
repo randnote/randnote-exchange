@@ -50,7 +50,7 @@ const PaymentForm = () => {
 			<Container>
 				{
 					// alert area:
-					addedCardAlert ? <AlertDismissible></AlertDismissible> : ""
+					addedCardAlert ? <AlertDismissible color="success" information="You have successfully added a card to your profile"></AlertDismissible> : ""
 				}
 
 				<Button
@@ -144,9 +144,11 @@ const Deposit: NextPage = () => {
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
+			<br/>
+			<PaymentForm></PaymentForm>
 			<AddedCardsSection> </AddedCardsSection>
 
-			<PaymentForm></PaymentForm>
+			
 		</div>
 	);
 };

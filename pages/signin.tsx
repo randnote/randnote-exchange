@@ -5,7 +5,7 @@ import Axios from "axios";
 import Link from "next/link";
 import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
-import MainNavbar from "./components/Navbar";
+// import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 import { DisplayAlert } from "./components/alerts/alerts";
 
@@ -56,7 +56,7 @@ const Signin: NextPage = () => {
 
 	return (
 		<div>
-			<MainNavbar></MainNavbar>
+			{/* <MainNavbar></MainNavbar> */}
 			<Container style={{ marginTop: "40px" }}>
 				<Row>
 					{failedPassword ? (

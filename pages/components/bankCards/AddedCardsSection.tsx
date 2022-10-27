@@ -7,6 +7,7 @@ import { Tabs, Tab, Card, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
+import { AlertDismissible } from "../alerts/dismissableAlerts";
 // import fetch from 'node-fetch';
 import { copyFileSync } from "fs";
 
@@ -30,6 +31,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const [cards, setCards] = useState<any[]>([]);
 	const [user, setUser] = useState<any>({});
 	const [amountToDeposit, setAmountToDeposit] = useState<number>(0);
+	const [addedCardAlert, setAddedCardAlert] = useState(false);
 
 	const [cardSelected, setCardSelected] = useState({
 		cardId: 0,
@@ -76,6 +78,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 		Axios.post(`http://localhost:8024/deposit`, depositObject)
 			.then((res) => {
 				console.log("deposit made");
+				setAddedCardAlert(true);
 				handleClose();
 			})
 			.catch((err) => {
@@ -97,6 +100,11 @@ const AddedCardsSection: React.FC = (props: any) => {
 	return (
 		<div>
 			<Container>
+
+			{
+				// alert area:
+				addedCardAlert ? <AlertDismissible color="success" information="You have successfully added a card to your profile"></AlertDismissible> : ""
+			}
 				<Row>
 					<Card style={zarBalanceCardStyle}>
 						<Card.Body>
