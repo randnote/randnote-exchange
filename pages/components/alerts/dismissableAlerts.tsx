@@ -6,7 +6,6 @@ export type alertProps = {
 	information: string;
 };
 
-
 const AlertDismissible = (props: alertProps) => {
 	const [show, setShow] = useState(true);
 
@@ -15,9 +14,7 @@ const AlertDismissible = (props: alertProps) => {
 			<Alert show={show} variant={props.color}>
 				<div className="row">
 					<div className="col-md-10">
-						<p>
-							{props.information}
-						</p>
+						<p>{props.information}</p>
 					</div>
 
 					<div className="col-md-2">

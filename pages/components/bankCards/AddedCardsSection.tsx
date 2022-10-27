@@ -32,6 +32,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const [user, setUser] = useState<any>({});
 	const [amountToDeposit, setAmountToDeposit] = useState<number>(0);
 	const [addedCardAlert, setAddedCardAlert] = useState(false);
+	const [deletedCardAlert, setDeletedCardAlert] = useState(false)
 
 	const [cardSelected, setCardSelected] = useState({
 		cardId: 0,
@@ -90,7 +91,8 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const handleDelete = (cardId: number) => {
 		Axios.get(`http://localhost:8024/deletecard/${cardId}`)
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
+				setDeletedCardAlert(true);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -100,11 +102,8 @@ const AddedCardsSection: React.FC = (props: any) => {
 	return (
 		<div>
 			<Container>
-
-			{
-				// alert area:
-				addedCardAlert ? <AlertDismissible color="success" information="You have successfully added a card to your profile"></AlertDismissible> : ""
-			}
+				
+				
 				<Row>
 					<Card style={zarBalanceCardStyle}>
 						<Card.Body>
@@ -116,6 +115,30 @@ const AddedCardsSection: React.FC = (props: any) => {
 						</Card.Body>
 					</Card>
 				</Row>
+
+				{
+					// alert area:
+					addedCardAlert ? (
+						<AlertDismissible
+							color="success"
+							information="You have successfully added a card to your profile"
+						></AlertDismissible>
+					) : (
+						""
+					)
+				}
+
+				{
+					// alert area:
+					deletedCardAlert ? (
+						<AlertDismissible
+							color="info"
+							information="You have successfully deleted a card from your profile"
+						></AlertDismissible>
+					) : (
+						""
+					)
+				}
 
 				<Row>
 					<table
