@@ -6,6 +6,38 @@
 
 
   .mainComponentMainContainer{
+    height: 500px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+
+    .colLeft{
+
+    }
+
+    .colRight{
+
+    }
+
+  }
+}
+
+.aboutComponent{
+  background-color: white;
+  min-height: 500px;
+
+  .infoSection{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: $color-primary-green;
+  }
+
+  .blockSection{
+   
+    div{
+      // border: 1px solid pink;
+    }
   }
 }
