@@ -13,6 +13,7 @@ import {
 import ChartComponent from "./components/charts/chartComponent";
 import Image from "next/image";
 import MainImage from "../public/blocks.png";
+import Head from "next/head";
 
 import { GrMoney } from "react-icons/gr";
 import { GiCycle } from "react-icons/gi";
@@ -31,21 +32,28 @@ const MainComponent: React.FC = () => {
 			<Container className={styles.mainComponentMainContainer}>
 				<Row className={`${styles.mainRow} `}>
 					<div className={`${styles.colLeft} col-md-6 col-sm-12`}>
-						<h1 className={styles.mainHeading}>Rand Note Exchange</h1>
+						<h1 className={styles.mainHeading}>
+							Rand Note Exchange
+						</h1>
 						<p>
 							This is the RandNote official website and exchange.
 						</p>
 						<p>
-							This platform was designed for demonstration purposes and it simulates a real world blockchain. The codebase is entirely in Javascript and is unsafe and contains alot of bugs.
-							This application also contains bank card fields that have no purpose, DO NOT insert your real banking credentials. This app will let you deposit fake money despite the fields not working correctly. 
+							This platform was designed for demonstration
+							purposes and it simulates a real world blockchain.
+							The codebase is entirely in Javascript and is unsafe
+							and contains alot of bugs. This application also
+							contains bank card fields that have no purpose, DO
+							NOT insert your real banking credentials. This app
+							will let you deposit fake money despite the fields
+							not working correctly.
 						</p>
-						<Button className={styles.mainButton}>
-							Free Demo
-						</Button>
+						<Button className={styles.mainButton}>Free Demo</Button>
 					</div>
 
 					<div className={`${styles.colRight} col-md-6 col-sm-12`}>
 						<Image
+							className={styles.image}
 							src={MainImage}
 							alt="Picture of the author"
 							// width={}
@@ -134,6 +142,9 @@ const AboutComponent = () => {
 const Home: NextPage = () => {
 	return (
 		<div>
+			<Head>
+			<link href="https://fonts.googleapis.com/css?family=Archivo+Black|Judson:400,700" rel="stylesheet"></link>
+			</Head>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<MainComponent></MainComponent>
 			<AboutComponent></AboutComponent>
