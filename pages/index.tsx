@@ -56,8 +56,7 @@ const MainComponent: React.FC = () => {
 							className={styles.image}
 							src={MainImage}
 							alt="Picture of the author"
-							// width={}
-							// height={}
+							
 							// blurDataURL="data:..." automatically provided
 							// placeholder="blur" // Optional blur-up while loading
 						/>
@@ -143,7 +142,10 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<Head>
-			<link href="https://fonts.googleapis.com/css?family=Archivo+Black|Judson:400,700" rel="stylesheet"></link>
+				<link
+					href="https://fonts.googleapis.com/css?family=Archivo+Black|Judson:400,700"
+					rel="stylesheet"
+				></link>
 			</Head>
 			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<MainComponent></MainComponent>

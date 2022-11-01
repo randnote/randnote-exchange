@@ -33,23 +33,11 @@
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 767.98px) {
-      color: black;
-    }
-
+   
     .colLeft{
       .mainHeading{
         // background-color: ;
       }
-
-      
-        @media (max-width: 767.98px) {
-          .image{
-            width: 20px;
-          }
-          
-        }
-      
 
       .mainButton{
         height: 45px;
@@ -63,7 +51,10 @@
     }
 
     .colRight{
-
+			@media (max-width: 767.98px) {
+				display: none !important;
+				background-color: black;
+			}
     }
 
   }
