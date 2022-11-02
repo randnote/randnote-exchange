@@ -34,7 +34,12 @@ const Transactions: NextPage = () => {
 	const [buySellSuccess, setBuySellSuccess] = useState(false);
 
 	//M
+	const [publicKey, setPublicKey] = useState<string>("");
+	const [privateKey, setPrivateKey] = useState<string>("");
 	const [zarBalance, setZarBalance] = useState<number>(0);
+	const [notesBalance, setNotesBalance] = useState<number>(0);
+
+
 	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const { register, handleSubmit } = useForm();
 	const [price, setPrice] = useState<number>(0);
@@ -59,33 +64,66 @@ const Transactions: NextPage = () => {
 				"randnoteUser"
 			);
 			Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
-				.then(async (res) => {
-					await setZarBalance(res.data.balance);
-					// console.log(res)
-					Axios.get(
-						`http://localhost:8024/transactionWebsite/${user.id}`
-					)
-						.then((res) => {
-							// console.log(res);
-							if (res.status == 200) {
-								console.log(res.data.data);
-								setWebsiteTransactionsrray(res.data.data);
-							}
-						})
-						.catch((err) => {
-							console.log(err);
-						});
-					// console.log("we ran");
+			.then(async (res) => {
+				await setZarBalance(res.data.balance);
+				Axios.get(
+					`http://localhost:8024/transactionWebsite/${user.id}`
+				)
+				.then((res) => {
+					if (res.status == 200) {
+						setWebsiteTransactionsrray(res.data.data);
+					}
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 
-			// axios request to get the NOTES balance from the blockchain: // for this, we also need to have their public key
+				// here we get the users public and private keys using the addresses:
+				Axios.get(
+					`http://localhost:8024/getKeys/${user.id}`
+				)
+				.then((res) => {
+					if (res.status == 200) {
+						// console.log(res.data[0]);
+						// let publicAddress = res.data[0].publicAddress;
+						setPrivateKey(res.data[0].privateKey);
+						setPublicKey(res.data[0].publicKey);
+					}
 
+					// now we use these keys to get the notes balance in the blockchain:
+					Axios.get(
+						`http://localhost:8033/balance/${res.data[0].publicKey}`
+					)
+					.then((res) => {
+						if (res.status == 200) {
+							console.log(res);
+							
+						}
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
+			
 		};
 
+		// to get the notes balance, we first start by getting the users keys and then use those to get balance
+		const getNotesBalance = () =>{
+			
+			return
+		}
+
 		getUserFromLocalStorage();
+		// getNotesBalance();
 	}, []); // end of useEffect
 
 	const setTransactionWebsite = (userId: number) => {
