@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
-import Link from 'next/link';
+import Link from "next/link";
 
 import {
 	Container,
@@ -50,8 +50,11 @@ const MainComponent: React.FC = () => {
 							will let you deposit fake money despite the fields
 							not working correctly.
 						</p>
-						<Link href="/signin"><Button className={styles.mainButton}>Free Demo</Button></Link>
-						
+						<Link href="/signin">
+							<Button className={styles.mainButton}>
+								Free Demo
+							</Button>
+						</Link>
 					</div>
 
 					<div className={`${styles.colRight} col-md-6 col-sm-12`}>

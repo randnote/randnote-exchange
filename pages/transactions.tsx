@@ -29,8 +29,6 @@ const Transactions: NextPage = () => {
 	const handleCloseNotes = () => setShowModalNotes(false);
 	const handleShowNotes = () => setShowModalNotes(true);
 
-	
-
 	// success and error alerts.
 	const [buySellError, setBuySellError] = useState(false);
 	const [buySellSuccess, setBuySellSuccess] = useState(false);
@@ -77,11 +75,14 @@ const Transactions: NextPage = () => {
 						.catch((err) => {
 							console.log(err);
 						});
-					console.log("we ran");
+					// console.log("we ran");
 				})
 				.catch((err) => {
 					console.log(err);
 				});
+
+			// axios request to get the NOTES balance from the blockchain: // for this, we also need to have their public key
+
 		};
 
 		getUserFromLocalStorage();
@@ -134,12 +135,12 @@ const Transactions: NextPage = () => {
 			notes: newNotes,
 		};
 
-		if(orderObject.ordertype == "buy" && zarBalance < orderObject.amount ){
+		if (orderObject.ordertype == "buy" && zarBalance < orderObject.amount) {
 			// means that the user is trying to buy more than they can afford
 			handleClose();
 			setBuySellError(true);
 			return;
-		}else{
+		} else {
 			// no errors for user
 			handleClose();
 			setBuySellSuccess(true);
@@ -163,28 +164,28 @@ const Transactions: NextPage = () => {
 			<br />
 
 			<Container>
-			{
-				// alert area:
-				buySellError ? (
-					<AlertDismissible
-						color="danger"
-						information="There is an error with your transaction, make sure you have enough money to Buy, or you have enough Notes to Sell!"
-					></AlertDismissible>
-				) : (
-					""
-				)
-			}
-			{
-				// alert area:
-				buySellSuccess ? (
-					<AlertDismissible
-						color="success"
-						information="You have successfully made a transaction."
-					></AlertDismissible>
-				) : (
-					""
-				)
-			}
+				{
+					// alert area:
+					buySellError ? (
+						<AlertDismissible
+							color="danger"
+							information="There is an error with your transaction, make sure you have enough money to Buy, or you have enough Notes to Sell!"
+						></AlertDismissible>
+					) : (
+						""
+					)
+				}
+				{
+					// alert area:
+					buySellSuccess ? (
+						<AlertDismissible
+							color="success"
+							information="You have successfully made a transaction."
+						></AlertDismissible>
+					) : (
+						""
+					)
+				}
 
 				<Row>
 					<Col md="6">
