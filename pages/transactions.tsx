@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import Axios from "axios";
+import { AlertDismissible } from "./components/alerts/dismissableAlerts";
 import Router, { useRouter } from "next/router";
 import GetLocalStorage from "./components/authentication/localstorage";
 import { localstorageUserType } from "./components/authentication/localstorage";
@@ -28,8 +29,13 @@ const Transactions: NextPage = () => {
 	const handleCloseNotes = () => setShowModalNotes(false);
 	const handleShowNotes = () => setShowModalNotes(true);
 
-	//M
+	
 
+	// success and error alerts.
+	const [buySellError, setBuySellError] = useState(false);
+	const [buySellSuccess, setBuySellSuccess] = useState(false);
+
+	//M
 	const [zarBalance, setZarBalance] = useState<number>(0);
 	const [transactionsWebsite, setTransactionsWebsite] = useState([]);
 	const { register, handleSubmit } = useForm();
@@ -128,6 +134,17 @@ const Transactions: NextPage = () => {
 			notes: newNotes,
 		};
 
+		if(orderObject.ordertype == "buy" && zarBalance < orderObject.amount ){
+			// means that the user is trying to buy more than they can afford
+			handleClose();
+			setBuySellError(true);
+			return;
+		}else{
+			// no errors for user
+			handleClose();
+			setBuySellSuccess(true);
+		}
+
 		console.log(orderObject);
 
 		Axios.post(`http://localhost:8024/transactionWebsite`, orderObject)
@@ -146,6 +163,29 @@ const Transactions: NextPage = () => {
 			<br />
 
 			<Container>
+			{
+				// alert area:
+				buySellError ? (
+					<AlertDismissible
+						color="danger"
+						information="There is an error with your transaction, make sure you have enough money to Buy, or you have enough Notes to Sell!"
+					></AlertDismissible>
+				) : (
+					""
+				)
+			}
+			{
+				// alert area:
+				buySellSuccess ? (
+					<AlertDismissible
+						color="success"
+						information="You have successfully made a transaction."
+					></AlertDismissible>
+				) : (
+					""
+				)
+			}
+
 				<Row>
 					<Col md="6">
 						<Card className={styles.zarBalanceCardStyle}>

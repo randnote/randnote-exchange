@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import MainFooter from "./components/Footer";
+import Link from 'next/link';
+
 import {
 	Container,
 	Button,
@@ -48,7 +50,8 @@ const MainComponent: React.FC = () => {
 							will let you deposit fake money despite the fields
 							not working correctly.
 						</p>
-						<Button className={styles.mainButton}>Free Demo</Button>
+						<Link href="/signin"><Button className={styles.mainButton}>Free Demo</Button></Link>
+						
 					</div>
 
 					<div className={`${styles.colRight} col-md-6 col-sm-12`}>
@@ -56,7 +59,7 @@ const MainComponent: React.FC = () => {
 							className={styles.image}
 							src={MainImage}
 							alt="Picture of the author"
-							
+
 							// blurDataURL="data:..." automatically provided
 							// placeholder="blur" // Optional blur-up while loading
 						/>
