@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { FormGroup, Label } from "reactstrap";
 import socketIOClient from "socket.io-client";
 import { transcode } from "buffer";
+import SendNotesModal from "./components/transactions/transactionsSendNotes";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 // styles imports:
@@ -24,7 +25,7 @@ const Transactions: NextPage = () => {
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
 
-	// Send notes modal:
+
 	const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
 	const handleCloseNotes = () => setShowModalNotes(false);
 	const handleShowNotes = () => setShowModalNotes(true);
@@ -119,10 +120,6 @@ const Transactions: NextPage = () => {
 		// getNotesBalance();
 	}, []); // end of useEffect
 
-	const setTransactionWebsite = (userId: number) => {
-		// set all the transactions:
-	};
-
 	const sendToDepositPage = () => {
 		Router.push("/deposit");
 	};
@@ -188,6 +185,7 @@ const Transactions: NextPage = () => {
 				console.log(err);
 			});
 	};
+
 
 	return (
 		<div>
@@ -356,8 +354,10 @@ const Transactions: NextPage = () => {
 							<thead className="table-success">
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Type</th> 
-									<th scope="col"><i>Notes</i></th>
+									<th scope="col">Type</th>
+									<th scope="col">
+										<i>Notes</i>
+									</th>
 									<th scope="col">To/From Address</th>
 									<th scope="col">Timestamp</th>
 								</tr>
@@ -494,60 +494,9 @@ const Transactions: NextPage = () => {
 				</form>
 			</Modal>
 
-			<Modal show={showModalNotes} onHide={handleCloseNotes}>
-				<form>
-					<Modal.Header closeButton>
-						<Modal.Title>
-							You are about to send <i>NOTES</i> to another
-							address
-						</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<FormGroup>
-							<small>
-								Make sure that the address you have entered is
-								correct.
-							</small>
-						</FormGroup>
-
-						<FormGroup>
-							<Label for="">
-								<i>Notes</i>:
-							</Label>
-							<input
-								{...register("notes")}
-								type="text"
-								name="notes"
-								className="form-control"
-								placeholder="E.g 0.004 Notes"
-							/>
-						</FormGroup>
-
-						<FormGroup>
-							<Label for="">
-								<i>Address</i>:
-							</Label>
-							<input
-								{...register("address")}
-								type="text"
-								name="address"
-								className="form-control"
-								placeholder="Copy paste in the addresss you want to send to"
-							/>
-						</FormGroup>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleClose}>
-							Close
-						</Button>
-						<Button variant="outline-success">
-							Send <i>NOTES</i>
-						</Button>
-					</Modal.Footer>
-				</form>
-			</Modal>
+			{/* <SendNotesModal></SendNotesModal> */}
 		</div>
 	);
-};
+}
 
 export default Transactions;
