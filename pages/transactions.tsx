@@ -25,10 +25,10 @@ const Transactions: NextPage = () => {
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
 
-
-	const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
-	const handleCloseNotes = () => setShowModalNotes(false);
-	const handleShowNotes = () => setShowModalNotes(true);
+	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
+	// const handleCloseNotes = () => setShowModalNotes(false);
+	// const handleShowNotes = () => setShowModalNotes(true);
+	
 
 	// success and error alerts.
 	const [buySellError, setBuySellError] = useState(false);
@@ -179,13 +179,17 @@ const Transactions: NextPage = () => {
 		Axios.post(`http://localhost:8024/transactionWebsite`, orderObject)
 			.then((res) => {
 				console.log("Transaction made");
-				handleCloseNotes();
+				// handleCloseNotes();
+				handleClose()
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
+	const handleCallExternalModal = () =>{
+		
+	}
 
 	return (
 		<div>
@@ -278,12 +282,13 @@ const Transactions: NextPage = () => {
 									</Col>
 
 									<Col md="6">
+									
 										<Button
 											className={
 												styles.sendNotesButtonStyle
 											}
 											variant="outline-success"
-											onClick={handleShowNotes}
+											onClick={handleCallExternalModal}
 										>
 											Send <i>NOTES</i> to another user.
 										</Button>
@@ -494,9 +499,9 @@ const Transactions: NextPage = () => {
 				</form>
 			</Modal>
 
-			{/* <SendNotesModal></SendNotesModal> */}
+			<SendNotesModal></SendNotesModal>
 		</div>
 	);
-}
+};
 
 export default Transactions;
