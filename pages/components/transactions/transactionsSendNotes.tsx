@@ -14,12 +14,12 @@ import socketIOClient from "socket.io-client";
 import { transcode } from "buffer";
 const ENDPOINT = "http://127.0.0.1:8024";
 
-
-
 const SendNotesModal = (props: any): any => {
 	// Send notes modal:
-	const [showModalTranscationNotes, setShowModalTransactionNotes] = useState<boolean>(false);
-	const handleCloseTransactionNotes = () => setShowModalTransactionNotes(false);
+	const [showModalTranscationNotes, setShowModalTransactionNotes] =
+		useState<boolean>(false);
+	const handleCloseTransactionNotes = () =>
+		setShowModalTransactionNotes(false);
 	const handleShowTransactionNotes = () => setShowModalTransactionNotes(true);
 
 	const { register, handleSubmit } = useForm();

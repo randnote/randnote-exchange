@@ -28,7 +28,6 @@ const Transactions: NextPage = () => {
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
 	// const handleCloseNotes = () => setShowModalNotes(false);
 	// const handleShowNotes = () => setShowModalNotes(true);
-	
 
 	// success and error alerts.
 	const [buySellError, setBuySellError] = useState(false);
@@ -180,16 +179,16 @@ const Transactions: NextPage = () => {
 			.then((res) => {
 				console.log("Transaction made");
 				// handleCloseNotes();
-				handleClose()
+				handleClose();
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
-	const handleCallExternalModal = () =>{
-		
-	}
+	const handleCallExternalModal = () => {
+		//
+	};
 
 	return (
 		<div>
@@ -282,7 +281,6 @@ const Transactions: NextPage = () => {
 									</Col>
 
 									<Col md="6">
-									
 										<Button
 											className={
 												styles.sendNotesButtonStyle
