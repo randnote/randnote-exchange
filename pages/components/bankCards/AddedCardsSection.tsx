@@ -9,6 +9,7 @@ import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
 import { AlertDismissible } from "../alerts/dismissableAlerts";
 // import fetch from 'node-fetch';
+import { localstorageUserType } from "../authentication/localstorage";
 import { copyFileSync } from "fs";
 
 export interface depositType {
@@ -43,24 +44,34 @@ const AddedCardsSection: React.FC = (props: any) => {
 	const handleShow = () => setShowModal(true);
 
 	useEffect(() => {
-		const callApi = async () => {
+		const getCards = async () => {
 			let user = await GetLocalStorage("randnoteUser");
 			Axios.get(`http://localhost:8024/cards/${user.id}`)
-				.then((res) => {
-					if (res.status === 200) {
-						setCards(res.data.result);
-						setUser(user);
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+			.then((res) => {
+				if (res.status === 200) {
+					setCards(res.data.result);
+					setUser(user);
+
+					// call another api to set the Zar balance
+					Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
+					.then(async (res) => {
+						await setZarBalance(res.data.balance);
+						
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		};
-		callApi();
+
+		getCards();
 	}, [cardSelected]);
 
 	const handleDeposit = async (cardObject: any) => {
-		// set the state with the card selected:
 		setCardSelected(cardObject);
 		handleShow();
 	};
