@@ -47,25 +47,24 @@ const AddedCardsSection: React.FC = (props: any) => {
 		const getCards = async () => {
 			let user = await GetLocalStorage("randnoteUser");
 			Axios.get(`http://localhost:8024/cards/${user.id}`)
-			.then((res) => {
-				if (res.status === 200) {
-					setCards(res.data.result);
-					setUser(user);
+				.then((res) => {
+					if (res.status === 200) {
+						setCards(res.data.result);
+						setUser(user);
 
-					// call another api to set the Zar balance
-					Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
-					.then(async (res) => {
-						await setZarBalance(res.data.balance);
-						
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+						// call another api to set the Zar balance
+						Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
+							.then(async (res) => {
+								await setZarBalance(res.data.balance);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		};
 
 		getCards();

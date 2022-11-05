@@ -356,16 +356,13 @@ const Transactions: NextPage = () => {
 							<thead className="table-success">
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Order type</th>
-									<th scope="col">ZAR amount</th>
-									<th scope="col">@ Price</th>
-									<th scope="col">
-										<i>Notes</i>
-									</th>
+									<th scope="col">Type</th> 
+									<th scope="col"><i>Notes</i></th>
+									<th scope="col">To/From Address</th>
 									<th scope="col">Timestamp</th>
 								</tr>
 							</thead>
-							<tbody>
+							{/* <tbody>
 								{websiteTransactionsArray.length > 0 ? (
 									websiteTransactionsArray.map(
 										(transaction: any) => (
@@ -373,7 +370,7 @@ const Transactions: NextPage = () => {
 												<td>{transaction.id}</td>
 												<td>{transaction.ordertype}</td>
 												<td>{transaction.amount}</td>
-												<td>{transaction.price}</td>
+												<td>{transaction.timestamp}</td>
 												<td>{transaction.notes}</td>
 												<td>{transaction.timestamp}</td>
 											</tr>
@@ -384,7 +381,7 @@ const Transactions: NextPage = () => {
 										<td>nothing</td>
 									</tr>
 								)}
-							</tbody>
+							</tbody> */}
 						</table>
 					</Tab>
 				</Tabs>
