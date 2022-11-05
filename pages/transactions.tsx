@@ -93,7 +93,8 @@ const Transactions: NextPage = () => {
 							)
 								.then((res) => {
 									if (res.status == 200) {
-										console.log(res);
+										// console.log(res.data.balance);
+										setNotesBalance(res.data.balance)
 									}
 								})
 								.catch((err) => {
@@ -259,7 +260,10 @@ const Transactions: NextPage = () => {
 											<i>
 												<b>N</b>
 											</i>{" "}
-											29293.000023
+											{
+												notesBalance
+											}
+											
 										</Card.Text>
 									</Col>
 								</Row>
