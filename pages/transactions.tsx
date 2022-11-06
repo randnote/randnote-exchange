@@ -22,7 +22,15 @@ import styles from "../styles/transactions.module.scss";
 const Transactions: NextPage = () => {
 	// Buy/Sell notes modal
 	const [showModal, setShowModal] = useState<boolean>(false);
-	const handleClose = () => setShowModal(false);
+	const handleClose = () => {
+		setShowModal(false)
+		// setOrder({ // reset
+
+		// 	orderType: "buy",
+		// 	zarAmount: 0,
+		// 	notes: 0
+		// })
+	}
 	const handleShow = () => setShowModal(true);
 
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
@@ -124,7 +132,7 @@ const Transactions: NextPage = () => {
 	};
 
 	const onChangeOrderAmount = (value: any) => {
-		let calcualtedNotes = price / value;
+		let calcualtedNotes = value / price;
 		let newOrder = {
 			orderType: order.orderType,
 			zarAmount: value,
@@ -148,6 +156,12 @@ const Transactions: NextPage = () => {
 			zarAmount: order.zarAmount,
 			notes: order.notes,
 		};
+		
+		setOrder({
+			orderType: "buy",
+			zarAmount: 0,
+			notes: 0
+		})
 		setOrder(newOrder);
 	};
 
@@ -165,11 +179,22 @@ const Transactions: NextPage = () => {
 		if (orderObject.ordertype == "buy" && zarBalance < orderObject.amount) {
 			// means that the user is trying to buy more than they can afford
 			handleClose();
+
 			setBuySellError(true);
+			setOrder({ // we reset the order to 0
+				orderType: "buy",
+				zarAmount: 0,
+				notes: 0
+			})
 			return;
 		} else {
 			// no errors for user
 			handleClose();
+			setOrder({ // we reset the order to 0
+				orderType: "buy",
+				zarAmount: 0,
+				notes: 0
+			})
 			setBuySellSuccess(true);
 		}
 
