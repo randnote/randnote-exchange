@@ -23,14 +23,14 @@ const Transactions: NextPage = () => {
 	// Buy/Sell notes modal
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const handleClose = () => {
-		setShowModal(false)
+		setShowModal(false);
 		// setOrder({ // reset
 
 		// 	orderType: "buy",
 		// 	zarAmount: 0,
 		// 	notes: 0
 		// })
-	}
+	};
 	const handleShow = () => setShowModal(true);
 
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
@@ -156,12 +156,12 @@ const Transactions: NextPage = () => {
 			zarAmount: order.zarAmount,
 			notes: order.notes,
 		};
-		
+
 		setOrder({
 			orderType: "buy",
 			zarAmount: 0,
-			notes: 0
-		})
+			notes: 0,
+		});
 		setOrder(newOrder);
 	};
 
@@ -181,20 +181,22 @@ const Transactions: NextPage = () => {
 			handleClose();
 
 			setBuySellError(true);
-			setOrder({ // we reset the order to 0
+			setOrder({
+				// we reset the order to 0
 				orderType: "buy",
 				zarAmount: 0,
-				notes: 0
-			})
+				notes: 0,
+			});
 			return;
 		} else {
 			// no errors for user
 			handleClose();
-			setOrder({ // we reset the order to 0
+			setOrder({
+				// we reset the order to 0
 				orderType: "buy",
 				zarAmount: 0,
-				notes: 0
-			})
+				notes: 0,
+			});
 			setBuySellSuccess(true);
 		}
 
@@ -327,7 +329,7 @@ const Transactions: NextPage = () => {
 
 			<Container>
 				<Tabs
-					defaultActiveKey="profile"
+					defaultActiveKey="websiteTransactions"
 					id="uncontrolled-tab-example"
 					className="mb-3"
 				>
@@ -336,7 +338,7 @@ const Transactions: NextPage = () => {
 						title="Website Transactions"
 					>
 						<table
-							className={` table table-bordered border-default ${styles.stylesTable}`}
+							className={` table table-bordered border-default  ${styles.stylesTable}`}
 						>
 							<thead className="table-success">
 								<tr>
