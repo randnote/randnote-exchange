@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { FormGroup, Label } from "reactstrap";
 import socketIOClient from "socket.io-client";
 import { transcode } from "buffer";
-import SendNotesModal from "./components/transactions/transactionsSendNotes";
+// import SendNotesModal from "./components/transactions/transactionsSendNotes";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 // styles imports:
@@ -24,14 +24,13 @@ const Transactions: NextPage = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const handleClose = () => {
 		setShowModal(false);
-		// setOrder({ // reset
-
-		// 	orderType: "buy",
-		// 	zarAmount: 0,
-		// 	notes: 0
-		// })
 	};
 	const handleShow = () => setShowModal(true);
+
+	// ----------------------------------------------
+	const [showModal_SendNotes, setShowModal_SendNotes] = useState<boolean>(false);
+	const handleShowSendNotesModal = () =>  setShowModal_SendNotes(true);
+	// -------------------------------------------------------------
 
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
 	// const handleCloseNotes = () => setShowModalNotes(false);
@@ -313,7 +312,7 @@ const Transactions: NextPage = () => {
 												styles.sendNotesButtonStyle
 											}
 											variant="outline-success"
-											onClick={handleCallExternalModal}
+											onClick={handleShowSendNotesModal}
 										>
 											Send <i>NOTES</i> to another user.
 										</Button>
@@ -524,7 +523,68 @@ const Transactions: NextPage = () => {
 				</form>
 			</Modal>
 
-			<SendNotesModal></SendNotesModal>
+			{/* This is a modal that allows users to send Notes to one another */}
+			<Modal
+				show={showModal_SendNotes}
+				onHide={closeModal_SendNotes}
+			>
+				<form onSubmit={handleSubmit(sendNotes)}>
+					<Modal.Header closeButton>
+						<Modal.Title>
+							You are about to send <i>NOTES</i> to another address
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<FormGroup>
+							<small>
+								Make sure that the address you have entered is
+								correct.
+							</small>
+						</FormGroup>
+
+						<FormGroup>
+							<Label for="">
+								<i>Notes</i>:
+							</Label>
+							<input
+								{...register("notes")}
+								type="text"
+								name="notes"
+								className="form-control"
+								placeholder="E.g 0.004 Notes"
+							/>
+						</FormGroup>
+
+						<FormGroup>
+							<Label for="">
+								<i>Address</i>:
+							</Label>
+							<input
+								{...register("address")}
+								type="text"
+								name="address"
+								className="form-control"
+								placeholder="Copy paste in the addresss you want to send to"
+							/>
+						</FormGroup>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button
+							variant="secondary"
+							onClick={handleCloseTransactionNotes}
+						>
+							Close
+						</Button>
+						<Button
+							variant="outline-success"
+							type="submit"
+							value="submit"
+						>
+							Send <i>NOTES</i>
+						</Button>
+					</Modal.Footer>
+				</form>
+			</Modal>
 		</div>
 	);
 };

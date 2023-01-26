@@ -54,67 +54,7 @@ const SendNotesModal = (props: any): any => {
 	};
 
 	return (
-		<Modal
-			show={showModalTranscationNotes}
-			onHide={handleCloseTransactionNotes}
-		>
-			<form onSubmit={handleSubmit(sendNotes)}>
-				<Modal.Header closeButton>
-					<Modal.Title>
-						You are about to send <i>NOTES</i> to another address
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<FormGroup>
-						<small>
-							Make sure that the address you have entered is
-							correct.
-						</small>
-					</FormGroup>
-
-					<FormGroup>
-						<Label for="">
-							<i>Notes</i>:
-						</Label>
-						<input
-							{...register("notes")}
-							type="text"
-							name="notes"
-							className="form-control"
-							placeholder="E.g 0.004 Notes"
-						/>
-					</FormGroup>
-
-					<FormGroup>
-						<Label for="">
-							<i>Address</i>:
-						</Label>
-						<input
-							{...register("address")}
-							type="text"
-							name="address"
-							className="form-control"
-							placeholder="Copy paste in the addresss you want to send to"
-						/>
-					</FormGroup>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button
-						variant="secondary"
-						onClick={handleCloseTransactionNotes}
-					>
-						Close
-					</Button>
-					<Button
-						variant="outline-success"
-						type="submit"
-						value="submit"
-					>
-						Send <i>NOTES</i>
-					</Button>
-				</Modal.Footer>
-			</form>
-		</Modal>
+		
 	);
 };
 
