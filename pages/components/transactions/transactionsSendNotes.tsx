@@ -54,7 +54,7 @@ const SendNotesModal = (props: any): any => {
 	};
 
 	return (
-		
+		""
 	);
 };
 

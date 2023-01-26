@@ -27,10 +27,42 @@ const Transactions: NextPage = () => {
 	};
 	const handleShow = () => setShowModal(true);
 
-	// ----------------------------------------------
+	// ----------------------------------------------------------------------------------
 	const [showModal_SendNotes, setShowModal_SendNotes] = useState<boolean>(false);
-	const handleShowSendNotesModal = () =>  setShowModal_SendNotes(true);
-	// -------------------------------------------------------------
+	
+	const handleShowSendNotesModal = () => setShowModal_SendNotes(true);
+	const closeModal_SendNotes = () => setShowModal_SendNotes(false);
+
+	// this function is what gets called when the users clicks "send notes" on the modal ...
+	const sendNotes = (data: any) => {
+		// handleCloseNotes() // close the modal
+		// const callApi = async () => {
+		// 	let info: any = await GetLocalStorage(
+		// 		"randnoteUser"
+		// 	); // this; because we need the logged in users ID
+		// 	info.privateKey = privateKey; // add keys to the objects
+		// 	info.publicKey = publicKey;
+		// 	console.log(info)
+		// console.log(data)
+		// now we use these keys to get the notes balance in the blockchain:
+		// 	Axios.get(
+		// 		`http://localhost:8033/balance/${res.data[0].publicKey}`
+		// 	)
+		// 		.then((res) => {
+		// 			if (res.status == 200) {
+		// 				// console.log(res.data.balance);
+		// 				setNotesBalance(res.data.balance);
+		// 			}
+		// 		})
+		// 		.catch((err) => {
+		// 			console.log(err);
+		// 		});
+		// })
+		// .catch((err) => {
+		// 	console.log(err);
+		// });
+	};
+	// ------------------------------------------------------------------------------
 
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
 	// const handleCloseNotes = () => setShowModalNotes(false);
@@ -524,14 +556,12 @@ const Transactions: NextPage = () => {
 			</Modal>
 
 			{/* This is a modal that allows users to send Notes to one another */}
-			<Modal
-				show={showModal_SendNotes}
-				onHide={closeModal_SendNotes}
-			>
+			<Modal show={showModal_SendNotes} onHide={closeModal_SendNotes}>
 				<form onSubmit={handleSubmit(sendNotes)}>
 					<Modal.Header closeButton>
 						<Modal.Title>
-							You are about to send <i>NOTES</i> to another address
+							You are about to send <i>NOTES</i> to another
+							address
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
@@ -571,7 +601,7 @@ const Transactions: NextPage = () => {
 					<Modal.Footer>
 						<Button
 							variant="secondary"
-							onClick={handleCloseTransactionNotes}
+							onClick={closeModal_SendNotes}
 						>
 							Close
 						</Button>
