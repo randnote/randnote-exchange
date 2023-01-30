@@ -12,6 +12,7 @@ import styles from "../../styles/Navbar.module.scss";
 
 export const AuthenticatedNavbar = (props: any) => {
 	const [isOpen, setIsOpen] = useState(true);
+	const [username , setUsername] = useState<string>("");
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 
@@ -19,8 +20,11 @@ export const AuthenticatedNavbar = (props: any) => {
 		if (localStorage) {
 			if (GetLocalStorage("randnoteUser") === null) {
 				setIsAuthenticated(false);
+				
 			} else {
 				setIsAuthenticated(true);
+				let data = JSON.parse(localStorage.randnoteUser)
+				setUsername(`${data.firstname} ${data.lastname}`)
 			}
 		}
 	}, []);
@@ -52,8 +56,21 @@ export const AuthenticatedNavbar = (props: any) => {
 						</Nav.Link>
 					</Nav>
 
-					{isAuthenticated ? (
-						""
+					{isAuthenticated && username ? (
+						
+								<Nav className="navbar-nav ms-auto">
+									<Nav.Link className="ms-auto">
+										<Link href="signin">
+											<button
+												className="btn "
+												// styles={AuthNavbarButtonStyles}
+												color=""
+											>
+												{username}
+											</button>
+										</Link>
+									</Nav.Link>
+								</Nav>
 					) : (
 						<Nav className="navbar-nav ms-auto">
 							<Nav.Link className="ms-auto">
@@ -78,6 +95,8 @@ export const AuthenticatedNavbar = (props: any) => {
 							</Nav.Link>
 						</Nav>
 					)}
+
+					
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
