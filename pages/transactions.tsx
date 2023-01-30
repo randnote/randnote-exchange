@@ -28,8 +28,9 @@ const Transactions: NextPage = () => {
 	const handleShow = () => setShowModal(true);
 
 	// ----------------------------------------------------------------------------------
-	const [showModal_SendNotes, setShowModal_SendNotes] = useState<boolean>(false);
-	
+	const [showModal_SendNotes, setShowModal_SendNotes] =
+		useState<boolean>(false);
+
 	const handleShowSendNotesModal = () => setShowModal_SendNotes(true);
 	const closeModal_SendNotes = () => setShowModal_SendNotes(false);
 
