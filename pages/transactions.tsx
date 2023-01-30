@@ -105,6 +105,7 @@ const Transactions: NextPage = () => {
 			Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
 				.then(async (res) => {
 					await setZarBalance(res.data.balance);
+					console.log(res.data.balance)
 					Axios.get(
 						`http://localhost:8024/transactionWebsite/${user.id}`
 					)
@@ -285,7 +286,7 @@ const Transactions: NextPage = () => {
 								<Card.Title>ZAR balance</Card.Title>
 
 								<Card.Text>
-									{zarBalance ? (
+									{ (zarBalance !== undefined) ? ( // there is an issue here, coz js detects 0 as false...
 										<>{zarBalance}</>
 									) : (
 										<>Loading</>

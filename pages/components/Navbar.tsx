@@ -5,7 +5,7 @@ import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import {Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 
 // style imports:
@@ -57,16 +57,20 @@ export const AuthenticatedNavbar = (props: any) => {
 					</Nav>
 
 					{isAuthenticated && username ? (
-						
 						<Dropdown>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-						  {username}
-						</Dropdown.Toggle>
-				  
-						<Dropdown.Menu>
-						  <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
-						</Dropdown.Menu>
-					  </Dropdown>
+							<Dropdown.Toggle
+								variant="success"
+								id="dropdown-basic"
+							>
+								{username}
+							</Dropdown.Toggle>
+
+							<Dropdown.Menu>
+								<Dropdown.Item href="#/action-1">
+									Logout
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 					) : (
 						<Nav className="navbar-nav ms-auto">
 							<Nav.Link className="ms-auto">
