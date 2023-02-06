@@ -118,7 +118,11 @@ const AddedCardsSection: React.FC = (props: any) => {
 							<Card.Title>ZAR balance</Card.Title>
 
 							<Card.Text>
-								{zarBalance ? <>{zarBalance}</> : <>Loading</>}
+								{zarBalance !== undefined ? ( // there is an issue here, coz js detects 0 as false...
+									<>{zarBalance}</>
+								) : (
+									<>Loading</>
+								)}
 							</Card.Text>
 						</Card.Body>
 					</Card>

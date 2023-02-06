@@ -27,7 +27,7 @@ const Transactions: NextPage = () => {
 	};
 	const handleShow = () => setShowModal(true);
 
-	// ----------------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------------------
 	const [showModal_SendNotes, setShowModal_SendNotes] =
 		useState<boolean>(false);
 
@@ -36,34 +36,32 @@ const Transactions: NextPage = () => {
 
 	// this function is what gets called when the users clicks "send notes" on the modal ...
 	const sendNotes = (data: any) => {
-		// handleCloseNotes() // close the modal
-		// const callApi = async () => {
-		// 	let info: any = await GetLocalStorage(
-		// 		"randnoteUser"
-		// 	); // this; because we need the logged in users ID
-		// 	info.privateKey = privateKey; // add keys to the objects
-		// 	info.publicKey = publicKey;
-		// 	console.log(info)
-		// console.log(data)
-		// now we use these keys to get the notes balance in the blockchain:
-		// 	Axios.get(
-		// 		`http://localhost:8033/balance/${res.data[0].publicKey}`
-		// 	)
-		// 		.then((res) => {
-		// 			if (res.status == 200) {
-		// 				// console.log(res.data.balance);
-		// 				setNotesBalance(res.data.balance);
-		// 			}
-		// 		})
-		// 		.catch((err) => {
-		// 			console.log(err);
-		// 		});
-		// })
-		// .catch((err) => {
-		// 	console.log(err);
-		// });
-	};
-	// ------------------------------------------------------------------------------
+		closeModal_SendNotes() // close the modal
+
+		const callApi = async () => {
+			let info: any = await GetLocalStorage(
+				"randnoteUser"
+			); // this; because we need the logged in users ID
+			info.privateKey = privateKey; // add keys to the objects
+			info.publicKey = publicKey;
+			console.log(info)
+			console.log(data)
+		}
+		
+		//now we use these keys to get the notes balance in the blockchain:
+		Axios.get(
+			`http://localhost:8033/balance/${res.data[0].publicKey}`
+		).then((res) => {
+			if (res.status == 200) {
+				// console.log(res.data.balance);
+				setNotesBalance(res.data.balance);
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	}
+	// -------------------------------------------------------------------------------------------
 
 	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
 	// const handleCloseNotes = () => setShowModalNotes(false);
@@ -105,7 +103,7 @@ const Transactions: NextPage = () => {
 			Axios.get(`http://localhost:8024/zarbalance/${user.id}`)
 				.then(async (res) => {
 					await setZarBalance(res.data.balance);
-					console.log(res.data.balance)
+					console.log(res.data.balance);
 					Axios.get(
 						`http://localhost:8024/transactionWebsite/${user.id}`
 					)
@@ -128,6 +126,7 @@ const Transactions: NextPage = () => {
 								setPublicKey(res.data[0].publicKey);
 							}
 
+							// I have not added NotesBalance as a route:
 							// now we use these keys to get the notes balance in the blockchain:
 							Axios.get(
 								`http://localhost:8033/balance/${res.data[0].publicKey}`
@@ -286,7 +285,7 @@ const Transactions: NextPage = () => {
 								<Card.Title>ZAR balance</Card.Title>
 
 								<Card.Text>
-									{ (zarBalance !== undefined) ? ( // there is an issue here, coz js detects 0 as false...
+									{zarBalance !== undefined ? ( // there is an issue here, coz js detects 0 as false...
 										<>{zarBalance}</>
 									) : (
 										<>Loading</>
@@ -318,10 +317,21 @@ const Transactions: NextPage = () => {
 								<Row>
 									<Col md="12">
 										<Card.Text>
-											<i>
-												<b>N</b>
-											</i>{" "}
-											{notesBalance}
+											
+											
+											{notesBalance !== undefined ? (
+												<>
+													<i>
+														<b>N</b>
+													</i>
+													&nbsp;
+													{notesBalance}
+												</> 
+												
+											) : (
+												<>Loading</>
+											)}
+
 										</Card.Text>
 									</Col>
 								</Row>
