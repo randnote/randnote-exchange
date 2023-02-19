@@ -35,12 +35,12 @@ const Transactions: NextPage = () => {
 	const closeModal_SendNotes = () => setShowModal_SendNotes(false);
 
 	const [sendNotesError, setSendNotesError] = useState<boolean>(false);
-	const [successfulNotesTransmission, setSuccessfulNotesTransmission] = useState<boolean>(false);
+	const [successfulNotesTransmission, setSuccessfulNotesTransmission] =
+		useState<boolean>(false);
 
 	// this function is what gets called when the users clicks "send notes" on the modal ...
 	const sendNotes = (data: any) => {
 		closeModal_SendNotes(); // close the modal
-		
 
 		const callApi = async () => {
 			let info: any = await GetLocalStorage("randnoteUser"); // this; because we need the logged in users ID
@@ -48,53 +48,56 @@ const Transactions: NextPage = () => {
 			info.publicKey = publicKey;
 			// console.log(info);
 			// console.log(data);
-			
-			
+
 			//now we use these keys to get the notes balance in the blockchain:
 			Axios.get(`http://localhost:8033/balance/${publicKey}`)
-			.then((res) => {
-				if (res.status == 200) {
-					console.log(res.data.balance);
-					// if(res.data.balance < data.notes){
-					// 	// return error here
-					// 	setSendNotesError(true);
-					// 	setSuccessfulNotesTransmission(false)
-					// }else if(res.data.balance == 0){
-					// 	setSendNotesError(true);
-					// 	setSuccessfulNotesTransmission(false)
-					// }else{
+				.then((res) => {
+					if (res.status == 200) {
+						console.log(res.data.balance);
+						// if(res.data.balance < data.notes){
+						// 	// return error here
+						// 	setSendNotesError(true);
+						// 	setSuccessfulNotesTransmission(false)
+						// }else if(res.data.balance == 0){
+						// 	setSendNotesError(true);
+						// 	setSuccessfulNotesTransmission(false)
+						// }else{
 						setSendNotesError(false);
 
 						let sendNotesObject = {
-							fromAddress:  info.publicKey,
+							fromAddress: info.publicKey,
 							toAddress: data.address,
 							amount: data.notes,
-							fromAddressPrivateKey: info.privateKey
-						}
+							fromAddressPrivateKey: info.privateKey,
+						};
 						// console.log(sendNotesObject)
 						let snack = JSON.stringify(sendNotesObject);
 
-						Axios.post(`http://localhost:8033/transaction`, {obj: snack})
+						Axios.post(`http://localhost:8033/transaction`, {
+							obj: snack,
+						})
 							.then((res) => {
-								console.log(sendNotesObject)
-								if(res.status == 200){
-									console.log("The transaction is successful")
-									setSuccessfulNotesTransmission(true)
+								console.log(sendNotesObject);
+								if (res.status == 200) {
+									console.log(
+										"The transaction is successful"
+									);
+									setSuccessfulNotesTransmission(true);
 								}
-								
-							}).catch((err) => {
+							})
+							.catch((err) => {
 								console.log(err);
 							});
 
-					// }
-				}
-			}).catch((err) => {
-				console.log(err);
-			});
+						// }
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		};
 
-		
-		callApi()
+		callApi();
 	};
 	// -------------------------------------------------------------------------------------------
 
@@ -336,6 +339,19 @@ const Transactions: NextPage = () => {
 						""
 					)
 				}
+
+				<Row>
+					<div className="card">
+						<div className="card-body">
+							{
+								publicKey ? (<>Your public address is: {publicKey} </>) : <></>
+							}
+							
+						</div>
+					</div>
+
+					
+				</Row>
 
 				<Row>
 					<Col md="6">
