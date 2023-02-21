@@ -533,7 +533,7 @@ const Transactions: NextPage = () => {
 												<td>{transaction.type}</td>
 												<td>{transaction.notes}</td>
 												<td>{transaction.toFrom}</td>
-												<td>{1}</td>
+												<td>{5}</td>
 											</tr>
 										)
 									)
