@@ -120,6 +120,8 @@ const Transactions: NextPage = () => {
 	const [price, setPrice] = useState<number>(0);
 	const [orderType, setOrderType] = useState<string>("");
 	const [websiteTransactionsArray, setWebsiteTransactionsrray] = useState([]);
+	const [userBlockchainTransactions, setUserBlockchainTransactions] =
+		useState([]);
 
 	const [order, setOrder] = useState({
 		orderType: "buy",
@@ -148,6 +150,7 @@ const Transactions: NextPage = () => {
 						.then((res) => {
 							if (res.status == 200) {
 								setWebsiteTransactionsrray(res.data.data);
+								console.log(res.data.data);
 							}
 						})
 						.catch((err) => {
@@ -174,6 +177,20 @@ const Transactions: NextPage = () => {
 										// console.log(res.data.balance);
 										setNotesBalance(res.data.balance);
 									}
+								})
+								.catch((err) => {
+									console.log(err);
+								});
+
+							// ALso, i use the keys to display the users blockchain transactions...
+							Axios.get(
+								`http://localhost:8033/transactionsPerUser/${res.data[0].publicKey}`
+							)
+								.then(async (res) => {
+									setUserBlockchainTransactions(
+										res.data.transactions
+									);
+									console.log(res.data.transactions);
 								})
 								.catch((err) => {
 									console.log(err);
@@ -481,7 +498,9 @@ const Transactions: NextPage = () => {
 									)
 								) : (
 									<tr>
-										<td>nothing</td>
+										<td>
+											You have made no transactions yet.
+										</td>
 									</tr>
 								)}
 							</tbody>
@@ -505,17 +524,16 @@ const Transactions: NextPage = () => {
 									<th scope="col">Timestamp</th>
 								</tr>
 							</thead>
-							{/* <tbody>
-								{websiteTransactionsArray.length > 0 ? (
+							<tbody>
+								{userBlockchainTransactions.length > 0 ? (
 									websiteTransactionsArray.map(
-										(transaction: any) => (
-											<tr key={transaction.id}>
-												<td>{transaction.id}</td>
-												<td>{transaction.ordertype}</td>
-												<td>{transaction.amount}</td>
-												<td>{transaction.timestamp}</td>
+										(transaction: any, i) => (
+											<tr key={i}>
+												<td>{i + 1}</td>
+												<td>{transaction.type}</td>
 												<td>{transaction.notes}</td>
-												<td>{transaction.timestamp}</td>
+												<td>{transaction.toFrom}</td>
+												<td>{1}</td>
 											</tr>
 										)
 									)
@@ -524,7 +542,7 @@ const Transactions: NextPage = () => {
 										<td>nothing</td>
 									</tr>
 								)}
-							</tbody> */}
+							</tbody>
 						</table>
 					</Tab>
 				</Tabs>
