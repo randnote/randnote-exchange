@@ -120,7 +120,8 @@ const Transactions: NextPage = () => {
 	const [price, setPrice] = useState<number>(0);
 	const [orderType, setOrderType] = useState<string>("");
 	const [websiteTransactionsArray, setWebsiteTransactionsrray] = useState([]);
-	const [userBlockchainTransactions, setUserBlockchainTransactions] = useState([]);
+	const [userBlockchainTransactions, setUserBlockchainTransactions] =
+		useState([]);
 
 	const [order, setOrder] = useState({
 		orderType: "buy",
@@ -128,7 +129,7 @@ const Transactions: NextPage = () => {
 		notes: 0,
 	});
 
-	useEffect(() => { 
+	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			// setPrice(0)
@@ -149,7 +150,7 @@ const Transactions: NextPage = () => {
 						.then((res) => {
 							if (res.status == 200) {
 								setWebsiteTransactionsrray(res.data.data);
-								console.log(res.data.data)
+								console.log(res.data.data);
 							}
 						})
 						.catch((err) => {
@@ -182,15 +183,18 @@ const Transactions: NextPage = () => {
 								});
 
 							// ALso, i use the keys to display the users blockchain transactions...
-							Axios.get(`http://localhost:8033/transactionsPerUser/${res.data[0].publicKey}`)
+							Axios.get(
+								`http://localhost:8033/transactionsPerUser/${res.data[0].publicKey}`
+							)
 								.then(async (res) => {
-								setUserBlockchainTransactions(res.data.transactions);	
-								console.log(res.data.transactions)
+									setUserBlockchainTransactions(
+										res.data.transactions
+									);
+									console.log(res.data.transactions);
 								})
 								.catch((err) => {
 									console.log(err);
 								});
-							 
 						})
 						.catch((err) => {
 							console.log(err);
@@ -199,12 +203,7 @@ const Transactions: NextPage = () => {
 				.catch((err) => {
 					console.log(err);
 				});
-
-		
-
-		}
-
-		
+		};
 
 		// to get the notes balance, we first start by getting the users keys and then use those to get balance
 		const getNotesBalance = () => {
@@ -499,7 +498,9 @@ const Transactions: NextPage = () => {
 									)
 								) : (
 									<tr>
-										<td>You have made no transactions yet.</td>
+										<td>
+											You have made no transactions yet.
+										</td>
 									</tr>
 								)}
 							</tbody>
@@ -524,11 +525,11 @@ const Transactions: NextPage = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{userBlockchainTransactions.length > 0 ? 
+								{userBlockchainTransactions.length > 0 ? (
 									websiteTransactionsArray.map(
-										(transaction:any, i) => (
+										(transaction: any, i) => (
 											<tr key={i}>
-												<td>{i+1}</td>
+												<td>{i + 1}</td>
 												<td>{transaction.type}</td>
 												<td>{transaction.notes}</td>
 												<td>{transaction.toFrom}</td>
@@ -536,7 +537,7 @@ const Transactions: NextPage = () => {
 											</tr>
 										)
 									)
-								 : (
+								) : (
 									<tr>
 										<td>nothing</td>
 									</tr>
