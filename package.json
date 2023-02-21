@@ -21,7 +21,7 @@
     "buffer": "^6.0.3",
     "chart.js": "^3.7.1",
     "graceful-fs": "^4.2.10",
-    "next": "12",
+    "next": "^13.1.6",
     "next-images": "^1.8.1",
     "node-fetch": "^3.2.4",
     "pre-commit": "^1.2.2",

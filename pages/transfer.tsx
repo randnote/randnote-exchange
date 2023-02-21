@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 import { AuthenticatedNavbar } from "./components/Navbar";
 import {
@@ -19,7 +20,7 @@ const Transfer: NextPage = () => {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data: any) => {
-		Axios.post(`${process.env.REACT_APP_SERVER}/signup`, {
+		axios.post(`${process.env.REACT_APP_SERVER}/signup`, {
 			cardnumber: data.cardnumber,
 			details: data.details,
 			month: data.month,

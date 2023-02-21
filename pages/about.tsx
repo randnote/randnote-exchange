@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { Container, Button, Row, Col } from "reactstrap";
-import MainNavbar from "./components/Navbar";
+// import MainNavbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Dashboard: NextPage = () => {
