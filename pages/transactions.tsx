@@ -343,14 +343,13 @@ const Transactions: NextPage = () => {
 				<Row>
 					<div className="card">
 						<div className="card-body">
-							{
-								publicKey ? (<>Your public address is: {publicKey} </>) : <></>
-							}
-							
+							{publicKey ? (
+								<>Your public address is: {publicKey} </>
+							) : (
+								<></>
+							)}
 						</div>
 					</div>
-
-					
 				</Row>
 
 				<Row>
