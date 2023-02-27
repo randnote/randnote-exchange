@@ -287,7 +287,7 @@ const Transactions: NextPage = () => {
 			setBuySellSuccess(true);
 		}
 
-		console.log(orderObject);
+		// console.log(orderObject);
 
 		Axios.post(`http://localhost:8024/transactionWebsite`, orderObject)
 			.then((res) => {
