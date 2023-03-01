@@ -70,7 +70,7 @@ const Chart: NextPage = () => {
 			// setPrice(0)
 
 			setPrice(data.price);
-			console.log(data.price)
+			// console.log(data.price);
 
 			let price: number = data.price;
 			let arrayLabels: any = response.labels;
