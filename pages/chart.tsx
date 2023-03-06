@@ -50,6 +50,7 @@ export const options = {
 
 const Chart: NextPage = () => {
 	const [price, setPrice] = useState(0);
+	const [marketCap, setMarketCap] = useState(0);
 	const [priceMovementColor, setPriceMovementColor] = useState("black");
 	const [response, setResponse] = useState({
 		labels: [], // x axis- timestamps
@@ -79,6 +80,9 @@ const Chart: NextPage = () => {
 				`${data.time.hours}: ${data.time.minutes}: ${data.time.seconds}`
 			);
 			arrayPrices.push(data.price);
+			if(arrayPrices.length > 50){
+				arrayPrices.splice(0,10);
+			}
 
 			let newObj: any = {
 				labels: arrayLabels,
@@ -154,7 +158,7 @@ const Chart: NextPage = () => {
 						</Card>
 					</Col>
 
-					<Col>
+					{/* <Col>
 						<Card>
 							<Card.Body>
 								<Card.Title>
@@ -178,7 +182,7 @@ const Chart: NextPage = () => {
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>
+					</Col> */}
 				</Row>
 			</Container>
 
