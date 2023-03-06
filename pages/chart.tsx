@@ -5,6 +5,9 @@ import ChartComponent from "./components/charts/chartComponent";
 import { Container, Row, Col } from "reactstrap";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import { Line } from "react-chartjs-2";
+import axios from "axios";
+// var numeral = require('numeral');
+// import numeral from 'numeral'
 
 import MainFooter from "./components/Footer";
 import socketIOClient from "socket.io-client";
@@ -67,7 +70,7 @@ const Chart: NextPage = () => {
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
-		socket.on("FromAPI", (data) => {
+		socket.on("FromAPI", async(data) => {
 			// setPrice(0)
 
 			setPrice(data.price);
@@ -80,9 +83,11 @@ const Chart: NextPage = () => {
 				`${data.time.hours}: ${data.time.minutes}: ${data.time.seconds}`
 			);
 			arrayPrices.push(data.price);
-			if(arrayPrices.length > 50){
-				arrayPrices.splice(0,10);
+			if (arrayPrices.length > 50) {
+				arrayPrices.splice(0, 10);
 			}
+
+			
 
 			let newObj: any = {
 				labels: arrayLabels,
@@ -98,6 +103,7 @@ const Chart: NextPage = () => {
 			};
 
 			setResponse(newObj);
+			// getSupply();
 		});
 		console.log(`${price}... ${previousPrice.current}`);
 		if (price > previousPrice.current) {
@@ -108,6 +114,18 @@ const Chart: NextPage = () => {
 			setPriceMovementColor("black");
 		}
 		previousPrice.current = price;
+
+		
+		
+
+		// calculate the market cap:
+		// market cap:
+		
+		// let supply :any = await getSupply()
+		// console.log('supply is :'+ supply)
+		
+		// let marketcap: number = price * supply;
+		// setMarketCap(marketcap);
 	}, [price]);
 
 	return (
@@ -135,7 +153,10 @@ const Chart: NextPage = () => {
 												fontSize: "30px",
 											}}
 										>
-											${price.toFixed(2)}
+											{/* ${numeral( parseInt(price.toFixed(2)).format('0,0'))}
+											 */}
+											 wow
+											 {/* {numeral(parseInt(price.toFixed(2)))} */}
 										</span>
 									) : (
 										""
@@ -145,18 +166,18 @@ const Chart: NextPage = () => {
 						</Card>
 					</Col>
 
-					<Col>
+					{/* <Col>
 						<Card>
 							<Card.Body>
 								<Card.Title>Market cap</Card.Title>
 								<Card.Text>
 									<span style={{ color: "green" }}>
-										ZAR 123.00
+										{marketCap}
 									</span>
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>
+					</Col> */}
 
 					{/* <Col>
 						<Card>

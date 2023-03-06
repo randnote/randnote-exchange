@@ -24,6 +24,7 @@
     "next": "^13.1.6",
     "next-images": "^1.8.1",
     "node-fetch": "^3.2.4",
+    "numeral": "^2.0.6",
     "pre-commit": "^1.2.2",
     "prettier": "^2.4.1",
     "react": "^18.1.0",
