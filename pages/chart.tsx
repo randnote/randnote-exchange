@@ -148,10 +148,9 @@ const Chart: NextPage = () => {
 												fontSize: "30px",
 											}}
 										>
-											{/* ${numeral( parseInt(price.toFixed(2)).format('0,0'))}
-											 */}
-											wow
-											{/* {numeral(parseInt(price.toFixed(2)))} */}
+											${( parseInt(price.toFixed(2)))}
+											
+											
 										</span>
 									) : (
 										""
