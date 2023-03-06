@@ -70,7 +70,7 @@ const Chart: NextPage = () => {
 
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT);
-		socket.on("FromAPI", async(data) => {
+		socket.on("FromAPI", async (data) => {
 			// setPrice(0)
 
 			setPrice(data.price);
@@ -86,8 +86,6 @@ const Chart: NextPage = () => {
 			if (arrayPrices.length > 50) {
 				arrayPrices.splice(0, 10);
 			}
-
-			
 
 			let newObj: any = {
 				labels: arrayLabels,
@@ -115,15 +113,12 @@ const Chart: NextPage = () => {
 		}
 		previousPrice.current = price;
 
-		
-		
-
 		// calculate the market cap:
 		// market cap:
-		
+
 		// let supply :any = await getSupply()
 		// console.log('supply is :'+ supply)
-		
+
 		// let marketcap: number = price * supply;
 		// setMarketCap(marketcap);
 	}, [price]);
@@ -155,8 +150,8 @@ const Chart: NextPage = () => {
 										>
 											{/* ${numeral( parseInt(price.toFixed(2)).format('0,0'))}
 											 */}
-											 wow
-											 {/* {numeral(parseInt(price.toFixed(2)))} */}
+											wow
+											{/* {numeral(parseInt(price.toFixed(2)))} */}
 										</span>
 									) : (
 										""
