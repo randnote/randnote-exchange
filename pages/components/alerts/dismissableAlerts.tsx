@@ -33,4 +33,4 @@ const AlertDismissible = (props: alertProps) => {
 	);
 };
 
-export default AlertDismissible ;
+export default AlertDismissible;

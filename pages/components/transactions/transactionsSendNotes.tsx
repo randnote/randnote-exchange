@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Card, Modal, Button } from "react-bootstrap";
 import Axios from "axios";
-import AlertDismissible  from "../alerts/dismissableAlerts";
+import AlertDismissible from "../alerts/dismissableAlerts";
 import Router, { useRouter } from "next/router";
 import GetLocalStorage from "../authentication/localstorage";
 import { localstorageUserType } from "../authentication/localstorage";

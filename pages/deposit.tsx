@@ -7,7 +7,7 @@ import { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import validate from "./components/authentication/validate";
-import AlertDismissible  from "./components/alerts/dismissableAlerts";
+import AlertDismissible from "./components/alerts/dismissableAlerts";
 import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 import GetLocalStorage, {
 	localstorageUserType,

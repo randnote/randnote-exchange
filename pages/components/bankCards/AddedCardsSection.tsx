@@ -7,7 +7,7 @@ import { Tabs, Tab, Card, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import GetLocalStorage from "../authentication/localstorage";
-import AlertDismissible  from "../alerts/dismissableAlerts";
+import AlertDismissible from "../alerts/dismissableAlerts";
 // import fetch from 'node-fetch';
 import { localstorageUserType } from "../authentication/localstorage";
 import { copyFileSync } from "fs";
