@@ -62,9 +62,6 @@ const MainComponent: React.FC = () => {
 							className={styles.image}
 							src={MainImage}
 							alt="Picture of the author"
-
-							// blurDataURL="data:..." automatically provided
-							// placeholder="blur" // Optional blur-up while loading
 						/>
 					</div>
 				</Row>

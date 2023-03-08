@@ -11,4 +11,4 @@ const DisplayAlert = (props: alertProps) => {
 	return <Alert color={props.color}>{props.information}</Alert>;
 };
 
-export { DisplayAlert };
+export default DisplayAlert;

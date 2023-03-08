@@ -148,9 +148,7 @@ const Chart: NextPage = () => {
 												fontSize: "30px",
 											}}
 										>
-											${( parseInt(price.toFixed(2)))}
-											
-											
+											${parseInt(price.toFixed(2))}
 										</span>
 									) : (
 										""

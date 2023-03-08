@@ -57,6 +57,7 @@ export const AuthenticatedNavbar = (props: any) => {
 					</Nav>
 
 					{isAuthenticated && username ? (
+						// <></>
 						<Dropdown>
 							<Dropdown.Toggle
 								variant="success"
@@ -73,8 +74,8 @@ export const AuthenticatedNavbar = (props: any) => {
 						</Dropdown>
 					) : (
 						<Nav className="navbar-nav ms-auto">
-							<Nav.Link className="ms-auto">
-								<Link href="signin">
+							{/* <Nav.Link className="ms-auto"> THIS THING CAUSES HYDRATION ISSUES */}
+								<Link href="/signin">
 									<button
 										className="btn "
 										// styles={AuthNavbarButtonStyles}
@@ -84,7 +85,7 @@ export const AuthenticatedNavbar = (props: any) => {
 									</button>
 								</Link>
 
-								<Link href="signup">
+								<Link href="/signup">
 									<Button
 										style={AuthNavbarButtonStyles}
 										color="primary"
@@ -92,7 +93,7 @@ export const AuthenticatedNavbar = (props: any) => {
 										SignUp
 									</Button>
 								</Link>
-							</Nav.Link>
+							{/* </Nav.Link> */}
 						</Nav>
 					)}
 				</Navbar.Collapse>
@@ -119,3 +120,5 @@ const AuthNavbarButtonStyles = {
 	margin: "5px",
 	borderRadius: "10px",
 };
+
+export default AuthenticatedNavbar;

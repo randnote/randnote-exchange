@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
 import Axios from "axios";
-import { AlertDismissible } from "./components/alerts/dismissableAlerts";
+import  AlertDismissible  from "./components/alerts/dismissableAlerts";
 import Router, { useRouter } from "next/router";
 import GetLocalStorage from "./components/authentication/localstorage";
 import { localstorageUserType } from "./components/authentication/localstorage";
