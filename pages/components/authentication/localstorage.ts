@@ -8,36 +8,46 @@ export interface localstorageUserType {
 }
 
 const GetLocalStorage = (key: string) => {
-	let item: any = localStorage.getItem(key);
-	if (item !== null || undefined) {
-		let information: any = localStorage.getItem(key);
-		let localstorageData: any = JSON.parse(information);
-		return localstorageData;
-	} else {
-		return null;
-		// throw Error("Local storage key is undefined");
+	if (typeof window !== 'undefined') {
+		let item: any = localStorage.getItem(key);
+		if (item !== null || undefined) {
+			let information: any = localStorage.getItem(key);
+			let localstorageData: any = JSON.parse(information);
+			return localstorageData;
+		} else {
+			return null;
+			// throw Error("Local storage key is undefined");
+		}
 	}
+	  
+	
 };
 
 export const SetLocalStorage = (key: string, info: any) => {
-	localStorage.removeItem(key); // remove existing key
-	let data: any = "";
-	if (key == "randnoteUser") {
-		data = {
-			id: info.id,
-			firstname: info.firstname,
-			lastname: info.lastname,
-			email: info.email,
-		};
+	if (typeof window !== 'undefined') {
 
-		localStorage.setItem(key, JSON.stringify(data));
-	} else {
-		return Error("Storage key is undefined");
+		localStorage.removeItem(key); // remove existing key
+		let data: any = "";
+		if (key == "randnoteUser") {
+			data = {
+				id: info.id,
+				firstname: info.firstname,
+				lastname: info.lastname,
+				email: info.email,
+			};
+
+			localStorage.setItem(key, JSON.stringify(data));
+		} else {
+			return Error("Storage key is undefined");
+		}
 	}
 };
 
 export const DeleteLocalStorage = (key: string) => {
-	localStorage.removeItem(key);
+	if (typeof window !== 'undefined') {
+		localStorage.removeItem(key);
+	}
+	
 };
 
 export default GetLocalStorage;

@@ -7,7 +7,7 @@ import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
 // import MainNavbar from "./components/Navbar";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
-import DisplayAlert  from "./components/alerts/alerts";
+import DisplayAlert from "./components/alerts/alerts";
 
 // style imports:
 import styles from "../styles/Signin.module.scss";
