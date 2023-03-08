@@ -8,7 +8,7 @@ export interface localstorageUserType {
 }
 
 const GetLocalStorage = (key: string) => {
-	if (typeof window !== 'undefined') {
+	if (typeof window !== "undefined") {
 		let item: any = localStorage.getItem(key);
 		if (item !== null || undefined) {
 			let information: any = localStorage.getItem(key);
@@ -19,13 +19,10 @@ const GetLocalStorage = (key: string) => {
 			// throw Error("Local storage key is undefined");
 		}
 	}
-	  
-	
 };
 
 export const SetLocalStorage = (key: string, info: any) => {
-	if (typeof window !== 'undefined') {
-
+	if (typeof window !== "undefined") {
 		localStorage.removeItem(key); // remove existing key
 		let data: any = "";
 		if (key == "randnoteUser") {
@@ -44,10 +41,9 @@ export const SetLocalStorage = (key: string, info: any) => {
 };
 
 export const DeleteLocalStorage = (key: string) => {
-	if (typeof window !== 'undefined') {
+	if (typeof window !== "undefined") {
 		localStorage.removeItem(key);
 	}
-	
 };
 
 export default GetLocalStorage;
