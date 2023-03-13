@@ -12,7 +12,6 @@ import {
 	CardTitle,
 	CardText,
 } from "reactstrap";
-import ChartComponent from "./components/charts/chartComponent";
 import Image from "next/image";
 import MainImage from "../public/blocks.png";
 import Head from "next/head";
@@ -23,9 +22,6 @@ import { SiHiveBlockchain } from "react-icons/si";
 // styles imports:
 import styles from "../styles/Home.module.scss";
 
-interface Props {
-	text: string;
-}
 
 // Main section
 const MainComponent: React.FC = () => {
@@ -158,8 +154,5 @@ const Home: NextPage = () => {
 	);
 };
 
-const AboutComponentDiv = {
-	backgroundColor: "green",
-};
 
 export default Home;
