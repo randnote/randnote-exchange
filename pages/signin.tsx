@@ -99,7 +99,7 @@ const Signin: NextPage = () => {
 						</Button>
 						<br />
 						<Link href="signup">
-							Don't have an account yet? Signup here
+							Don&apos;t have an account yet? Signup here
 						</Link>
 					</form>
 				</Row>

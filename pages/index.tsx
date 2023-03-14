@@ -15,13 +15,11 @@ import {
 import Image from "next/image";
 import MainImage from "../public/blocks.png";
 import Head from "next/head";
-
 import { GrMoney } from "react-icons/gr";
 import { GiCycle } from "react-icons/gi";
 import { SiHiveBlockchain } from "react-icons/si";
 // styles imports:
 import styles from "../styles/Home.module.scss";
-
 
 // Main section
 const MainComponent: React.FC = () => {
@@ -153,6 +151,5 @@ const Home: NextPage = () => {
 		</div>
 	);
 };
-
 
 export default Home;

@@ -52,7 +52,7 @@ const Transfer: NextPage = () => {
 
 					<Row>
 						<Col md="12">
-							<h3>Receiver's Address</h3>
+							<h3>Receiver&apos;s Address</h3>
 						</Col>
 						<input
 							{...register("receiversAddressInput")}
