@@ -223,7 +223,7 @@ const AddedCardsSection: React.FC = (props: any) => {
 				<form onSubmit={handleSubmit(onSubmitDeposit)}>
 					<Modal.Header closeButton>
 						<Modal.Title>
-							You're about to make a deposit
+							You&apos;re about to make a deposit
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>

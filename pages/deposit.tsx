@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { AuthenticatedNavbar } from "./components/Navbar";
 import "react-credit-cards/es/styles-compiled.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import validate from "./components/authentication/validate";
+import Validate from "./components/authentication/validate";
 import AlertDismissible from "./components/alerts/dismissableAlerts";
 import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 import GetLocalStorage, {
@@ -147,7 +147,7 @@ const PaymentForm = () => {
 };
 
 const Deposit: NextPage = () => {
-	validate();
+	Validate();
 	return (
 		<div>
 			<AuthenticatedNavbar></AuthenticatedNavbar>

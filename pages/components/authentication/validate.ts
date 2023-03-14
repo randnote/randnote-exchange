@@ -3,7 +3,7 @@ import GetLocalStorage from "./localstorage";
 import { useRouter } from "next/router";
 
 // validate function thats added to every authenticable page on the website
-const validate = () => {
+const Validate = () => {
 	const router = useRouter();
 
 	useEffect(() => {
@@ -14,6 +14,7 @@ const validate = () => {
 			}
 		}
 	}, []);
+
 };
 
 // const checkLocalStorage  = () =>{
@@ -29,4 +30,4 @@ const validate = () => {
 // 	}, []);
 // }
 
-export default validate;
+export default Validate;
