@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { FormGroup, Label } from "reactstrap";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8024";
+import Validate from "./components/authentication/validate";
 
 // styles imports:
 import styles from "../styles/transactions.module.scss";
@@ -114,6 +115,7 @@ const Transactions: NextPage = () => {
 	});
 
 	useEffect(() => {
+		// Validate();
 		const socket = socketIOClient(ENDPOINT);
 		socket.on("FromAPI", (data) => {
 			// setPrice(0)

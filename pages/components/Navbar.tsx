@@ -6,6 +6,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Dropdown } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { DeleteLocalStorage } from "./authentication/localstorage";
+import { useRouter } from "next/router";
 
 // style imports:
 import styles from "../../styles/Navbar.module.scss";
@@ -15,6 +17,8 @@ export const AuthenticatedNavbar = (props: any) => {
 	const [username, setUsername] = useState<string>("");
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
+	const router = useRouter();
+
 
 	useEffect(() => {
 		if (localStorage) {
@@ -27,6 +31,11 @@ export const AuthenticatedNavbar = (props: any) => {
 			}
 		}
 	}, []);
+
+	const logout = ()=>{
+		DeleteLocalStorage('randnoteUser')
+		router.push("/signin");
+	}
 
 	return (
 		<Navbar expand="lg" className={`${styles.authNavStyles}`}>
@@ -41,7 +50,10 @@ export const AuthenticatedNavbar = (props: any) => {
 					id="basic-navbar-nav"
 				>
 					<Nav className={`${styles.nav} me-auto`}>
-						<Nav.Link
+
+					{isAuthenticated && username ? (
+						<>
+							<Nav.Link
 							className={styles.navLink}
 							href="/transactions"
 						>
@@ -50,6 +62,13 @@ export const AuthenticatedNavbar = (props: any) => {
 						<Nav.Link className={styles.navLink} href="/deposit">
 							Deposit
 						</Nav.Link>
+						</>
+					): 
+					(
+						<></>
+					)
+					}
+						
 						<Nav.Link className={styles.navLink} href="/chart">
 							Chart
 						</Nav.Link>
@@ -66,8 +85,16 @@ export const AuthenticatedNavbar = (props: any) => {
 							</Dropdown.Toggle>
 
 							<Dropdown.Menu>
-								<Dropdown.Item href="#/action-1">
+								<Dropdown.Item >
+								<Button
+									// className={}
+									// variant="outline-primary"
+									onClick={() => {
+										logout();
+									}}
+								>
 									Logout
+								</Button>
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
