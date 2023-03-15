@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { AuthenticatedNavbar } from "./components/Navbar";
-import {MainFooter} from "./components/Footer";
+import { MainFooter } from "./components/Footer";
 import Link from "next/link";
 
 import {

@@ -46,11 +46,11 @@ const Transactions: NextPage = () => {
 			info.publicKey = publicKey;
 
 			//now we use these keys to get the notes balance in the blockchain:
-			Axios.get(`http://localhost:8033/balance/${publicKey}`)
+			Axios.get(`http://localhost:8034/balance/${publicKey}`)
 				.then((res) => {
 					if (res.status == 200) {
 						console.log(res.data.balance);
-						
+
 						setSendNotesError(false);
 
 						let sendNotesObject = {
@@ -61,7 +61,7 @@ const Transactions: NextPage = () => {
 						};
 						let snack = JSON.stringify(sendNotesObject);
 
-						Axios.post(`http://localhost:8033/transaction`, {
+						Axios.post(`http://localhost:8034/transaction`, {
 							obj: snack,
 						})
 							.then((res) => {
@@ -154,7 +154,7 @@ const Transactions: NextPage = () => {
 							// I have not added NotesBalance as a route:
 							// now we use these keys to get the notes balance in the blockchain:
 							Axios.get(
-								`http://localhost:8033/balance/${res.data[0].publicKey}`
+								`http://localhost:8034/balance/${res.data[0].publicKey}`
 							)
 								.then((res) => {
 									if (res.status == 200) {
@@ -168,7 +168,7 @@ const Transactions: NextPage = () => {
 
 							// ALso, i use the keys to display the users blockchain transactions...
 							Axios.get(
-								`http://localhost:8033/transactionsPerUser/${res.data[0].publicKey}`
+								`http://localhost:8034/transactionsPerUser/${res.data[0].publicKey}`
 							)
 								.then(async (res) => {
 									setUserBlockchainTransactions(

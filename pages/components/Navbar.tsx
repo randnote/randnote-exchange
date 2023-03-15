@@ -75,10 +75,7 @@ export const AuthenticatedNavbar = (props: any) => {
 						<Nav className="navbar-nav ms-auto">
 							{/* <Nav.Link className="ms-auto"> THIS THING CAUSES HYDRATION ISSUES */}
 							<Link href="/signin">
-								<button
-									className="btn "
-									color=""
-								>
+								<button className="btn " color="">
 									SignIn
 								</button>
 							</Link>
