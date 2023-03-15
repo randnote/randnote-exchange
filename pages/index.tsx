@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { AuthenticatedNavbar } from "./components/Navbar";
-import { MainFooter } from "./components/Footer";
+import { NonStickFooter } from "./components/Footer";
 import Link from "next/link";
 
 import {
@@ -147,7 +147,7 @@ const Home: NextPage = () => {
 			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<MainComponent></MainComponent>
 			<AboutComponent></AboutComponent>
-			<MainFooter></MainFooter>
+			<NonStickFooter></NonStickFooter>
 		</div>
 	);
 };

@@ -81,7 +81,7 @@ const Chart: NextPage = () => {
 
 			// Here, I mantain the price. If prices are more than 50, i cut and regulate the chart that the users sees:
 			// I delete the first 25 prices...
-			if (arrayPrices.length > 50) {
+			if (arrayPrices.length > 75) {
 				arrayPrices.splice(0, 25);
 				arrayLabels.splice(0, 25);
 			}

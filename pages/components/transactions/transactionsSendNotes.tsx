@@ -8,9 +8,7 @@ const SendNotesModal = (props: any): any => {
 	const handleCloseTransactionNotes = () =>
 		setShowModalTransactionNotes(false);
 
-	const sendNotes = (data: any) => {
-		
-	};
+	const sendNotes = (data: any) => {};
 
 	return "";
 };

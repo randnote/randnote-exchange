@@ -1,15 +1,8 @@
 # RandNote-exchange
 
-This application consists of a frontend and a backend. The frontend is written in NextJs and the backend is written in Django-Python.
+This application consists of a frontend.
 
-## Getting Started
+## How to start the application
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-### This program uses yarn
+1. `yarn install`
+2. `yarn run dev`. This will run your application on port `3002`, you may change this in the package.json
