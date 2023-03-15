@@ -21,7 +21,8 @@ const Signin: NextPage = () => {
 
 	const onSubmit = (data: any) => {
 		// ${process.env.SERVER}/login
-		Axios.post(`http://localhost:8024/signin`, {
+		console.log(process.env)
+		Axios.post(`${process.env.BACKEND}/signin`, {
 			email: data.email,
 			password: data.password,
 		})

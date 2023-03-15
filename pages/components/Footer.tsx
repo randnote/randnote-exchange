@@ -20,4 +20,4 @@ export const NonStickFooter = () => {
 	);
 };
 
-export default  MainFooter;
+export default MainFooter;
