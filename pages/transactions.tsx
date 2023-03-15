@@ -312,7 +312,7 @@ const Transactions: NextPage = () => {
 					buySellSuccess ? (
 						<AlertDismissible
 							color="success"
-							information="You have successfully made a transaction."
+							information="You have successfully made a transaction. Transactions usually take about 2-5 minutes to propagate in the blockchain."
 						></AlertDismissible>
 					) : (
 						""
@@ -609,7 +609,7 @@ const Transactions: NextPage = () => {
 							/>
 						</FormGroup>
 
-						<FormGroup>
+						{/* <FormGroup>
 							{orderType === "sell" ? (
 								<p>
 									Selling at this price will earn you{" "}
@@ -621,7 +621,7 @@ const Transactions: NextPage = () => {
 									<b>ZAR 300</b>
 								</p>
 							)}
-						</FormGroup>
+						</FormGroup> */}
 					</Modal.Body>
 					<Modal.Footer>
 						<Button variant="secondary" onClick={handleClose}>

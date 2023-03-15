@@ -19,7 +19,6 @@ export const AuthenticatedNavbar = (props: any) => {
 	const toggle = () => setIsOpen(!isOpen);
 	const router = useRouter();
 
-
 	useEffect(() => {
 		if (localStorage) {
 			if (GetLocalStorage("randnoteUser") === null) {
@@ -32,10 +31,10 @@ export const AuthenticatedNavbar = (props: any) => {
 		}
 	}, []);
 
-	const logout = ()=>{
-		DeleteLocalStorage('randnoteUser')
+	const logout = () => {
+		DeleteLocalStorage("randnoteUser");
 		router.push("/signin");
-	}
+	};
 
 	return (
 		<Navbar expand="lg" className={`${styles.authNavStyles}`}>
@@ -50,25 +49,25 @@ export const AuthenticatedNavbar = (props: any) => {
 					id="basic-navbar-nav"
 				>
 					<Nav className={`${styles.nav} me-auto`}>
+						{isAuthenticated && username ? (
+							<>
+								<Nav.Link
+									className={styles.navLink}
+									href="/transactions"
+								>
+									Transactions
+								</Nav.Link>
+								<Nav.Link
+									className={styles.navLink}
+									href="/deposit"
+								>
+									Deposit
+								</Nav.Link>
+							</>
+						) : (
+							<></>
+						)}
 
-					{isAuthenticated && username ? (
-						<>
-							<Nav.Link
-							className={styles.navLink}
-							href="/transactions"
-						>
-							Transactions
-						</Nav.Link>
-						<Nav.Link className={styles.navLink} href="/deposit">
-							Deposit
-						</Nav.Link>
-						</>
-					): 
-					(
-						<></>
-					)
-					}
-						
 						<Nav.Link className={styles.navLink} href="/chart">
 							Chart
 						</Nav.Link>
@@ -85,16 +84,16 @@ export const AuthenticatedNavbar = (props: any) => {
 							</Dropdown.Toggle>
 
 							<Dropdown.Menu>
-								<Dropdown.Item >
-								<Button
-									// className={}
-									// variant="outline-primary"
-									onClick={() => {
-										logout();
-									}}
-								>
-									Logout
-								</Button>
+								<Dropdown.Item>
+									<Button
+										// className={}
+										// variant="outline-primary"
+										onClick={() => {
+											logout();
+										}}
+									>
+										Logout
+									</Button>
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
