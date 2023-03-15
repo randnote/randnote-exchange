@@ -14,7 +14,6 @@ const Validate = () => {
 			}
 		}
 	}, []);
-
 };
 
 // const checkLocalStorage  = () =>{

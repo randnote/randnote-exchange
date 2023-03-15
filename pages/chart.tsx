@@ -83,8 +83,12 @@ const Chart: NextPage = () => {
 				`${data.time.hours}: ${data.time.minutes}: ${data.time.seconds}`
 			);
 			arrayPrices.push(data.price);
+
+			// Here, I mantain the price. If prices are more than 50, i cut and regulate the chart that the users sees:
+			// I delete the first 25 prices...
 			if (arrayPrices.length > 50) {
-				arrayPrices.splice(0, 10);
+				arrayPrices.splice(0, 25);
+				arrayLabels.splice(0, 25);
 			}
 
 			let newObj: any = {
