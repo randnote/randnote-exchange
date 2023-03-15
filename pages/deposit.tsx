@@ -12,6 +12,7 @@ import AddedCardsSection from "./components/bankCards/AddedCardsSection";
 import GetLocalStorage, {
 	localstorageUserType,
 } from "./components/authentication/localstorage";
+import { NonStickFooter } from "./components/Footer";
 
 const PaymentForm = () => {
 	const { register, handleSubmit } = useForm();
@@ -154,6 +155,7 @@ const Deposit: NextPage = () => {
 			<br />
 			<PaymentForm></PaymentForm>
 			<AddedCardsSection> </AddedCardsSection>
+			<NonStickFooter></NonStickFooter>
 		</div>
 	);
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GetLocalStorage from "./authentication/localstorage";
 import Link from "next/link";
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -78,7 +77,6 @@ export const AuthenticatedNavbar = (props: any) => {
 							<Link href="/signin">
 								<button
 									className="btn "
-									// styles={AuthNavbarButtonStyles}
 									color=""
 								>
 									SignIn
@@ -100,19 +98,6 @@ export const AuthenticatedNavbar = (props: any) => {
 			</Container>
 		</Navbar>
 	);
-};
-
-const mainNavbarBrandStyle = {
-	color: "white",
-};
-
-const mainNavbarStyle = {
-	backgroundColor: "#364f6b",
-	color: "white",
-};
-
-const AuthNavStyles = {
-	backgroundColor: "#2cb978",
 };
 
 const AuthNavbarButtonStyles = {

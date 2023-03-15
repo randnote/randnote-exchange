@@ -1,15 +1,10 @@
 import type { NextPage } from "next";
 import { useState, useEffect, useRef } from "react";
 import { AuthenticatedNavbar } from "./components/Navbar";
-import ChartComponent from "./components/charts/chartComponent";
 import { Container, Row, Col } from "reactstrap";
-import { Tabs, Tab, Card, Modal, Button } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 import { Line } from "react-chartjs-2";
-import axios from "axios";
-// var numeral = require('numeral');
-// import numeral from 'numeral'
-
-import MainFooter from "./components/Footer";
+import {MainFooter} from "./components/Footer";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8024";
 
@@ -105,9 +100,7 @@ const Chart: NextPage = () => {
 			};
 
 			setResponse(newObj);
-			// getSupply();
 		});
-		console.log(`${price}... ${previousPrice.current}`);
 		if (price > previousPrice.current) {
 			setPriceMovementColor("green");
 		} else if (price < previousPrice.current) {
@@ -133,7 +126,7 @@ const Chart: NextPage = () => {
 
 			<Container>
 				<Row>
-					<Col md="8">
+					<Col md="12">
 						<Line options={options} data={response} />
 					</Col>
 				</Row>

@@ -2,12 +2,22 @@ import type { NextPage } from "next";
 
 const MainFooter = () => {
 	return (
-		<footer className="page-footer font-small blue pt-4">
+		<footer className="page-footer font-small blue pt-4 fixed-bottom">
 			<div className="footer-copyright text-center py-3">
-				© 2020 Copyright RANDNOTE(Open source):
+			Copyright ©  randnote.co.za
 			</div>
 		</footer>
 	);
 };
 
-export default MainFooter;
+const NonStickFooter = () =>{
+	return (
+		<footer className="page-footer font-small blue pt-4 ">
+			<div className="footer-copyright text-center py-3">
+			Copyright ©  randnote.co.za
+			</div>
+		</footer>
+	);
+}
+
+export   {MainFooter, NonStickFooter};

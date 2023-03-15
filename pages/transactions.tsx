@@ -12,8 +12,6 @@ import { localstorageUserType } from "./components/authentication/localstorage";
 import { useForm } from "react-hook-form";
 import { FormGroup, Label } from "reactstrap";
 import socketIOClient from "socket.io-client";
-import { transcode } from "buffer";
-// import SendNotesModal from "./components/transactions/transactionsSendNotes";
 const ENDPOINT = "http://127.0.0.1:8024";
 
 // styles imports:
@@ -46,22 +44,13 @@ const Transactions: NextPage = () => {
 			let info: any = await GetLocalStorage("randnoteUser"); // this; because we need the logged in users ID
 			info.privateKey = privateKey; // add keys to the objects
 			info.publicKey = publicKey;
-			// console.log(info);
-			// console.log(data);
 
 			//now we use these keys to get the notes balance in the blockchain:
 			Axios.get(`http://localhost:8033/balance/${publicKey}`)
 				.then((res) => {
 					if (res.status == 200) {
 						console.log(res.data.balance);
-						// if(res.data.balance < data.notes){
-						// 	// return error here
-						// 	setSendNotesError(true);
-						// 	setSuccessfulNotesTransmission(false)
-						// }else if(res.data.balance == 0){
-						// 	setSendNotesError(true);
-						// 	setSuccessfulNotesTransmission(false)
-						// }else{
+						
 						setSendNotesError(false);
 
 						let sendNotesObject = {
@@ -70,7 +59,6 @@ const Transactions: NextPage = () => {
 							amount: data.notes,
 							fromAddressPrivateKey: info.privateKey,
 						};
-						// console.log(sendNotesObject)
 						let snack = JSON.stringify(sendNotesObject);
 
 						Axios.post(`http://localhost:8033/transaction`, {
@@ -100,10 +88,6 @@ const Transactions: NextPage = () => {
 		callApi();
 	};
 	// -------------------------------------------------------------------------------------------
-
-	// const [showModalNotes, setShowModalNotes] = useState<boolean>(false);
-	// const handleCloseNotes = () => setShowModalNotes(false);
-	// const handleShowNotes = () => setShowModalNotes(true);
 
 	// success and error alerts.
 	const [buySellError, setBuySellError] = useState(false);
