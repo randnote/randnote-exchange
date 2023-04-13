@@ -7,6 +7,7 @@ import { SetLocalStorage } from "./components/authentication/localstorage";
 import { useRouter } from "next/router";
 import { Container, Row, Button, FormGroup, Label } from "reactstrap";
 import DisplayAlert from "./components/alerts/alerts";
+import AuthenticatedNavbar from "./components/Navbar";
 
 // style imports:
 import styles from "../styles/Signin.module.scss";
@@ -21,7 +22,7 @@ const Signin: NextPage = () => {
 
 	const onSubmit = (data: any) => {
 		// ${process.env.SERVER}/login
-		console.log(process.env)
+		console.log(process.env);
 		Axios.post(`${process.env.BACKEND}/signin`, {
 			email: data.email,
 			password: data.password,
@@ -57,6 +58,7 @@ const Signin: NextPage = () => {
 	return (
 		<div>
 			{/* <MainNavbar></MainNavbar> */}
+			<AuthenticatedNavbar></AuthenticatedNavbar>
 			<Container style={{ marginTop: "40px" }}>
 				<Row>
 					{failedPassword ? (
