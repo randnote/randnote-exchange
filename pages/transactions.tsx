@@ -177,7 +177,9 @@ const Transactions: NextPage = () => {
 										res.data.transactions
 									);
 									console.log(res.data.transactions);
-									console.log(typeof(res.data.transactions[1].type))
+									console.log(
+										typeof res.data.transactions[1].type
+									);
 								})
 								.catch((err) => {
 									console.log(err);
@@ -512,12 +514,15 @@ const Transactions: NextPage = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{userBlockchainTransactions.length > 0 && userBlockchainTransactions != undefined ? (
+								{userBlockchainTransactions.length > 0 &&
+								userBlockchainTransactions != undefined ? (
 									websiteTransactionsArray.map(
-										(transaction: any, i =0) => (
+										(transaction: any, i = 0) => (
 											<tr key={i}>
 												<td>{i + 1}</td>
-												<td>{transaction.type.toString()}</td>
+												<td>
+													{transaction.type.toString()}
+												</td>
 												<td>{transaction.notes}</td>
 												<td>{transaction.toFrom}</td>
 												<td>{5}</td>
