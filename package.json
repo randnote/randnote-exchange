@@ -5,7 +5,7 @@
   "scripts": {
     "dev": " next -p 3002",
     "build": "next build ",
-    "next-start": "env-cmd -f .env.production next start -p 3002",
+    "next-start": "next start -p 3002",
     "prettier": "cd pages && prettier --use-tabs --tab-width 4 --write ."
   },
   "pre-commit": [

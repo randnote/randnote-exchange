@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:17-alpine
 
 WORKDIR /frontend
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3002
 
-CMD yarn run dev
+CMD ["yarn" , "next-start"]
