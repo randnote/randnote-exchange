@@ -1,12 +1,12 @@
-FROM node:17-alpine
+FROM node:18-alpine
 
 WORKDIR /frontend
 
-COPY package*.json ./
-
+# COPY package*.json ./
+COPY . .
 RUN yarn install
 
-COPY . .
+
 
 EXPOSE 3002
 
