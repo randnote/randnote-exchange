@@ -101,17 +101,17 @@ export const AuthenticatedNavbar = (props: any) => {
 						<Nav className="navbar-nav ms-auto">
 							{/* <Nav.Link className="ms-auto"> THIS THING CAUSES HYDRATION ISSUES */}
 							<Link href="/signin">
-								<button className="btn " color="">
-									SignIn
-								</button>
+								<Button className={`${styles.buttonSignin}`}>
+									Sign In
+								</Button>
 							</Link>
 
 							<Link href="/signup">
 								<Button
-									style={AuthNavbarButtonStyles}
-									color="primary"
+									
+									className={`${styles.buttonSignup}`}
 								>
-									SignUp
+									Sign Up
 								</Button>
 							</Link>
 							{/* </Nav.Link> */}
@@ -123,10 +123,10 @@ export const AuthenticatedNavbar = (props: any) => {
 	);
 };
 
-const AuthNavbarButtonStyles = {
-	color: "red",
-	margin: "5px",
-	borderRadius: "10px",
-};
+// const AuthNavbarButtonStyles = {
+// 	color: "red",
+// 	margin: "5px",
+// 	borderRadius: "10px",
+// };
 
 export default AuthenticatedNavbar;

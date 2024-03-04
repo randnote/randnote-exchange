@@ -16,6 +16,41 @@
                 color: white;
             } 
         }
+
+        .buttonSignin{
+            border-radius: 20px;
+            text-transform: uppercase;
+            background-color: inherit;
+            border: 2px solid black;
+            color: black;
+            margin-right: 10px;
+
+            &:hover{
+                background-color: white;
+                color: black;
+                border: 2px solid white;
+            }
+
+            @media (max-width: 990px) {
+                margin-bottom: 10px;
+            }
+        }
+        .buttonSignup{
+            border-radius: 20px;
+            text-transform: uppercase;
+            background-color: inherit;
+            border: 2px solid black;
+            color: black;
+            margin-right: 10px;
+
+            &:hover{
+                background-color: white;
+                color: black;
+                border: 2px solid white;
+            }
+
+            
+        }
     }
    
 }

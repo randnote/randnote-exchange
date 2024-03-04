@@ -40,13 +40,14 @@
       }
 
       .mainButton{
-        height: 45px;
+        // height: 45px;
         border-radius: 30px;
         width: 300px;
         background-color: white;
         color: $color-primary-green;
         border: 0px solid $color-primary-green;
         font-weight: bold;
+        font-size: 30px;
       }
     }
 
